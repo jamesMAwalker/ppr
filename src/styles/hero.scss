@@ -1,0 +1,111 @@
+// Hero Section
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: $white;
+
+  .row {
+    position: relative;
+
+    .hero-text {
+      position: absolute;
+      z-index: 9;
+      width: 100%;
+      top: 49%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      mix-blend-mode: difference;
+      text-transform: uppercase;
+      font-size: 5.5rem;
+      font-weight: 700;
+      letter-spacing: 25px;
+      color: rgba(172, 236, 255, 0.95);
+
+      @media(max-width: 1440px) {
+        font-size: 4.4rem;
+        letter-spacing: 36px;
+      }
+
+      @media(max-width: 1280px) {
+        font-size: 3.5rem;
+        letter-spacing: 24px;
+      }
+    }
+
+    .hero-center {
+      width: 436px;
+      // height: 670px;
+      margin: 0 auto;
+
+      @media(max-width: 1440px) {
+        width: 436px;
+      }
+    }
+
+    .hero-small {
+      width: 436px;
+      // height: 670px;
+      position: absolute;
+      
+
+      @media(max-width: 1440px) {
+        width: 208px;
+      }
+
+      &.left {
+        left: 0px;
+        // bottom: 45%;
+        top: 0;
+        @media(max-width: 1440px) {
+          left: 128px;
+        }
+      }
+
+      &.right {
+        right: 0px;
+        // top: 45%;
+        top: 0;
+        @media(max-width: 1440px) {
+          right: 128px;
+        }
+      }
+    }
+
+    .scroll {
+      cursor: pointer;
+      position: absolute;
+      bottom: -48px;
+      left: 0;
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: $black;
+    }
+  }
+
+  .fixed-misc {
+    position: absolute;
+    position: fixed;
+    z-index: 9;
+    top: 50%;
+    right: 20px;
+    transform: rotate(-90deg) translateY(-50%);
+    font-size: 1.1rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $black;
+    color: $white;
+    mix-blend-mode: difference;
+
+    @media(max-width: 1440px) {
+      right: 15px;
+      font-size: 0.875rem;
+    }
+  }
+}

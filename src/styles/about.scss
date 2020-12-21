@@ -1,0 +1,100 @@
+// About Blurb Styles
+
+.blurb {
+  position: relative;
+  padding: 48px;
+  padding-top: 0;
+  background-color: $white;
+
+  .inner-blurb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    .blurb-text {
+      width: 33%;
+
+      @media(max-width: 1440px) {
+        width: 40%;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+
+      p {
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 2rem;
+        margin: 40px 0 72px 0;
+      }
+
+      .btn-row {
+
+        a {
+          cursor: pointer;
+          font-size: 0.875rem;
+          font-weight: 700;
+          text-decoration: none;
+          letter-spacing: 1.5px;
+          color: $black;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    .blurb-images {
+      width: 50%;
+      height: 800px;
+      position: relative;
+      z-index: 7;
+      
+      @media(max-width: 1440px) {
+        height: 650px;
+      }
+
+      .top-right {
+        position: absolute;
+        z-index: 4;
+        width: 410px;
+        top: 0;
+        right: 0;
+
+        @media(max-width: 1440px) {
+          width: 360px;
+        }
+      }
+
+      .bottom-left {
+        position: absolute;
+        width: 320px;
+        bottom: 0;
+        left: 35px;
+
+        @media(max-width: 1440px) {
+          width: 310px;
+        }
+      }
+    }
+  }
+
+  .black-box {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-40%);
+    height: 325px;
+    width: 750px;
+    background-color: #000;
+  }
+
+  .overlay {
+    z-index: 7;
+    background-color: $turquoiseTr;
+    mix-blend-mode: overlay;
+  }
+}

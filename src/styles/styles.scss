@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap');
+
+$font-primary: 'Palanquin', "Helvetica Neue", Helvetica, sans-serif;;
+
+
+// Colors
+$white: rgb(255, 255, 255);
+$off-white: rgb(240, 240, 240);
+
+$greyLight: rgb(190, 190, 190);
+$grey: rgb(149, 149, 149);
+$greyDark: rgb(95, 95, 95);
+
+$black: rgb(20, 20, 20);
+$blackTr: rgba(20, 20, 20, 0.65);
+
+$turquoise:#C5FBFF;
+$turquoiseTr:rgba(197, 251, 255, 0.35);
+
+html, 
+body {
+  font-family: $font-primary;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  background-color: $white;
+
+  
+  ::-webkit-scrollbar {
+    width: 0px;
+    background-color: $black;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 0px;
+    background-color: $white;
+  }
+}
+
+.container {
+  // width: 1440px;
+  // min-width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media(max-width: 1440px) {
+    width: 1280px;
+    min-width: 1280px;
+  }
+  @media(max-width: 1280px) {
+    width: 976px;
+    min-width: 976px;
+  }
+  @media(max-width: 976px) {
+    width: 768px;
+    min-width: 768px;
+  }
+}
+
+@import './header.scss';
+@import './hero.scss';
+@import './hero-grid.scss';
+@import './about.scss';
+@import './video.scss';
+@import './gallery.scss';

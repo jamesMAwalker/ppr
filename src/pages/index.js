@@ -1,15 +1,59 @@
-import React from "react"
-import { Link } from "gatsby"
-//scss
-import "../styles/styles.scss"
-// Normalize is optional up to you
-import "normalize.css"
+import React, { useEffect, useState } from "react"
+// import { Link } from "gatsby"
 
-const IndexPage = () => (
-  <div>
-    <h1>Hi from the home page</h1>
-    <Link to="/page-2">Go to page 2</Link>
-  </div>
-)
+import Header from "../components/header"
+
+import "../styles/styles.scss"
+// import Hero from "../components/hero"
+import Blurb from "../components/blurb"
+import VideoSection from "../components/videoSection"
+import Footer from "../components/footer"
+import HeroGrid from "../components/hero-grid"
+
+import { debounce } from '../utilities/debounce';
+
+const IndexPage = () => {
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  })
+
+
+  useEffect(() => {
+    /*
+      TODO
+      Figure out what's going on with this whole dimensions issue.  
+    */
+    setDimensions({
+      height: window.innerHeight,
+      width: window.innerWidth,
+    })
+    let vh = dimensions.height * 0.01
+    document.documentElement.style.setProperty("--vh", `${vh}px`)
+
+    const debouncedHandleResize = debounce(function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      })
+    }, 1000)
+
+    window.addEventListener("resize", debouncedHandleResize)
+
+    return () => {
+      window.removeEventListener("resize", debouncedHandleResize)
+    }
+  }, [])
+  
+  return (
+    <div>
+      <Header />  
+      <HeroGrid />
+      <Blurb />
+      <VideoSection />
+      <Footer />
+    </div>
+  )
+}
 
 export default IndexPage

@@ -1,16 +1,19 @@
 module.exports = {
   siteMetadata: {
-    title: `Odunsi Portfolio Site`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `PPR 20201 Team Site`,
+    description: `Information about the Plant Power Racing team for 2021.`,
+    author: `james-walker`,
   },
   plugins: [
+    `gatsby-plugin-layout`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-transition-link`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+        layout: require.resolve(`./src/layouts/index.js`),
       },
     },
     `gatsby-transformer-sharp`,

@@ -1,0 +1,142 @@
+.gallery {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .gallery-btn {
+
+    &.left {
+      top: 50%;
+      left: 3.5vw;
+
+      &:hover ~ .chevron {
+        transform: translateY(-50%) translateX(-3px);
+      }
+    }
+
+    &.season-selectors {
+      top: 50%;
+      right: -7vw;
+      width: 50vh;
+      display: flex;
+      justify-content: space-between;
+
+      .selector {
+        color: grey;
+        
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: black;
+          transform: scale(1.1);
+          transition: all .2s;
+        }
+      }
+    }
+    
+    transition: all .2s;
+    transform: translateY(-50%) rotate(-90deg );
+    cursor: pointer;
+    position: absolute;
+    font-size: .875rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $black;
+    // mix-blend-mode: difference;
+  }
+
+  .chevron {
+    position: fixed;
+    position: absolute;
+    z-index: 9;
+    height: 20px;
+    width: 20px;
+    top: 50.5%;
+    left: 2.5vw;
+    transform: translateY(-50%);
+    // mix-blend-mode: difference;
+    transition: all .4s;
+    
+    path {
+      fill: black;
+    }
+
+    &:hover {
+      transform: translateY(-50%) translateX(-3px);
+    }
+  }
+
+  .grid-wrapper {
+    height: 70vh;
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 16px;
+    grid-template-areas: 
+      "photoLT photoCLT photoCRT photoRT"
+      "photoLT photoCLT photoCRT photoRT"
+      "photoLT photoCLM photoCRT photoRB"
+      "photoLB photoCLM photoCRM photoRB"
+      "photoLB photoCLB photoCRB photoRB"
+      "photoLB photoCLB photoCRB photoRB"
+    ;
+
+    .photo {
+
+      div {
+        height: 100%;
+        width: 100%;
+      }
+
+      img {
+        object-fit: cover;
+        height: 100%;
+      }
+      
+      // Left column
+      &1 {
+        grid-area: photoLT;
+      }
+      &2 {
+        grid-area: photoLB;
+      }
+
+      // Left center column
+      &3 {
+        grid-area: photoCLT;
+      }
+      &4 {
+        grid-area: photoCLM;
+      }
+      &5 {
+        grid-area: photoCLB;
+      }
+
+      // Right center column
+      &6 {
+        grid-area: photoCRT;
+      }
+      &7 {
+        grid-area: photoCRM;
+      }
+      &8 {
+        grid-area: photoCRB;
+      }
+
+      // Right column
+      &9 {
+        grid-area: photoRT;
+      }
+      &10 {
+        grid-area: photoRB;
+      }
+    }
+  }
+
+
+}
