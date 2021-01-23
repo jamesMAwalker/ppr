@@ -30,3 +30,11 @@ export const LeftChevron = props => {
     </svg>
   )
 }
+
+export const ScrollIcon = props => {
+  return (
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 31L10 13L30 13L20 31Z" fill="white" />
+    </svg>
+  )
+}

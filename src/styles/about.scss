@@ -14,10 +14,6 @@
     .blurb-text {
       width: 33%;
 
-      @media(max-width: 1440px) {
-        width: 40%;
-      }
-
       h3 {
         margin: 0;
         font-size: 1.8rem;
@@ -53,20 +49,12 @@
       position: relative;
       z-index: 7;
       
-      @media(max-width: 1440px) {
-        height: 650px;
-      }
-
       .top-right {
         position: absolute;
         z-index: 4;
         width: 410px;
         top: 0;
         right: 0;
-
-        @media(max-width: 1440px) {
-          width: 360px;
-        }
       }
 
       .bottom-left {
@@ -74,10 +62,6 @@
         width: 320px;
         bottom: 0;
         left: 35px;
-
-        @media(max-width: 1440px) {
-          width: 310px;
-        }
       }
     }
   }

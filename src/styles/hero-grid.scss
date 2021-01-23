@@ -1,74 +1,50 @@
 // Hero Section
 
 .hero {
+  grid-area: content;
   position: relative;
   height: 100vh;
+  width: 100%;
+  margin-top: 12.5vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: $white;
 
   .hero-grid {
     position: relative;
-    height: 55vh;
-    width: 80vw;
+    height: 75vh;
+    width: 100%;
     display: grid;
-    gap: 5vw;
+    gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "left center right";
 
     .hero-text {
       position: absolute;
-      z-index: 9;
-      width: 90vw;
       top: 50%;
-      left: 50%;
-      transform: translate(-49.5%, -50%);
+      // left: 50%;
+      transform: translateY(-100%);
+      z-index: 9;
+      height: 4rem !important;
+      width: 100%;
       text-align: center;
       // mix-blend-mode: difference;
       text-transform: uppercase;
-      font-size: 6rem;
+      font-size: 4rem;
       font-weight: 100;
-      letter-spacing: 20px;
-      color: white;
-      color: rgba(172, 236, 255, 0.95);
-      color: #6beeff;
-      color: #00E0FF;
-      color: black;
+      letter-spacing: 30px;
+      color: $white;
 
-      &.center {
-        color: white;
-        mix-blend-mode: screen;
-        font-weight: 400;
-      }
-
-      &.upper {
-        display: none;
-        opacity: .15;
-        top: 15%;
-      }
-
-      &.lower {
-        color: #adadad;
-        color: #8feeff;
-        color: #ff99c9;
-        display: none;
-        opacity: .15;
-        top: 85%;
-      }
-
-      @media(max-width: 1440px) {
-        font-size: 4.4rem;
-        letter-spacing: 36px;
-      }
-
-      @media(max-width: 1280px) {
-        font-size: 3.5rem;
-        letter-spacing: 24px;
+      &.right {
+        letter-spacing: 20px;
       }
     }
 
     .photo {
+      height: 75vh;
+      width: 100%;
 
       div {
         height: 100%;
@@ -78,50 +54,70 @@
 
     .hero-center {
       grid-area: center;
-
-      @media(max-width: 1440px) {
-        width: 436px;
-      }
+      position: relative;
     }
 
     .hero-small {
-      @media(max-width: 1440px) {
-        width: 208px;
-      }
+      position: relative;
 
       &.left {
         grid-area: left;
-
-        @media(max-width: 1440px) {
-          left: 128px;
-        }
       }
 
       &.right {
         grid-area: right;
-
-        @media(max-width: 1440px) {
-          right: 128px;
-        }
       }
     }
   }
 
   .scroll {
-    cursor: pointer;
-    position: absolute;
-    bottom: 10vh;
-    left: 10vw;
-    transform: translateY(50%);
-    text-decoration: none;
+    height: 12.5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     font-weight: 700;
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: $black;
+
+    &-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      &:hover {
+        svg {
+          transition: all .4s;
+          path {
+            fill: $black;
+            text-shadow: 1.5px 1.5px 0 $turquoiseTr,
+            3px 3px 0 $pink;
+          }
+        }
+      }
+    }
+    
+    & > * {
+      cursor: pointer;
+    }
+
+    svg {
+      height: 30px;
+      width: 30px;
+      margin-right: 1rem;
+      stroke: $black;
+      
+      path {
+        transition: all .2s;
+        fill: transparent;
+      }
+    }
   }
 
   .fixed-link {
+    display: none;
     position: fixed;
     position: absolute;
     z-index: 99 ;
@@ -136,10 +132,6 @@
     color: $white;
     mix-blend-mode: difference;
 
-    @media(max-width: 1440px) {
-      right: 15px;
-      font-size: 0.875rem;
-    }
 
     &:hover {
 
@@ -151,6 +143,7 @@
   }
 
   .chevron {
+    display: none;
     position: fixed;
     position: absolute;
     z-index: 9;

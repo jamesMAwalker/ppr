@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import { LogoColor } from './Logo'
+import { LogoColor, PALogo } from './Logo'
 
 const Header = () => (
   <header className="header">
@@ -14,10 +14,15 @@ const Header = () => (
         </div>
         <div className="navigation">
           <nav className="nav">
-            <Link to="/about">About</Link>
-            <Link to="/team">Team</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="/about"><span className='hover-shadows' >About</span></Link>
+            <Link to="/team"><span className='hover-shadows' >Team</span></Link>
+            <Link to="/contact"><span className='hover-shadows' >Contact</span></Link>
           </nav>
+          <div className="PA-square">
+            <Link>
+              <PALogo />
+            </Link>
+          </div>
         </div>
       </div>
     </div>

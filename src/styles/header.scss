@@ -1,12 +1,13 @@
 .header {
-  position: absolute;
+  position: fixed;
   z-index: 9;
   top: 0;
-  height: 15vh;
+  height: 12.5vh;
   width: 100%;
+  background-color: #fff;
 
   .inner-header {
-    height: 15vh;
+    height: 12.5vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -14,6 +15,11 @@
 
     .logo {
       transform: translateY(-.5vh);
+      height: 12.5vh;
+      width: 12.5vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       a {
         font-weight: 700;
@@ -23,6 +29,9 @@
       }
     }
     .navigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
 
       nav {
 
@@ -38,6 +47,25 @@
           &:last-child {
             margin-right: 0;
           }
+        }
+      }
+
+      .PA-square {
+        margin-left: 40px;
+        height: 12.5vh;
+        width: 12.5vh;
+        background-color: $pink;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .2s;
+
+        &:hover {
+          background-color: $turquoise;
+        }
+
+        svg {
+          height: 3.8vh;
         }
       }
     }

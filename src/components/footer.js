@@ -12,8 +12,8 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <div className="copyright">
-          <div className="text"></div>
-          <div className="symbol"></div>
+          <div className="text">PPR 2020</div>
+          <div className="symbol">©</div>
         </div>
         <div className="social">
           <span className="icon">IG</span>

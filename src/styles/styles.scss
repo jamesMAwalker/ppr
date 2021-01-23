@@ -14,8 +14,10 @@ $greyDark: rgb(95, 95, 95);
 $black: rgb(20, 20, 20);
 $blackTr: rgba(20, 20, 20, 0.65);
 
-$turquoise:#C5FBFF;
-$turquoiseTr:rgba(197, 251, 255, 0.35);
+$turquoise:rgb(77, 238, 254);
+$turquoiseTr:rgba(77, 239, 254, 0.6);
+
+$pink: rgb(248, 201, 233);
 
 html, 
 body {
@@ -36,32 +38,36 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .container {
-  // width: 1440px;
-  // min-width: 1440px;
   margin: 0 auto;
   height: 100%;
-  width: 80vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
-  @media(max-width: 1440px) {
-    width: 1280px;
-    min-width: 1280px;
-  }
-  @media(max-width: 1280px) {
-    width: 976px;
-    min-width: 976px;
-  }
-  @media(max-width: 976px) {
-    width: 768px;
-    min-width: 768px;
+.hover-shadows {
+  transition: all .2s;
+
+  &:hover {
+    text-shadow: 1.5px 1.5px 0 $turquoiseTr,
+                 3px 3px 0 $pink
+    ;
   }
 }
 
+
+
 @import './header.scss';
-@import './hero.scss';
+@import './layout.scss';
+@import './sponsors-band.scss';
+@import './footer.scss';
 @import './hero-grid.scss';
 @import './about.scss';
 @import './video.scss';

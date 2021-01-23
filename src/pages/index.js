@@ -46,12 +46,10 @@ const IndexPage = () => {
   }, [])
   
   return (
-    <div>
-      <Header />  
+    <div className='content-container'>
       <HeroGrid />
       <Blurb />
       <VideoSection />
-      <Footer />
     </div>
   )
 }
