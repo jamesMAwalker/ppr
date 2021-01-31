@@ -15,8 +15,8 @@ import { debounce } from '../utilities/debounce';
 
 const IndexPage = () => {
   const [dimensions, setDimensions] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth,
+    height: '',
+    width: '',
   })
 
 
