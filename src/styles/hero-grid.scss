@@ -33,8 +33,9 @@
       // mix-blend-mode: difference;
       text-transform: uppercase;
       font-size: 4rem;
-      font-weight: 100;
+      font-weight: 700;
       letter-spacing: 30px;
+      
       color: $white;
 
       &.right {
@@ -43,8 +44,20 @@
     }
 
     .photo {
+      position: relative;
       height: 75vh;
       width: 100%;
+
+      &::before {
+        z-index: 9;
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: $blackTr2;
+      }
 
       div {
         height: 100%;
@@ -66,6 +79,7 @@
 
       &.right {
         grid-area: right;
+        // object-position: -17vw;
       }
     }
   }
@@ -135,10 +149,10 @@
 
     &:hover {
 
-      & ~ .chevron {
-        transform: translateY(-50%) translateX(3px);
-        stroke: 1px;
-      }
+      // & ~ .chevron {
+      //   transform: translateY(-50%) translateX(3px);
+      //   stroke: 1px;
+      // }
     }
   }
 
@@ -159,8 +173,8 @@
       fill: white;
     }
 
-    &:hover {
-      transform: translateY(-50%) translateX(3px);
-    }
+    // &:hover {
+    //   transform: translateY(-50%) translateX(3px);
+    // }
   }
 }

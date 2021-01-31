@@ -6,9 +6,10 @@ import Header from "../components/header"
 import "../styles/styles.scss"
 // import Hero from "../components/hero"
 import Blurb from "../components/blurb"
-import VideoSection from "../components/videoSection"
+import ContactSection from "../components/contact-section"
 import Footer from "../components/footer"
 import HeroGrid from "../components/hero-grid"
+import SupporterKit from "../components/supporter-kit"
 
 import { debounce } from '../utilities/debounce';
 
@@ -49,7 +50,8 @@ const IndexPage = () => {
     <div className='content-container'>
       <HeroGrid />
       <Blurb />
-      <VideoSection />
+      <SupporterKit />
+      <ContactSection />
     </div>
   )
 }

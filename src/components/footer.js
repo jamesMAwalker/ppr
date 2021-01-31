@@ -1,27 +1,40 @@
 import React from 'react'
+import { InstaIcon, StravaIcon } from './icons';
 
-const Footer = () => {
+const Footer = (props) => {
+  console.log(props);
+
   return (
-    <div className='footer'>
-      <div className="sponsors">
-        <div className="sponsors-inner">
-          <div className="logo-wrapper"><img src="/" alt=""/></div>
-          <div className="logo-wrapper"><img src="/" alt=""/></div>
-          <div className="logo-wrapper"><img src="/" alt=""/></div>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <div className="copyright">
-          <div className="text">PPR 2020</div>
+    <div ref={props.ref} className="footer">
+      <div className="copyright footer-section">
+        <div className="inner">
+          <div className="name">
+            <span className="line">PLANT</span>
+            <span className="line">POWER</span>
+            <span className="line">RACING</span>
+            <span className="line">2021</span>
+          </div>
           <div className="symbol">©</div>
         </div>
-        <div className="social">
-          <span className="icon">IG</span>
-          <span className="icon">ST</span>
+      </div>
+      <div className="social footer-section">
+        <div className="inner">
+          <span className="icon">
+            <InstaIcon classN='footer-icon'/>
+          </span>
+          <span className="icon">
+            <StravaIcon classN='footer-icon'/>
+          </span>
         </div>
-        <div className="contact">
-          <div className="email"></div>
-          <span className="button"></span>
+      </div>
+      <div className="contact footer-section">
+        <div className="inner">
+          <span className="button">+</span>
+          <div className="email">
+            <div className="line">INFO@</div>
+            <div className="line">PLANTPOWER</div>
+            <div className="line">RACING.COM</div>
+          </div>
         </div>
       </div>
     </div>

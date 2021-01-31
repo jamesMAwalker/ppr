@@ -1,0 +1,42 @@
+.button-color-shadows {
+  position: relative;
+  padding: 1rem 2rem;
+  border: none;
+  color: $white;
+  background-color: $black;
+
+  &:hover {
+    color: $turquoise;
+
+    &::before {
+      transform: translate(.5rem, .5rem)
+    }
+    &::after {
+      transform: translate(1rem, 1rem)
+    }
+  }
+
+  &::after,
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    content: '';
+    opacity: .75;
+    transform: translate(0, 0);
+    transition: all .2s;
+  }
+
+  &::before {
+    z-index: -1;
+    background-color: $turquoise;
+    
+  }
+  &::after {
+    z-index: -2;
+    background-color: $pink;
+    
+  }
+}

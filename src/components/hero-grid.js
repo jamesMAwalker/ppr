@@ -1,51 +1,52 @@
 import React, { useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { Link } from "gatsby"
-
-
 import gsap from "gsap"
 
+
+
+import { Link } from "gatsby"
 import Img from "gatsby-image"
+
 import { RightChevron, ScrollIcon } from "./icons"
 
 // let tl = gsap.timeline()
 
 const HeroGrid = () => {
   useEffect(() => {
-    gsap.from(".hero-center", 1.5, {
-      x: "-7vw",
-      ease: 'expo.InOut'
-    })
-    gsap.fromTo(
-      ".hero-center img",
-      1.5,
-      {
-        // opacity: 0.5,
-        objectPosition: "10px",
-        ease: "expo.InOut",
-      },
-      {
-        objectPosition: "-200px",
-        ease: "expo.InOut",
-      }
-    )
+    // gsap.from(".hero-center", 1.5, {
+    //   x: "-7vw",
+    //   ease: 'expo.InOut'
+    // })
+    // gsap.fromTo(
+    //   ".hero-center img",
+    //   1.5,
+    //   {
+    //     // opacity: 0.5,
+    //     objectPosition: "10px",
+    //     ease: "expo.InOut",
+    //   },
+    //   {
+    //     objectPosition: "-200px",
+    //     ease: "expo.InOut",
+    //   }
+    // )
 
-    gsap.from(".photo", 0.8, {
-      opacity: .2,
-      stagger: { amount: 0.3 },
+    gsap.from(".photo", 2, {
+      opacity: 0,
+      stagger: { amount: 1 },
     })
-
+    
     gsap.from(".hero-small", 1.5, {
-      x: "-7vw",
+      // x: "-7vw",
       ease: "expo.InOut",
     })
+
 
     gsap.fromTo(
       ".hero-small img",
       1.5,
       {
-        // opacity: 0.5,
-        objectPosition: "10px",
+        objectPosition: "0px",
         ease: "expo.InOut",
       },
       {
@@ -96,7 +97,7 @@ const HeroGrid = () => {
   `)
 
   return (
-    <div className="hero">
+    <main className="hero">
       <div className="hero-grid">
         <div className="hero-small  photo left">
           <Img
@@ -136,7 +137,7 @@ const HeroGrid = () => {
           <span className="hover-shadows">scroll down</span>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

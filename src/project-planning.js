@@ -4,17 +4,19 @@
 
 Current Notes {
 
-  + Add the Godforsaken Media Queries {
+  !! Add the Godforsaken Media Queries {
     # This of course means designing a mobile version of each page, but it'll be important to get this into the workflow.
   }
 
-  + Fix the Video Section {
-    # Currently messy because of an issue with the container component. Refactor the video section to use another type of wrapper. 
-  }
+  // + Fix the Video Section {
+  //   # Currently messy because of an issue with the container component. Refactor the video section to use another type of wrapper. 
+  // }
 
-  + Add the footer {
-    # Yeah, do that.
-  }
+  // + Add the footer {
+  //   # Yeah, do that.
+  // }
+
+  ^ Might look cool to use a blur layer over the hero text.
 
   - Design and Build The Team Pages {
     # I feel like there are a couple ways this could go.
@@ -22,6 +24,12 @@ Current Notes {
       2. Full page list with a bit more flare to the design.
       3. Show all members and allow selection for more detail.
   }
+
+  - Design and Build The Sponsor Page {
+    # Have a direction on this, but not quite settled. Will experiment a little more, but will definintely do something similar to the team pages. 
+    # Maybe on hover a pseudo element slides up or down part way, revealing a photo, but still giving the logo a solid background.
+    # Possibly the logo moves up along with it the pseudo.
+  } 
 
   - Page Transitions {
     # I kind of like the cover transitions, but I'd like to experiment with other ideas. Just having swipes with more flowy physics would be cool. 

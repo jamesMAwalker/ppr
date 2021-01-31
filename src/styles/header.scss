@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  z-index: 9;
+  z-index: 999;
   top: 0;
   height: 12.5vh;
   width: 100%;
@@ -13,8 +13,24 @@
     align-items: center;
     justify-content: space-between;
 
-    .logo {
+    .nav-left {
       transform: translateY(-.5vh);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      
+      .nav-header {
+        font-size: var(--mFontSize);
+        letter-spacing: var(--xSpaced);
+
+        .racing {
+          font-weight: 200 !important;
+        }
+      }
+
+      .logo {
+      // transform: translateY(.5vh);
       height: 12.5vh;
       width: 12.5vh;
       display: flex;
@@ -28,6 +44,8 @@
         color: $black;
       }
     }
+    }
+
     .navigation {
       display: flex;
       align-items: center;
@@ -40,7 +58,7 @@
           text-transform: uppercase;
           text-decoration: none;
           letter-spacing: 2px;
-          font-size: 0.75rem;
+          font-size: var(--baseFontSize);
           font-weight: 700;
           color: $black;
 

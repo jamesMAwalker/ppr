@@ -1,6 +1,8 @@
 .layout {
   height: 100%;
   width: 100%;
+  z-index: 999;
+  // background-color: $white;
 
   &-main {
     position: relative;
@@ -13,6 +15,65 @@
       "marginL content marginR"
     ;
 
+    .social-icons {
+      mix-blend-mode: difference  !important;
+      position: fixed;
+      left: 0;
+      height: 87.5vh;
+      width: 12.5vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      z-index: 99;
+
+      .icon-wrapper {
+        height: 15%;
+        position: relative;
+
+        .social-icon {
+          cursor: pointer;
+
+          &:hover {
+            & ~ svg.pink {
+              top: 3.5px !important;
+              left: 3.5px !important;
+              path {
+                fill: $pink;
+              }
+            }
+            & ~ svg.turquoise {
+              top: 1.75px !important;
+              left: 1.75px !important;
+              path {
+                fill: $turquoise;
+              }
+            }
+          }
+        }
+
+        .shadow {
+          position: absolute;
+          z-index: -1;
+          opacity: 0.75;
+          top: 0;
+          left: 0;
+          transition: all .2s;
+          
+          &.pink {
+              path {
+              fill: transparent;
+            }
+          }
+          &.turquoise {
+              path {
+              fill: transparent;
+            }
+          }
+        }
+      }
+    }
+
     .content-container {
       grid-area: content;
       height: 100%;
@@ -22,67 +83,71 @@
     }
 
     .fixed-link {
-      grid-area: marginR;
+      // grid-area: marginR;
       position: fixed;
       right: 0;
       height: 100vh;
       width: 12.5vh;
-      background-color: $white;
       display: grid;
       align-items: center;
       justify-content: center;
 
-
       .text {
-        transform: rotate(-90deg);
+        z-index: 9999;
+        display: flex;
+        transform: rotate(-90deg) translateY(-.25rem);
         text-transform: uppercase;
         text-decoration: none;
         letter-spacing: 3px;
-        font-size: 1rem;
+        font-size: var(--baseFontSize);
         font-weight: 700;
-        color: $white;
-        mix-blend-mode: difference;
+        text-shadow: 1.5px 1.5px 0 transparent, 3px 3px 0 transparent;
+        transition: all .2s;
 
         &:hover {
-          &::after {
-            transform: scaleX(1.25);
-            height: 2px;
-            transform-origin: center;
-          }
-
           svg {
-            transform: translate(10px, 4px) scaleX(1.75) scaleY(2);
-            transition: all .2s;
+          transition: all .4s;
             path {
               fill: $black;
-              transition: all .2s;
             }
           }
         }
 
         svg {
-          height: 17px;
+          height: 30px;
+          width: 30px;
+          // margin-right: 1rem;
           stroke: $black;
-          transform: translate(10px, 2px) scaleX(1.75) scaleY(1.5);
           
-
           path {
-            fill: $white;
+            transition: all .2s;
+            fill: transparent;
           }
-        }
-
-        &::after {
-          position: absolute;
-          top: 50%;
-          left: -30%;
-          z-index: -1;
-          content: '';
-          background-color: $pink;
-          height: 1px;
-          width: 150px;
-          transition: all .2s;
         }
       }
     }
   }
+
+  .vp-triggers {
+      position: relative;
+      z-index: 999999;
+      width: 100%;
+      display: flex;
+
+      .extension {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: transparent;
+        width: 20px;
+        
+        &--about {
+          height: 250vh;
+        }
+
+        &--sponsors {
+          height: 150vh;
+        }
+      }
+    }
 }

@@ -1,99 +1,186 @@
 .video-section {
-  margin-top: 160px;
+  position: relative;
+  min-height: 87.5vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: lightblue;
+  // z-index: 9;
+  
+  .absolute-container {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
 
-  .flex-container {
-    display: flex;
-    flex-direction: column;
-    width: 70vw;
 
-    .video-player {
-      position: relative;
+    .flex-container {
+      display: flex;
+      flex-direction: column;
       width: 100%;
-      margin: 0 auto;
+      height: 100%;
 
-      &::after {
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 15vw;
-        top: 0;
-        left: -15vw;
-        background-color: rgb(161, 236, 255);
-        opacity: 0.4;
-      }
-
-      video {
-        width: 100%;
-        outline: none;
-      }
-    }
-    .video-content {
-      display: flex;
-      justify-content: space-between;
-      margin: 80px 0 120px;
-      .title {
-        width: 50%;
-        h3 {
-          font-weight: 700;
-          text-transform: uppercase;
-          font-size: 1.8rem;
-          letter-spacing: 1.5px;
-          margin: 0;
-        }
-      }
       .content {
-        width: 50%;
-        p {
-          font-size: 1rem;
-          line-height: 2rem;
-          font-weight: 300;
-          margin: 0;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+
+        video {
+          width: 100%;
+          outline: none;
         }
+
+        .contact-form {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: $blackTr2;
+          display: grid;
+          grid-template-columns: 17.5vh repeat(2, calc(50% - 17.5vh)) 17.5vh;
+          grid-template-rows: 100%;
+          grid-template-areas: "marginL contentL contentR marginR";
+
+          .contact-blurb {
+            grid-area: contentL;
+            height: 80%;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+            color: $white;
+            
+            h2 {
+              font-size: var(--headerFontSize);
+              margin: 0;
+            }
+
+            p {
+              font-size: var(--mFontSize);
+              margin-bottom: 0;
+            }
+          }
+
+          .contact-input {
+            grid-area: contentR;
+            height: 80%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            
+            .shrink-wrapper {
+              position: relative;
+              height: 15vh;
+              width: 100%;
+              // background-color: rgba(255, 255, 255, 0.159);
+              display: flex;
+              flex-direction: column;
+
+              .email-label {
+                position: absolute;
+                top: 40%;
+                left: var(--photoGap);
+                font-size: var(--mLgFontSize);
+                letter-spacing: var(--TwoXSpaced);
+                color: $whiteTr;
+                transition: all .4s;
+              }
+
+              .email-input {
+                height: 15vh;
+                width: 100%;
+                background-color: transparent;
+                padding-top: var(--photoGap);
+                padding-left: var(--photoGap);
+                border: none;
+                border-bottom: 3px solid $white;
+                font-size: var(--mLgFontSize);
+                letter-spacing: var(--TwoXSpaced);
+                color: $whiteTr;
+                outline: none;
+
+                &:focus + label {
+                  color: $textPrimary;
+                  transform-origin: left;
+                  transform: scale(.5) translateY(-150%);
+                }
+              }
+
+              
+              .submit-arrow {
+                position: absolute;
+                top: 40%;
+                right: 0;
+                background-color: transparent;
+                height: 40px;
+                width: 40px;
+                transform: rotate(-90deg);
+                transition: all .3s;
+                stroke: $white;
+
+                path {
+                  fill: transparent;
+                  transition: all .7s;
+                }
+
+                &:hover {
+                  transform: rotate(-90deg) translateY(.5rem);
+                  
+                  path {
+                    fill: $white;
+                  }
+                }
+              }
+            }
+          }
+        }      
       }
     }
   }
 }
 
-//footer
-footer {
-  .featured-companies {
-    background: $black;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    .container {
-      ul {
-        display: flex;
-        justify-content: space-around;
-        padding: 0;
-        align-items: center;
-        flex-direction: row;
-        li {
-          text-align: center;
-          img {
-            width: 50%;
-          }
-        }
-      }
-    }
-  }
-  .footer {
-    background: $off-white;
-    height: 80px;
-    .inner {
-      padding: 0 120px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .socials {
-        a {
-          margin: 0 8px;
-        }
-      }
-    }
-  }
-}
+// //footer
+// footer {
+//   .featured-companies {
+//     background: $black;
+//     height: 200px;
+//     display: flex;
+//     align-items: center;
+//     .container {
+//       ul {
+//         display: flex;
+//         justify-content: space-around;
+//         padding: 0;
+//         align-items: center;
+//         flex-direction: row;
+//         li {
+//           text-align: center;
+//           img {
+//             width: 50%;
+//           }
+//         }
+//       }
+//     }
+//   }
+//   .footer {
+//     background: $off-white;
+//     height: 80px;
+//     .inner {
+//       padding: 0 120px;
+//       height: 80px;
+//       display: flex;
+//       align-items: center;
+//       justify-content: space-between;
+//       .socials {
+//         a {
+//           margin: 0 8px;
+//         }
+//       }
+//     }
+//   }
+// }
