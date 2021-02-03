@@ -12,7 +12,7 @@ const SponsorsBand = () => {
       <div className="flex-wrapper">
         {
           sponsorLogos.map(l => (
-            <div className="">{l.name}</div>
+            <div key={l.name} className="">{l.name}</div>
           ))
         }
       </div>

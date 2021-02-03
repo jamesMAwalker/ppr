@@ -9,7 +9,7 @@ import Img from "gatsby-image"
 import { LeftChevron } from '../components/icons'
 
 const TeamGallery = () => {
-  let tl = gsap.timeline() 
+  // let tl = gsap.timeline() 
   const pageRef = useRef(null)
 
   useEffect(() => {
@@ -145,7 +145,14 @@ const TeamGallery = () => {
 
   return (
     <div ref={pageRef} className="gallery">
-      <AniLink cover bg="lightgreen" direction="right" top="enter" to="/">
+      <AniLink
+        cover
+        bg="rgb(77, 238, 254)"
+        direction="right"
+        top="enter"
+        to="/"
+        href='/#'
+      >
         <div className="gallery-btn left">Home</div>
         <LeftChevron classN="chevron" />
       </AniLink>

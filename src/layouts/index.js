@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useInView } from "react-intersection-observer"
 
 import Header from '../components/header'
@@ -8,15 +8,15 @@ import Footer from '../components/footer'
 import SponsorsBand from '../components/sponsors'
 
 const Layout = ({ children }) => {
-  const [footerRef, footerInView, footerEntry] = useInView({
+  const [footerRef, footerInView ] = useInView({
     threshold: 0,
   })
 
-  const [teamRef, aboutInView, aboutEntry] = useInView({
+  const [teamRef, aboutInView ] = useInView({
     threshold: 0,
   })
 
-  const [sponsorsRef, sponsorsInView, sponsorsEntry] = useInView({
+  const [sponsorsRef, sponsorsInView ] = useInView({
     threshold: 0,
   })
 
@@ -55,7 +55,12 @@ const Layout = ({ children }) => {
         {children}
         {!footerInView && (
           <nav className="fixed-link">
-            <AniLink cover bg="pink" direction="left" to={`/${linkContent()}`}>
+            <AniLink
+              cover
+              bg="rgb(77, 238, 254)"
+              direction="left"
+              to={`/${linkContent()}`}
+            >
               <div className="text hover-shadows">
                 {linkContent()}
                 <ScrollIcon />
@@ -66,7 +71,10 @@ const Layout = ({ children }) => {
       </main>
       <span className="vp-triggers">
         <span ref={teamRef} className="extension extension--about"></span>
-        <span ref={sponsorsRef} className="extension extension--sponsors"></span>
+        <span
+          ref={sponsorsRef}
+          className="extension extension--sponsors"
+        ></span>
       </span>
       <SponsorsBand />
       <span ref={footerRef} className="footer-trigger"></span>

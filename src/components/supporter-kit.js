@@ -64,7 +64,12 @@ const SupporterKit = () => {
           <div
             className={`photo ${mainPhoto[0]}`}
             id={0}
+            role="button"
+            tabIndex={0}
             onClick={handlePhotoSwitch}
+            onKeyDown={e => {
+              if (e.code === 13) handlePhotoSwitch()
+            }}
           >
             <Img
               fluid={data.jerseyRender.childImageSharp.fluid}
@@ -76,7 +81,12 @@ const SupporterKit = () => {
           <div
             className={`photo ${mainPhoto[1]}`}
             id={1}
+            role="button"
+            tabIndex={0}
             onClick={handlePhotoSwitch}
+            onKeyDown={e => {
+              if (e.code === 13) handlePhotoSwitch()
+            }}
           >
             <Img
               fluid={data.bigThree.childImageSharp.fluid}
@@ -88,7 +98,12 @@ const SupporterKit = () => {
           <div
             className={`photo ${mainPhoto[2]}`}
             id={2}
+            role="button"
+            tabIndex={0}
             onClick={handlePhotoSwitch}
+            onKeyDown={e => {
+              if (e.code === 13) handlePhotoSwitch()
+            }}
           >
             <Img
               fluid={data.gravelSlide.childImageSharp.fluid}
@@ -100,7 +115,12 @@ const SupporterKit = () => {
           <div
             className={`photo ${mainPhoto[3]}`}
             id={3}
+            role="button"
+            tabIndex={0}
             onClick={handlePhotoSwitch}
+            onKeyDown={e => {
+              if (e.code === 13) handlePhotoSwitch()
+            }}
           >
             <Img
               fluid={data.luchos.childImageSharp.fluid}
@@ -133,14 +153,5 @@ const SupporterKit = () => {
     </section>
   )
 }
-
-{/*
-  <Img
-    fluid={data.aboutTop.childImageSharp.fluid}
-    objectFit="cover"
-    objectPosition="50% 50%"
-    alt=""
-  />
-*/}
 
 export default SupporterKit

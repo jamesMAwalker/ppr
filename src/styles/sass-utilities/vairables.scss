@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap');
+
+// Font Declarations
+$font-primary: 'Palanquin', "Helvetica Neue", Helvetica, sans-serif;;
+
+
+// Colors
+$white: rgb(255, 255, 255);
+$whiteTr: rgba(255, 255, 255, 0.5);
+$off-white: rgb(240, 240, 240);
+
+$greyLight: rgb(190, 190, 190);
+$grey: rgb(149, 149, 149);
+$greyDark: rgb(95, 95, 95);
+
+$black: rgb(20, 20, 20);
+$blackTr: rgba(20, 20, 20, 0.65);
+$blackTr2: rgba(20, 20, 20, 0.35);
+
+$textPrimary: rgb(39, 39, 39);
+$textPrimaryTr: rgba(39, 39, 39, 0.7);
+
+$turquoise:rgb(77, 238, 254);
+$turquoiseTr:rgba(77, 239, 254, 0.6);
+
+$pink: rgb(248, 201, 233);
+
+
+// Z-Index
+$marianaTrench: -300;
+$veryovkina: -200;
+$belowGround: -100;
+$groundLevel: 000;
+$honeyBee: 100;
+$sparrow: 200;
+$falcon: 300;
+$condor: 400;
+$cessna: 500;
+$dreamLiner: 600;
+$concorde: 700;
+$sr71: 800;
+$soyuz: 900;
+$ISS: 999;

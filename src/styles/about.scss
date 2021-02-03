@@ -31,8 +31,7 @@
       }
 
       p {
-        font-size: var(--baseFontSize);
-        line-height: var(--paraLineHeight);
+        @include paragraphText($black);
         margin: 40px 0 72px 0;
       }
 

@@ -42,10 +42,10 @@ export const LogoColor = () => {
       <path
         d="M8 10H76V62.6452H8V10Z"
         fill="url(#pattern0)"
-        fill-opacity="0.7"
+        fillOpacity="0.7"
       />
-      <path d="M4 5H72V57.6452H4V5Z" fill="url(#pattern1)" fill-opacity="0.7" />
-      <path d="M0 0H68V52.6452H0V0Z" fill="url(#pattern2)" fill-opacity="0.9" />
+      <path d="M4 5H72V57.6452H4V5Z" fill="url(#pattern1)" fillOpacity="0.7" />
+      <path d="M0 0H68V52.6452H0V0Z" fill="url(#pattern2)" fillOpacity="0.9" />
       <defs>
         <pattern
           id="pattern0"
@@ -115,7 +115,7 @@ export const PALogo = () => {
         x2="35"
         y2="2.32129"
         stroke="white"
-        stroke-width="2.625"
+        strokeWidth="2.625"
       />
       <line
         x1="2.28305"
@@ -123,7 +123,7 @@ export const PALogo = () => {
         x2="17.4658"
         y2="26.2407"
         stroke="white"
-        stroke-width="0.875"
+        strokeWidth="0.875"
       />
       <line
         y1="-0.4375"
@@ -131,7 +131,7 @@ export const PALogo = () => {
         y2="-0.4375"
         transform="matrix(0.553537 -0.832825 0.837488 0.546455 17.917 26.4371)"
         stroke="white"
-        stroke-width="0.875"
+        strokeWidth="0.875"
       />
       <line
         x1="17.5"
@@ -139,7 +139,7 @@ export const PALogo = () => {
         x2="17.4998"
         y2="25.5819"
         stroke="white"
-        stroke-width="0.875"
+        strokeWidth="0.875"
       />
       <line
         x1="29.4282"
@@ -147,7 +147,7 @@ export const PALogo = () => {
         x2="17.6824"
         y2="32.4178"
         stroke="white"
-        stroke-width="0.875"
+        strokeWidth="0.875"
       />
       <line
         x1="17.3116"
@@ -155,12 +155,12 @@ export const PALogo = () => {
         x2="5.1229"
         y2="40.8649"
         stroke="white"
-        stroke-width="0.875"
+        strokeWidth="0.875"
       />
       <path
         d="M1.3125 31.4062C1.3125 49.3437 33.9771 49.2641 33.6855 31.1875"
         stroke="white"
-        stroke-width="2.625"
+        strokeWidth="2.625"
       />
       <line
         x1="33.6875"
@@ -168,7 +168,7 @@ export const PALogo = () => {
         x2="33.6875"
         y2="1.00002"
         stroke="white"
-        stroke-width="2.625"
+        strokeWidth="2.625"
       />
       <line
         x1="1.3125"
@@ -176,7 +176,7 @@ export const PALogo = () => {
         x2="1.34583"
         y2="0.998565"
         stroke="white"
-        stroke-width="2.625"
+        strokeWidth="2.625"
       />
     </svg>
   )

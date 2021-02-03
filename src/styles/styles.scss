@@ -1,20 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap');
+// + SASS & CSS Variables + //
 
-$font-primary: 'Palanquin', "Helvetica Neue", Helvetica, sans-serif;;
-
-/*
-
-4.768rem
-3.815rem
-3.052rem
-2.441rem
-1.953rem
-1.563rem
-1.25rem
-1rem
-0.8rem
-
-*/
+// Sass Utility Imports
+@import './sass-utilities/vairables.scss';
+@import './sass-utilities/mixins.scss';
 
 :root {
   // Font Sizes
@@ -27,6 +15,7 @@ $font-primary: 'Palanquin', "Helvetica Neue", Helvetica, sans-serif;;
   --mFontSize: 1.25rem;
   --baseFontSize: 1rem;
   --smFontSize: 0.8rem;
+  --xSmFontSize: 0.64rem;
 
   // Text Mods
   --smSpaced: .5px;
@@ -37,34 +26,18 @@ $font-primary: 'Palanquin', "Helvetica Neue", Helvetica, sans-serif;;
   // Spacing
   --photoGap: 17px;
   --paraLineHeight: 2.441rem;
+  --condensedLineHeight: 1.563rem;
 }
 
-// Colors
-$white: rgb(255, 255, 255);
-$whiteTr: rgba(255, 255, 255, 0.5);
-$off-white: rgb(240, 240, 240);
 
-$greyLight: rgb(190, 190, 190);
-$grey: rgb(149, 149, 149);
-$greyDark: rgb(95, 95, 95);
 
-$black: rgb(20, 20, 20);
-$blackTr: rgba(20, 20, 20, 0.65);
-$blackTr2: rgba(20, 20, 20, 0.35);
-
-$textPrimary: rgb(39, 39, 39);
-$textPrimaryTr: rgba(39, 39, 39, 0.7);
-
-$turquoise:rgb(77, 238, 254);
-$turquoiseTr:rgba(77, 239, 254, 0.6);
-
-$pink: rgb(248, 201, 233);
+// + Resets & Defaults + //
 
 html, 
 body {
   font-family: $font-primary;
   font-size: 16px;
-  font-weight: 600;
+  // font-weight: 500;
   letter-spacing: var(--smSpaced);
   color: $textPrimary;
   margin: 0;
@@ -97,6 +70,11 @@ button {
   letter-spacing: var(--spaced);
 }
 
+
+
+// + Utility Classes + //
+
+// Wrappers
 .container {
   margin: 0 auto;
   height: 100%;
@@ -106,6 +84,7 @@ button {
   justify-content: center;
 }
 
+// Typography
 .hover-shadows {
   transition: all .2s;
   
@@ -119,6 +98,9 @@ button {
 }
 
 
+
+// + Style Component Imports + //
+
 // Layout & Base
 @import './header.scss';
 @import './layout.scss';
@@ -129,9 +111,11 @@ button {
 @import './hero-grid.scss';
 @import './about.scss';
 @import './team.scss';
+@import './team-member.scss';
 @import './supporter-kit.scss';
 @import './video.scss';
 @import './gallery.scss';
 
 // Small Components
 @import './small-components/buttons.scss';
+

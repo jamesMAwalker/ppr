@@ -1,23 +1,8 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
 
-import Img from "gatsby-image"
 import { ScrollIcon } from "./icons"
 
 const ContactSection = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      video: file(
-        relativePath: { eq: "down-sized-images/video-thumb.png" }
-      ) {
-        childImageSharp {
-          fluid(maxWidth: 1200) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
 
   return (
     <div className="video-section">

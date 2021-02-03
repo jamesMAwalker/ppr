@@ -2,14 +2,9 @@ import React, { useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import gsap from "gsap"
 
-
-
-import { Link } from "gatsby"
 import Img from "gatsby-image"
 
-import { RightChevron, ScrollIcon } from "./icons"
-
-// let tl = gsap.timeline()
+import { ScrollIcon } from "./icons"
 
 const HeroGrid = () => {
   useEffect(() => {

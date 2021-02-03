@@ -1,0 +1,96 @@
+// + Mixins + //
+
+// > Typography
+@mixin displayText($color) {
+  text-transform: uppercase;
+  text-align: center;
+  color: $color;
+  font-weight: 500;
+  letter-spacing: var(--TwoXSpaced);
+  font-size: var(--mFontSize);
+}
+
+@mixin paragraphText($color) {
+  line-height: var(--paraLineHeight);
+  font-size: var(--baseFontSize);
+  font-weight: 500;
+  color: $color;
+}
+
+@mixin paragraphTextCondensed($color) {
+  line-height: var(--condensedLineHeight);
+  font-size: 10px !important;
+  font-weight: 300;
+  color: $color;
+}
+
+
+// > Pseudos
+@mixin psuedoShade($color) {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $color;
+}
+
+@mixin scrollBarVert($width, $thumbCol, $trackCol) {
+  &::-webkit-scrollbar-thumb {
+    width: $width;
+    background-color: $thumbCol;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar {
+    width: $width;
+    background-color: $trackCol;
+    border-radius: 10px;
+  }
+
+}
+
+@mixin scrollBarLat($height, $thumbCol, $trackCol) {
+  &::-webkit-scrollbar-thumb {
+    height: $height;
+    background-color: $thumbCol;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar {
+    height: $height;
+    background-color: $trackCol;
+    border-radius: 10px;
+  }
+
+}
+
+// > Positioning
+@mixin absoluteCentered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flexCenterFull {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flexColLeftFull {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
