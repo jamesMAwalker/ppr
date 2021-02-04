@@ -3,6 +3,8 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Img from "gatsby-image"
 
+import { InstaIcon, StravaIcon } from "../components/icons"
+
 const TeamMember = ({ idx, member, active, expandMember }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -160,6 +162,20 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
                 </div>
                 <div className="details__role">{member.role}</div>
                 <div className="details__type">{member.type}</div>
+                <div className="social-links">
+                  <a
+                    href={`https://www.instagram.com/${member.social.insta}`}
+                    className="social-link"
+                  >
+                    <InstaIcon classN="member-social" />
+                  </a>
+                  <a
+                    href={`https://www.instagram.com/${member.social.strava}`}
+                    className="social-link"
+                  >
+                    <StravaIcon classN="member-social" />
+                  </a>
+                </div>
               </div>
             </div>
             <div className="bio">

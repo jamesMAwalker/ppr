@@ -76,6 +76,10 @@
   .details {
     @include flexCenterFull;
     z-index: 99;
+
+    &__name {
+      text-transform: uppercase;
+    }
     
     &__flex-wrapper {
       @include flexColLeftFull;
@@ -84,6 +88,26 @@
     & > * {
       height: unset;
       width: unset;
+    }
+
+    .social-links {
+      @include flexCenter;
+      margin: 1rem 0;
+      width: 50%;
+      justify-content: space-between;
+
+      .member-social {
+        opacity: 0.8;
+        transition: all .2s;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        path {
+          fill: $white;
+        }
+      }
     }
   }
 
