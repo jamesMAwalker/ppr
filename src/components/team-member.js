@@ -10,49 +10,49 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
     query {
       david: file(relativePath: { eq: "team-images/david.png" }) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
       }
       james: file(relativePath: { eq: "team-images/james.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
       }
       josh: file(relativePath: { eq: "team-images/josh.png" }) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
       }
       mattia: file(relativePath: { eq: "team-images/mattia.png" }) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      nick: file(relativePath: { eq: "team-images/nick.png" }) {
+      nick: file(relativePath: { eq: "team-images/nick2.png" }) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
       }
       oscar: file(relativePath: { eq: "team-images/oscar.png" }) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
       }
       taylor: file(relativePath: { eq: "team-images/taylor.png" }) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -61,7 +61,7 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/david.png" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -70,7 +70,7 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/james.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -79,7 +79,7 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/josh.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -88,7 +88,7 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/mattia.png" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -97,7 +97,7 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/nick.jpg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -106,7 +106,7 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/oscar.jpg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -115,7 +115,7 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/taylor.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 100) {
+          fluid(maxWidth: 1200, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
