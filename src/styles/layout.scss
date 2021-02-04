@@ -9,7 +9,7 @@
     height: 100%;
     width: 100vw;
     display: grid;
-    grid-template-columns: 12.5vh calc(100vw - 25vh) 12.5vh;
+    grid-template-columns: var(--contentMargin) calc(100vw - (var(--contentMargin) * 2)) var(--contentMargin);
     grid-template-rows: 1fr;
     grid-template-areas: 
       "marginL content marginR"
@@ -20,7 +20,7 @@
       position: fixed;
       left: 0;
       height: 87.5vh;
-      width: 12.5vh;
+      width: var(--contentMargin);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -87,7 +87,7 @@
       position: fixed;
       right: 0;
       height: 100vh;
-      width: 12.5vh;
+      width: var(--contentMargin);
       display: grid;
       align-items: center;
       justify-content: center;

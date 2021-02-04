@@ -1,6 +1,6 @@
 .kit-section {
   height: 100vh;
-  margin-top: 12.5vh;
+  margin-top: var(--contentMargin);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 75vh;

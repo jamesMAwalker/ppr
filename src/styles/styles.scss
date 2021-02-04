@@ -27,6 +27,7 @@
   --photoGap: 17px;
   --paraLineHeight: 2.441rem;
   --condensedLineHeight: 1.563rem;
+  --contentMargin: 13.5vh;
 }
 
 
@@ -113,7 +114,7 @@ button {
 @import './team.scss';
 @import './team-member.scss';
 @import './supporter-kit.scss';
-@import './video.scss';
+@import './contact.scss';
 @import './gallery.scss';
 
 // Small Components

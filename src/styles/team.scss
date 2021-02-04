@@ -1,7 +1,7 @@
 .team-container {
   grid-area: content;
   position: relative;
-  margin: 12.5vh 0;
+  margin: var(--contentMargin) 0;
   height: 87.5vh;
   
   display: flex;

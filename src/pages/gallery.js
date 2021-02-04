@@ -1,29 +1,32 @@
-import React, { useEffect, useRef } from 'react'
-import { useStaticQuery, graphql } from "gatsby" 
-// import { TransitionLink } from "gatsby-plugin-transition-link"
-import gsap from 'gsap'
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+import React, { useEffect, useRef } from "react"
+import gsap from "gsap"
+import { useInView } from "react-intersection-observer"
+import { useStaticQuery, graphql } from "gatsby"
 
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Img from "gatsby-image"
-// import Header from '../components/header'
-import { LeftChevron } from '../components/icons'
+
+import { ScrollIcon } from "../components/icons"
 
 const TeamGallery = () => {
-  // let tl = gsap.timeline() 
   const pageRef = useRef(null)
+
+  const [footerRef, footerInView] = useInView({
+    threshold: 0,
+  })
 
   useEffect(() => {
     gsap.from(".gallery", 0.8, {
-        ease: "expo.InOut",
-        // opacity: .2,
-        stagger: { amount: 1 },
-      })
-      
+      ease: "expo.InOut",
+      // opacity: .2,
+      stagger: { amount: 1 },
+    })
+
     gsap.from(".photo", 0.8, {
-        ease: "expo.InOut",
-        opacity: 0,
-        stagger: { amount: 1 },
-      })
+      ease: "expo.InOut",
+      opacity: 0,
+      stagger: { amount: 1 },
+    })
   }, [])
 
   /*
@@ -144,116 +147,129 @@ const TeamGallery = () => {
   `)
 
   return (
-    <div ref={pageRef} className="gallery">
-      <AniLink
-        cover
-        bg="rgb(77, 238, 254)"
-        direction="right"
-        top="enter"
-        to="/"
-        href='/#'
-      >
-        <div className="gallery-btn left">Home</div>
-        <LeftChevron classN="chevron" />
-      </AniLink>
-      <div className="grid-wrapper">
-        <div className="photo photo1">
-          <Img
-            fadeIn
-            fluid={data.collage1.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-        </div>
-        <div className="photo photo2">
-          <Img
-            fadeIn
-            fluid={data.collage2.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-        </div>
-        <div className="photo photo3">
-          <Img
-            fadeIn
-            fluid={data.collage3.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-        </div>
-        <div className="photo photo4">
-          <Img
-            fadeIn
-            fluid={data.collage4.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-        </div>
-        <div className="photo photo5">
-          <Img
-            fadeIn
-            fluid={data.collage5.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-        </div>
-        <div className="photo photo6">
-          <Img
-            fadeIn
-            fluid={data.collage6.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-        </div>
-        <div className="photo photo7">
-          <Img
-            fadeIn
-            fluid={data.collage7.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-        </div>
-        <div className="photo photo8">
-          <Img
-            fadeIn
-            fluid={data.collage8.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-        </div>
-        <div className="photo photo9">
-          <Img
-            fadeIn
-            fluid={data.collage9.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-        </div>
-        <div className="photo photo10">
-          <Img
-            fadeIn
-            fluid={data.collage10.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
+    <>
+      <div ref={pageRef} className="gallery">
+        <div className="absolute-wrapper">
+          {!footerInView && (
+            <div className="gallery-btn left">
+              <div className="rotate-wrapper">
+                <AniLink
+                  cover
+                  bg="rgb(77, 238, 254)"
+                  direction="right"
+                  top="enter"
+                  to="/"
+                  href="/#"
+                >
+                  <div className="back-btn hover-shadows">Home</div>
+                  <ScrollIcon classN="gallery-home__btn" />
+                </AniLink>
+              </div>
+            </div>
+          )}
+          <div className="grid-wrapper">
+            <div className="photo photo1">
+              <Img
+                fadeIn
+                fluid={data.collage1.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+            <div className="photo photo2">
+              <Img
+                fadeIn
+                fluid={data.collage2.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+            <div className="photo photo3">
+              <Img
+                fadeIn
+                fluid={data.collage3.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+            <div className="photo photo4">
+              <Img
+                fadeIn
+                fluid={data.collage4.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+            <div className="photo photo5">
+              <Img
+                fadeIn
+                fluid={data.collage5.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+            <div className="photo photo6">
+              <Img
+                fadeIn
+                fluid={data.collage6.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+            <div className="photo photo7">
+              <Img
+                fadeIn
+                fluid={data.collage7.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+            <div className="photo photo8">
+              <Img
+                fadeIn
+                fluid={data.collage8.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+            <div className="photo photo9">
+              <Img
+                fadeIn
+                fluid={data.collage9.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+            <div className="photo photo10">
+              <Img
+                fadeIn
+                fluid={data.collage10.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt=""
+              />
+            </div>
+          </div>
+          {!footerInView && (
+            <div className="gallery-btn season-selectors">
+              <a className="selector">2017</a>
+              <a className="selector">2018</a>
+              <a className="selector">2019</a>
+            </div>
+          )}
         </div>
       </div>
-      <div className="gallery-btn season-selectors">
-        <a className="selector">2017</a>
-        <a className="selector">2018</a>
-        <a className="selector">2019</a>
-      </div>
-    </div>
+      <div ref={footerRef} className="gallery-trigger"></div>
+    </>
   )
 }
 
