@@ -2,7 +2,7 @@ import React from 'react'
 import { InstaIcon, StravaIcon } from './icons';
 
 const Footer = (props) => {
-  console.log(props);
+  
 
   return (
     <div ref={props.ref} className="footer">
