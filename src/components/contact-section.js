@@ -1,8 +1,24 @@
-import React from "react"
+import React, { useRef } from "react"
 
 import { ScrollIcon } from "./icons"
 
 const ContactSection = () => {
+  const inputRef = useRef(null);
+
+  const clearInput = () => {
+    inputRef.current.value = '';
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      clearInput()
+    }
+    if (e.key === "Escape") {
+      inputRef.current.blur()
+      clearInput()
+    }
+    
+  }
 
   return (
     <div className="video-section">
@@ -31,8 +47,8 @@ const ContactSection = () => {
               </div>
               <div className="contact-input">
                 <div className="shrink-wrapper">
-                  <ScrollIcon classN='submit-arrow'/>
-                  <input className="email-input" id="email-input" type="text" />
+                  <ScrollIcon classN='submit-arrow' action={clearInput} />
+                  <input className="email-input" id="email-input" ref={inputRef} type="text" onKeyDown={handleKeyDown}/>
                   <label className="email-label" htmlFor="email-input">
                     EMAIL ADDRESS
                   </label>

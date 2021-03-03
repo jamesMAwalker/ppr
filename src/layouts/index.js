@@ -5,7 +5,7 @@ import Header from "../components/header"
 import { InstaIcon, ScrollIcon, StravaIcon } from "../components/icons"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Footer from "../components/footer"
-import SponsorsBand from "../components/sponsors"
+import SponsorsBand from "../components/sponsors-band"
 
 const Layout = ({ children, location: { pathname } }) => {
   // + Scroll position tracking
