@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import gsap from 'gsap'
 
+import Sponsor from '../components/sponsor-individual'
+
 import { AmtberLogo, AmtberWordmark } from '../components/Logo'
 
 import { SPONSOR_INFOS } from '../assets/partner-blurbs'
@@ -8,38 +10,26 @@ import { SPONSOR_INFOS } from '../assets/partner-blurbs'
 const sponsorData = [
   {
     id: "amtber",
-    logo: AmtberLogo,
-    wordmark: AmtberWordmark,
     blurb: SPONSOR_INFOS.amtber
   },
   {
     id: "amtber",
-    logo: AmtberLogo,
-    wordmark: AmtberWordmark,
     blurb: SPONSOR_INFOS.amtber
   },
   {
     id: "amtber",
-    logo: AmtberLogo,
-    wordmark: AmtberWordmark,
     blurb: SPONSOR_INFOS.amtber
   },
   {
     id: "amtber",
-    logo: AmtberLogo,
-    wordmark: AmtberWordmark,
     blurb: SPONSOR_INFOS.amtber
   },
   {
     id: "amtber",
-    logo: AmtberLogo,
-    wordmark: AmtberWordmark,
     blurb: SPONSOR_INFOS.amtber
   },
   {
     id: "amtber",
-    logo: AmtberLogo,
-    wordmark: AmtberWordmark,
     blurb: SPONSOR_INFOS.amtber
   },
 ]
@@ -58,13 +48,14 @@ const Sponsors = () => {
       <div className="absolute-wrapper">
         <div className="flex-wrapper">
           {
-            sponsorData.map((sponsor, idx) => {
+            sponsorData.map((s, idx) => {
               const active = idx === activeSponsor ? "active" : ""
 
               return (
-                <div className="sponsor">
-                  
-                </div>
+                <Sponsor
+                  id={s.id}
+                  blurb={s.blurb}
+                />
               )
             })
           }

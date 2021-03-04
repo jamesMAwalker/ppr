@@ -1,0 +1,52 @@
+.sponsor {
+  @include flexCenter;
+  position: relative;
+  min-width: 20vw;
+  // min-width: calc(20vw - (2 * var(--photoGap)));
+  height: 100%;
+  box-sizing: border-box !important;
+  background-color: $pink;
+  border: var(--photoGap) solid $turquoise;
+  border-top: none;
+  border-bottom: none;
+  // overflow: hidden;
+  transition: all .1s;
+
+  .shade {
+    @include flexCenter;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: calc(100% + 2px);
+    background-color: $turquoise;
+    border-top: none;
+    border-bottom: none;
+    transition: all .2s;
+
+    &-logo {
+      transition: all .2s;
+    }
+    
+    svg {
+      height: 100px;
+    }
+  }
+  
+  &.hovered {
+    z-index: 99;
+    border: var(--photoGap) solid white;
+    border-bottom: none;
+    border-top: none;
+
+    .shade {
+      transform: translate(.5px, -30vh);
+      width: calc(100% + 1.5px);
+      background-color: $pink;
+    }
+
+    .shade-logo {
+      transform: translateY(15vh);
+
+    }
+  }
+}

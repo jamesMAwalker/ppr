@@ -89,7 +89,7 @@ const Layout = ({ children, location: { pathname } }) => {
               cover
               bg="rgb(77, 238, 254)"
               direction="left"
-              to={`/${linkContent}`}
+              to={linkContent ? `/${linkContent}` : '/'}
             >
               <div className="text hover-shadows">
                 {linkContent}

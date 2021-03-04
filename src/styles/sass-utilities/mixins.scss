@@ -72,6 +72,9 @@
   transform: translate(-50%, -50%);
 }
 
+
+
+// > FLEX Positioning
 @mixin flexCenter {
   display: flex;
   align-items: center;
@@ -93,4 +96,25 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+}
+
+
+
+// > Wrappers
+
+@mixin absoluteWrapper {
+  z-index: 99;
+  overflow-x: scroll;
+  position: absolute;
+  height: 75vh;
+  width: 100vw;
+  top: 0;
+}
+
+@mixin flexWrapper {  
+  height: 100%;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }

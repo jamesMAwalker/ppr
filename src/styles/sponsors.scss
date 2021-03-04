@@ -1,10 +1,10 @@
-.team-container {
+.sponsors-container {
   @include flexCenter;
   grid-area: content;
   position: relative;
   margin: var(--contentMargin) 0;
   height: 87.5vh;
-  
+
   .absolute-wrapper {
     @include absoluteWrapper;
 
@@ -23,8 +23,8 @@
   .flex-wrapper {
     @include flexWrapper;
 
-    & > *:not(:last-child) {
-      margin-right: 17px;
-    }
+    // & > *:not(:last-child) {
+    //   margin-right: 17px;
+    // }
   }
 }
