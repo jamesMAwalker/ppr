@@ -9,18 +9,23 @@
   border: var(--photoGap) solid $turquoise;
   border-top: none;
   border-bottom: none;
-  // overflow: hidden;
   transition: all .1s;
 
   .shade {
     @include flexCenter;
     position: absolute;
     top: 0;
-    height: 100%;
+    z-index: 9;
+    height: calc(150% - 30vh);
     width: calc(100% + 2px);
     background-color: $turquoise;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
     border-top: none;
     border-bottom: none;
+    padding-top: 30vh;
+    align-items: flex-start;
+
+
     transition: all .2s;
 
     &-logo {
@@ -31,6 +36,28 @@
       height: 100px;
     }
   }
+
+  .image-wrapper {
+    height: 100%;
+    width: 100%;
+    z-index: 8;
+    display: flex;
+    align-items: flex-end;
+
+    div {
+      height: 60%;
+      width: 100%;
+    }
+
+    img {
+      // height: 40%;
+      // width: 75%;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
   
   &.hovered {
     z-index: 99;
@@ -39,13 +66,13 @@
     border-top: none;
 
     .shade {
-      transform: translate(.5px, -30vh);
+      transform: translate(.5px, -60vh);
       width: calc(100% + 1.5px);
       background-color: $pink;
     }
 
     .shade-logo {
-      transform: translateY(15vh);
+      transform: translateY(40vh);
 
     }
   }

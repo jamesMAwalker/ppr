@@ -7,7 +7,8 @@
 
   .absolute-wrapper {
     @include absoluteWrapper;
-
+    overflow-y: hidden;
+    
     &::-webkit-scrollbar {
       width: 0px;
       height: 2px;
@@ -22,7 +23,7 @@
 
   .flex-wrapper {
     @include flexWrapper;
-
+    
     // & > *:not(:last-child) {
     //   margin-right: 17px;
     // }

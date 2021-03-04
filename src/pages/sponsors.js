@@ -13,23 +13,23 @@ const sponsorData = [
     blurb: SPONSOR_INFOS.amtber
   },
   {
-    id: "amtber",
+    id: "bikeLegal",
     blurb: SPONSOR_INFOS.amtber
   },
   {
-    id: "amtber",
+    id: "FC",
     blurb: SPONSOR_INFOS.amtber
   },
   {
-    id: "amtber",
+    id: "FS",
     blurb: SPONSOR_INFOS.amtber
   },
   {
-    id: "amtber",
+    id: "POC",
     blurb: SPONSOR_INFOS.amtber
   },
   {
-    id: "amtber",
+    id: "s4g",
     blurb: SPONSOR_INFOS.amtber
   },
 ]
