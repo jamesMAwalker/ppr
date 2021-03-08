@@ -5,11 +5,20 @@
   // min-width: calc(20vw - (2 * var(--photoGap)));
   height: 100%;
   box-sizing: border-box !important;
-  background-color: $pink;
+  // background-color: $pink;
   border: var(--photoGap) solid $turquoise;
   border-top: none;
   border-bottom: none;
-  transition: all .1s;
+  transition: all 1s;
+  transition: border .2s;
+
+  &.active {
+    min-width: 80vw;
+    transition: all 1s;
+    border: var(--photoGap) solid white;
+    border-top: none;
+    border-bottom: none;
+  }
 
   .shade {
     @include flexCenter;
@@ -24,16 +33,88 @@
     border-bottom: none;
     padding-top: 30vh;
     align-items: flex-start;
-
-
     transition: all .2s;
+
+    &-exp {
+      @include flexCenter;
+      clip-path: unset;
+      position: absolute;
+      z-index: 9;
+      transform: translateY(-50%);
+      top: 50%;
+      left: 0;
+      height: 100%;
+      width: 17vw;
+      background-color: $pinkTr;
+
+      svg {
+        height: 13vh;
+        fill: $white;
+      }
+    }
 
     &-logo {
       transition: all .2s;
+
+      svg {
+        height: 10vh;
+
+        path {
+          fill: $black;
+        }
+      }
     }
+  }
+
+  .blurb-area {
+    @include flexCenterCol;
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: calc(63vw - (var(--photoGap) * 2));
+    padding-top: 5vh;
+    justify-content: flex-start;
+    background-color: $blackTr2;
+  }
+
+  .blurb-text {
+    width: 65%;
+    color: $white;
+    transition: all .4s;
+  }
+
+  .visit-button-wrapper {
+    padding: 1rem;
+  }
+
+  .visit-button {
+    @include flexCenter;
+    padding: 0 5rem;
+    background-color: $blackTr2;
+    border: 2px solid $white;
+    font-size: var(--mLgFontSize);
+    transition: all .2s;
     
+    &:hover {
+      background-color: $black;
+      border: 2px solid $pink;
+    }
+
+    p {
+      transform: translateY(4px);
+    }
+
+    span {
+      transform: scaleY(2) translateY(-2px);
+      transform-origin: center;
+    }
+
     svg {
-      height: 100px;
+      transform: translateY(-2px);
+      height: 5vh;
+      fill: $white;
     }
   }
 
@@ -47,11 +128,17 @@
     div {
       height: 60%;
       width: 100%;
+      transition: all .5s;
+    }
+
+    &.exp {
+      div {
+        height: 100% !important;
+        width: 100% !important;
+      }
     }
 
     img {
-      // height: 40%;
-      // width: 75%;
       height: 100%;
       width: 100%;
       object-fit: cover;
@@ -59,7 +146,7 @@
     }
   }
   
-  &.hovered {
+  &:hover {
     z-index: 99;
     border: var(--photoGap) solid white;
     border-bottom: none;
@@ -73,7 +160,6 @@
 
     .shade-logo {
       transform: translateY(40vh);
-
     }
   }
 }
