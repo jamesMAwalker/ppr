@@ -128,7 +128,7 @@ const Layout = ({ children, location: { pathname } }) => {
       </span>
       <SponsorsBand isMobile={isMobile} />
       <span ref={footerRef} className="footer-trigger"></span>
-      <Footer />
+      <Footer isMobile={isMobile} />
     </div>
   )
 }

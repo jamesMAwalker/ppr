@@ -27,5 +27,24 @@
     svg {
       height: 100%;
     }
+
+  }
+  .marquee-logo {
+    @include flexCenter;
+    width: 20vw;
+    height: 100%;
+    margin: 0 10vw;
+    svg {
+      width: 100%;
+      transform: scale(.8);
+    }
+    &.notPA {
+      svg {
+        transform: scale(1.25);
+      }
+      path {
+        fill: $white;
+      }
+    }
   }
 }

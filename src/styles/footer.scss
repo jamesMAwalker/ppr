@@ -78,3 +78,40 @@
     }
   }
 }
+
+.mobile-footer {
+  @include flexCenterCol;
+  padding-top: calc(var(--mVh) * 2.5);
+  height: calc(var(--mVh) * 40);
+  width: 100vw;
+  background-color: $turquoise;
+  justify-content: space-evenly;
+  color: $black;
+
+  &__icons {
+    @include flexCenter;
+    width: 30vw;
+    justify-content: space-evenly;
+
+    path {
+      fill: $black;
+    }
+  }
+  
+  &__seal {
+    @include flexCenterCol;
+
+    svg {
+      width: calc(var(--mVh) * 5);
+      margin-bottom: 1rem;
+
+      path {
+        fill: $black;
+      }
+    }
+    
+    h4 {
+      margin: 0;
+    }
+  }
+}

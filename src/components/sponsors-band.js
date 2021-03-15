@@ -24,22 +24,33 @@ const sponsorLogos = [
   const SponsorsBand = ({ isMobile }) => {
   return (
     <div className="sponsors-band">
-      <div className="flex-wrapper">
-        {isMobile ? (
-          sponsorLogos.map(l => {
+      {!isMobile ? (
+        <div className="flex-wrapper">
+          {sponsorLogos.map(l => {
             const fill = l.name !== "PA" ? "white" : ""
             return (
               <div key={l.name} className={`logo-wrapper ${fill}`}>
                 {l.logo()}
               </div>
             )
-          })
-        ) : (
-          <Marquee play right speed="10">
-            
-          </Marquee>
-        )}
-      </div>
+          })}
+        </div>
+      ) : (
+        <Marquee
+          left
+          gradient={false}
+          speed="50"
+        >
+          {sponsorLogos.map(l => {
+            const notPA = l.name !== "PA" ? "notPA" : ""
+            return (
+              <div key={l.name} className={`marquee-logo ${notPA}`}>
+                {l.logo()}
+              </div>
+            )
+          })}
+        </Marquee>
+      )}
     </div>
   )
 }
