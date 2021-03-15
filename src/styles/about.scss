@@ -1,10 +1,15 @@
 // About Blurb Styles
 
-.blurb {
+.about {
   grid-area: content;
   height: 100vh;
 
-  .inner-blurb {
+  @include media("<=tablet") {
+    margin-top: var(--contentMargin);
+    height: unset;
+  }
+
+  .inner-about {
     height: 75vh;
     display: flex;
     align-items: center;
@@ -13,7 +18,13 @@
     grid-template-columns: 45% 55%;
     grid-template-rows: 100%;
     
-    .blurb-text {
+    @include media("<=tablet") {
+      @include flexCenterCol;
+      height: unset;
+
+    }
+
+    .about-text {
       align-self: center;
       justify-self: center;
       width: 75%;
@@ -21,6 +32,11 @@
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
+
+      @include media("<=tablet") {
+        width: 80%;
+        color: $white;
+      }
 
       h3 {
         margin: 0;
@@ -33,6 +49,11 @@
       p {
         @include paragraphText($black);
         margin: 40px 0 72px 0;
+
+        @include media("<=tablet") {
+          color: $white;
+          margin: 5vh 0;
+        }
       }
 
       .btn-row {
@@ -48,7 +69,7 @@
       }
     }
 
-    .blurb-images {
+    .about-images {
       height: 75vh;
       position: relative;
       z-index: 7;
@@ -56,6 +77,10 @@
       gap: var(--photoGap);
       grid-template-rows: repeat(3, 1fr);
       grid-template-columns: 100%;
+
+      @include media("<=tablet") {
+        display: none;
+      }
 
       img {
         height: 100%;

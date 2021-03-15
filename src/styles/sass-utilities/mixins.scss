@@ -26,13 +26,23 @@
 
 
 // > Pseudos
-@mixin psuedoShade($color) {
+@mixin pseudoShade($color) {
   position: absolute;
   content: '';
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  background-color: $color;
+}
+
+@mixin pseudoBorderBottom($width, $color) {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: $width;
   background-color: $color;
 }
 

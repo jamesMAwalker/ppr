@@ -6,6 +6,10 @@
   width: 100%;
   background-color: #fff;
 
+  @include media("<=tablet") {
+    display: none;
+  }
+
   .inner-header {
     height: var(--contentMargin);
     width: 100%;
@@ -21,6 +25,10 @@
       justify-content: space-evenly;
       
       .nav-header {
+        @include media("<=tablet") {
+          display: none;
+        }
+
         font-size: var(--mFontSize);
         letter-spacing: var(--xSpaced);
 
@@ -30,23 +38,23 @@
       }
 
       .logo {
-      // transform: translateY(.5vh);
       height: var(--contentMargin);
       width: var(--contentMargin);
       display: flex;
       align-items: center;
       justify-content: center;
 
-      a {
-        font-weight: 700;
-        text-decoration: none;
-        letter-spacing: 1.5px;
-        color: $black;
+        a {
+          font-weight: 700;
+          text-decoration: none;
+          letter-spacing: 1.5px;
+          color: $black;
+        }
       }
-    }
     }
 
     .navigation {
+
       display: flex;
       align-items: center;
       justify-content: space-evenly;
@@ -69,6 +77,7 @@
       }
 
       .PA-square {
+        cursor: pointer;
         margin-left: 40px;
         height: var(--contentMargin);
         width: var(--contentMargin);
@@ -77,6 +86,12 @@
         align-items: center;
         justify-content: center;
         transition: all .2s;
+
+        &.open {
+          z-index: $sparrow;
+          background-color: $black;
+          margin-left: unset;
+        }
 
         &:hover {
           background-color: $turquoise;

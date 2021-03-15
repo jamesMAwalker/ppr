@@ -13,5 +13,19 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
+    .logo-wrapper {
+      height: 15%;
+
+      &.white {
+        path {
+          fill: $white;
+        }
+      }
+    }
+
+    svg {
+      height: 100%;
+    }
   }
 }

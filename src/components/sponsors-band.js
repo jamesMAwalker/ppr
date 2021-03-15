@@ -1,20 +1,44 @@
 import React from 'react'
+import Marquee from "react-fast-marquee";
+
+import {
+  AmtberLogo,
+  BLLogo,
+  FCLogo,
+  FSLogo,
+  PALogo,
+  POCLogo,
+  S4GLogo,
+} from "../components/Logo"
 
 const sponsorLogos = [
-  { name: 'POC', imgSrc: '../images/va-logo.svg' },
-  { name: 'Plant Athletic', imgSrc: '../images/va-logo.svg' },
-  { name: 'Bike Legal', imgSrc: '../images/va-logo.svg' },
+  { name: 'AM', logo: AmtberLogo },
+  { name: 'BL', logo: BLLogo },
+  { name: 'FC', logo: FCLogo },
+  { name: 'FS', logo: FSLogo },
+  { name: 'PA', logo: PALogo },
+  { name: 'POC', logo: POCLogo },
+  { name: 'S4G', logo: S4GLogo },
 ]
 
-const SponsorsBand = () => {
+  const SponsorsBand = ({ isMobile }) => {
   return (
     <div className="sponsors-band">
       <div className="flex-wrapper">
-        {
-          sponsorLogos.map(l => (
-            <div key={l.name} className="">{l.name}</div>
-          ))
-        }
+        {isMobile ? (
+          sponsorLogos.map(l => {
+            const fill = l.name !== "PA" ? "white" : ""
+            return (
+              <div key={l.name} className={`logo-wrapper ${fill}`}>
+                {l.logo()}
+              </div>
+            )
+          })
+        ) : (
+          <Marquee play right speed="10">
+            
+          </Marquee>
+        )}
       </div>
     </div>
   )

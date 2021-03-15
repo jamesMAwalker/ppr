@@ -6,33 +6,21 @@ import Img from "gatsby-image"
 
 import { ScrollIcon } from "./icons"
 
-const HeroGrid = () => {
-  useEffect(() => {
-    // gsap.from(".hero-center", 1.5, {
-    //   x: "-7vw",
-    //   ease: 'expo.InOut'
-    // })
-    // gsap.fromTo(
-    //   ".hero-center img",
-    //   1.5,
-    //   {
-    //     // opacity: 0.5,
-    //     objectPosition: "10px",
-    //     ease: "expo.InOut",
-    //   },
-    //   {
-    //     objectPosition: "-200px",
-    //     ease: "expo.InOut",
-    //   }
-    // )
 
+/*
+! Gatsby Img has an "onLoad" function. Display a loading modal (on mobile at least) that is turned off once the Img has loaded fully.
+*/
+
+
+const HeroGrid = () => {
+  
+  useEffect(() => {
     gsap.from(".photo", 2, {
       opacity: 0,
       stagger: { amount: 1 },
     })
     
     gsap.from(".hero-small", 1.5, {
-      // x: "-7vw",
       ease: "expo.InOut",
     })
 
@@ -94,7 +82,7 @@ const HeroGrid = () => {
   return (
     <main className="hero">
       <div className="hero-grid">
-        <div className="hero-small  photo left">
+        <div className="hero-small photo left">
           <Img
             fadeIn="false"
             fluid={data.heroLeft.childImageSharp.fluid}
@@ -102,7 +90,7 @@ const HeroGrid = () => {
             objectPosition="50% 50%"
             alt=""
           />
-          <div className="hero-text">PLANT</div>
+          <div className="hero-text"><span>PLANT</span></div>
         </div>
         <div className="hero-center photo">
           <Img
@@ -113,7 +101,7 @@ const HeroGrid = () => {
             objectPosition="50% 100%"
             alt=""
           />
-          <div className="hero-text">POWER</div>
+          <div className="hero-text"><span><em>POWER</em></span></div>
         </div>
         <div className="hero-small photo right">
           <Img
@@ -123,7 +111,7 @@ const HeroGrid = () => {
             objectPosition="50% 50%"
             alt=""
           />
-          <div className="hero-text right">RACING</div>
+          <div className="hero-text right"><span>RACING</span></div>
         </div>
       </div>
       <div className="scroll">

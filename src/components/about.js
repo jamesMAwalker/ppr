@@ -2,7 +2,8 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
-const Blurb = () => {
+
+const About = () => {
   const data = useStaticQuery(graphql`
     query {
       aboutTop: file(
@@ -36,9 +37,9 @@ const Blurb = () => {
   `)
 
   return (
-    <section id="blurb" className="blurb">
-      <div className="inner-blurb">
-        <div className="blurb-text">
+    <section id="blurb" className="about">
+      <div className="inner-about">
+        <div className="about-text">
           <h3>
             Performance, positivity, <br /> purpose.
           </h3>
@@ -56,7 +57,7 @@ const Blurb = () => {
             <a href="/">Meet the team +</a>
           </div>
         </div>
-        <div className="blurb-images">
+        <div className="about-images">
           <Img
             fluid={data.aboutTop.childImageSharp.fluid}
             objectFit="cover"
@@ -81,4 +82,4 @@ const Blurb = () => {
   )
 }
 
-export default Blurb
+export default About

@@ -1,32 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
-import { PAWordMark } from './Logo'
+import { PAWordMark } from "./Logo"
 
-const SupporterKit = () => {
+const SupporterKit = ({ isMobile }) => {
   const [mainPhoto, setMainPhoto] = useState(["ph1", "", "", ""])
-
-  const handlePhotoSwitch = (e) => {
+  const handlePhotoSwitch = e => {
     const clickedPhoto = parseInt(e.target.id, 10)
-    console.log('clickedPhoto: ', typeof(clickedPhoto));
 
     const selection = mainPhoto.map((p, i) => {
       if (i === clickedPhoto) {
-        return 'ph1'
+        return "ph1"
       } else {
-        return ''
+        return ""
       }
     })
 
     setMainPhoto(selection)
-    console.log('selection: ', selection);
-    console.log('mainPhoto: ', mainPhoto);
+    console.log("selection: ", selection)
+    console.log("mainPhoto: ", mainPhoto)
   }
+
+  const photoNames = ['gravelSlide', 'jerseyRender', 'bigThree', 'luchos']
+  const [mobilePhoto, setmobilePhoto] = useState(0)
+  const handlePhotoSwitchMobile = e => {
+
+  }
+
 
   const data = useStaticQuery(graphql`
     query {
-      jerseyRender: file(relativePath: { eq: "supporter-kit-images/ppr-jersey-render.jpg" }) {
+      jerseyRender: file(
+        relativePath: { eq: "supporter-kit-images/ppr-jersey-render.jpg" }
+      ) {
         childImageSharp {
           fluid(quality: 100) {
             ...GatsbyImageSharpFluid
@@ -40,7 +47,9 @@ const SupporterKit = () => {
           }
         }
       }
-      gravelSlide: file(relativePath: { eq: "supporter-kit-images/gravel-slide.jpeg" }) {
+      gravelSlide: file(
+        relativePath: { eq: "supporter-kit-images/gravel-slide.jpeg" }
+      ) {
         childImageSharp {
           fluid(quality: 100) {
             ...GatsbyImageSharpFluid
@@ -56,100 +65,145 @@ const SupporterKit = () => {
       }
     }
   `)
-  
+
   return (
     <section className="kit-section">
-      <div className="photos">
-        <div className="photo-grid">
-          <div
-            className={`photo ${mainPhoto[0]}`}
-            id={0}
-            role="button"
-            tabIndex={0}
-            onClick={handlePhotoSwitch}
-            onKeyDown={e => {
-              if (e.code === 13) handlePhotoSwitch()
-            }}
-          >
-            <Img
-              fluid={data.jerseyRender.childImageSharp.fluid}
-              objectFit="contain"
-              objectPosition="50% 50%"
-              alt="render of cycling jersey"
-            />
+      {!isMobile ? (
+        <>
+          <div className="photos">
+            <div className="photo-grid">
+              <div
+                className={`photo ${mainPhoto[0]}`}
+                id={0}
+                role="button"
+                tabIndex={0}
+                onClick={handlePhotoSwitch}
+                onKeyDown={e => {
+                  if (e.code === 13) handlePhotoSwitch()
+                }}
+              >
+                <Img
+                  fluid={data.jerseyRender.childImageSharp.fluid}
+                  objectFit="contain"
+                  objectPosition="50% 50%"
+                  alt="render of cycling jersey"
+                />
+              </div>
+              <div
+                className={`photo ${mainPhoto[1]}`}
+                id={1}
+                role="button"
+                tabIndex={0}
+                onClick={handlePhotoSwitch}
+                onKeyDown={e => {
+                  if (e.code === 13) handlePhotoSwitch()
+                }}
+              >
+                <Img
+                  fluid={data.bigThree.childImageSharp.fluid}
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                  alt="cycling jersey in action"
+                />
+              </div>
+              <div
+                className={`photo ${mainPhoto[2]}`}
+                id={2}
+                role="button"
+                tabIndex={0}
+                onClick={handlePhotoSwitch}
+                onKeyDown={e => {
+                  if (e.code === 13) handlePhotoSwitch()
+                }}
+              >
+                <Img
+                  fluid={data.gravelSlide.childImageSharp.fluid}
+                  objectFit="contain"
+                  objectPosition="50% 50%"
+                  alt="cycling jersey in action"
+                />
+              </div>
+              <div
+                className={`photo ${mainPhoto[3]}`}
+                id={3}
+                role="button"
+                tabIndex={0}
+                onClick={handlePhotoSwitch}
+                onKeyDown={e => {
+                  if (e.code === 13) handlePhotoSwitch()
+                }}
+              >
+                <Img
+                  fluid={data.luchos.childImageSharp.fluid}
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                  alt="cycling jersey in action"
+                />
+              </div>
+            </div>
           </div>
-          <div
-            className={`photo ${mainPhoto[1]}`}
-            id={1}
-            role="button"
-            tabIndex={0}
-            onClick={handlePhotoSwitch}
-            onKeyDown={e => {
-              if (e.code === 13) handlePhotoSwitch()
-            }}
-          >
-            <Img
-              fluid={data.bigThree.childImageSharp.fluid}
-              objectFit="cover"
-              objectPosition="50% 50%"
-              alt="cycling jersey in action"
-            />
+          <div className="description">
+            <div className="content">
+              <div className="headers">
+                <PAWordMark />
+                <h3 className="sub">TEAM SUPPORTER KIT</h3>
+              </div>
+              <div className="kit-blurb">
+                We are proud to finally announce the PPR supporter’s jersey from
+                Plant Athletic! Plant Athletic has been with us since the very
+                beginning of the Plant Power story. Their commitment to a more
+                compassionate and sustainable future was massively influential
+                in the formation of our ideals as a team. <br /> Support our
+                shared mission and represent the team wherever you are in the
+                world.
+              </div>
+              <div className="button-container">
+                <button className="button-color-shadows">GET THE KIT</button>
+              </div>
+            </div>
           </div>
-          <div
-            className={`photo ${mainPhoto[2]}`}
-            id={2}
-            role="button"
-            tabIndex={0}
-            onClick={handlePhotoSwitch}
-            onKeyDown={e => {
-              if (e.code === 13) handlePhotoSwitch()
-            }}
-          >
-            <Img
-              fluid={data.gravelSlide.childImageSharp.fluid}
-              objectFit="contain"
-              objectPosition="50% 50%"
-              alt="cycling jersey in action"
-            />
+        </>
+      ) : (
+        <div className="mobile">
+          <div className="mobile__photos">
+            <div className="photo-slide">
+              <Img
+                fluid={data.gravelSlide.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt="cycling jersey in action"
+              />
+            </div>
           </div>
-          <div
-            className={`photo ${mainPhoto[3]}`}
-            id={3}
-            role="button"
-            tabIndex={0}
-            onClick={handlePhotoSwitch}
-            onKeyDown={e => {
-              if (e.code === 13) handlePhotoSwitch()
-            }}
-          >
-            <Img
-              fluid={data.luchos.childImageSharp.fluid}
-              objectFit="cover"
-              objectPosition="50% 50%"
-              alt="cycling jersey in action"
-            />
+          <div className="mobile__details">
+            <div className="header-card">
+              <PAWordMark />
+              <p>TEAM SUPPORTER KIT</p>
+            </div>
+          </div>
+          <div className="mobile__description">
+            <p>
+              <strong>Plant Athletic</strong> has been with us since the very
+              beginning of the Plant Power story. Their commitment to a more
+              compassionate and sustainable future was massively influential in
+              the formation of our ideals as a team. We are very proud to
+              finally announce the PPR supporter’s jersey! Support our shared
+              mission and represent the team wherever you are in the world.
+              <br />
+              <br />
+              The supporter jersey is proudly made from certified Global
+              Recycled Standard and bluesign® certified recycled fabrics which
+              are made at one of the world's leading warp knitted fabric mills,
+              SITIP, based in Northern Italy.
+            </p>
+            <div className="get-btn">
+              <button onClick={() => window.open(
+                "https://www.plantathletic.com/",
+                )} >GET THE KIT</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="description">
-        <div className="content">
-          <div className="headers">
-            <PAWordMark />
-            <h3 className="sub">TEAM SUPPORTER KIT</h3>
-          </div>
-          <div className="kit-blurb">
-            We are proud to finally announce the PPR supporter’s jersey from
-            Plant Athletic! Plant Athletic has been with us since the very
-            beginning of the Plant Power story. Their commitment to a more
-            compassionate and sustainable future was massively influential in
-            the formation of our ideals as a team. <br /> Support our shared
-            mission and represent the team wherever you are in the world.
-          </div>
-          <div className="button-container">
-            <button className="button-color-shadows">GET THE KIT</button>
-          </div>
-        </div>
-      </div>
+      )}
     </section>
   )
 }

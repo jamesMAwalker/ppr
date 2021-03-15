@@ -6,6 +6,13 @@
   grid-template-rows: 75vh;
   gap: 5vh;
 
+  @include media("<=tablet") {
+    @include flexCenterCol;
+    justify-content: center;
+    height: unset;
+    margin-top: 0;
+  }
+
   .photos {
     display: flex;
     align-items: center;
@@ -127,6 +134,75 @@
 
         button {
           width: 100%;
+        }
+      }
+    }
+  }
+
+  .mobile {
+    letter-spacing: var(--spaced);
+
+    &__photos {
+      width: 100vw;
+    }
+
+    &__details {
+      
+      .header-card {
+        @include flexCenterCol;
+        justify-content: space-evenly;
+        height: 20vh;
+        padding: 0 2rem;
+        margin: 0;
+        background-color: $pink;
+      }
+
+      svg {
+        transform: translateY(2vh);
+      }
+
+      
+    }
+
+    &__description {
+      @include flexCenterCol;
+      color: $white;
+
+      p {
+        width: 80%;
+        margin-bottom: 0;
+         margin-top: calc(.75 * var(--contentMargin));
+      }
+
+      strong {
+        font-size: var(--mFontSize);
+      }
+
+      .get-btn {
+        @include flexCenter;
+        width: calc(100vw - (var(--mVh) * 2));
+        width: 80%;
+        margin: calc(.75 * var(--contentMargin)) 0;
+        border: 2px solid $white;
+        transition: all .2s;
+
+        &:focus-within,
+        &:active {
+          background-color: $white;
+          
+          button {
+            color: $black;
+            background-color: $white;
+          }
+        }
+        
+        button {
+          outline: none;
+          user-select: none;
+          font-family: $font-primary !important;
+          font-size: 700 !important;
+          letter-spacing: var(--xSpaced) !important;
+          transition: all .2s;
         }
       }
     }

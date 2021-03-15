@@ -4,10 +4,7 @@ import gsap from "gsap"
 
 import Img from "gatsby-image"
 
-import { AmtberLogo, AmtberWordmark } from '../components/Logo'
-
-
-const Sponsor = ({ id, blurb, logo, active, expandSponsor, idx }) => {
+const Sponsor = ({ id, link, blurb, logo, wordmark, active, expandSponsor, scrollToSelected, idx }) => {
   const data = useStaticQuery(graphql`
     query {
       amtber: file(relativePath: { eq: "sponsor-images/amtber.webp" }) {
@@ -72,13 +69,21 @@ const Sponsor = ({ id, blurb, logo, active, expandSponsor, idx }) => {
 
   const [hovered, setHovered] = useState(false)
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+
+    console.log(e);
+    console.log('e.screenX: ', e.screenX);
+    console.log('window.innerWidth: ', window.innerWidth);
+    console.log('60vw: ', window.innerWidth * .6);
+    scrollToSelected((e.screenX - (window.innerWidth * .6)) * idx)
+    console.log('e.screenX + (window.innerWidth * .6): ', e.screenX + (window.innerWidth * .6));
     expandSponsor(idx);
     setHovered(false);
   }
 
   const handleVisitClick = (e) => {
     e.stopPropagation()
+    window.open([link], '_blank')
   }
 
   return (
@@ -93,9 +98,7 @@ const Sponsor = ({ id, blurb, logo, active, expandSponsor, idx }) => {
       {!active ? (
         <>
           <div className="shade">
-            <div className="shade-logo">
-              {logo()}
-            </div>
+            <div className="shade-logo">{logo()}</div>
           </div>
           <div className="image-wrapper">
             <Img
@@ -111,36 +114,15 @@ const Sponsor = ({ id, blurb, logo, active, expandSponsor, idx }) => {
       ) : (
         <>
           <div className="shade-exp">
-            <div className="shade-exp-logo">
-              {logo()}
-            </div>
+            <div className="shade-exp-logo">{logo()}</div>
           </div>
           <div className="blurb-area">
-            <p className="blurb-text">
-              {/* {blurb} */}
-              We met John Amtber racing at Sea Otter in 2019. A recent vegan
-              himself, he saw us browsing through the vendor booths and couldn’t
-              believe his eyes when he saw) there was a vegan cycling team. He
-              immediately offered to service and lube our bikes with his
-              product, all the while regailing us with his story of going vegan
-              at 50 years old, and how he hadn’t felt so good since he was 25.
-              <br />
-              <br />
-              John is a man who does everything to the fullest - that’s true of
-              both his dedication to veganism, and of the consideration he puts
-              into his product. A chemical engineer by trade, he turned his
-              knowledge towards the many and varied problems of chain
-              lubricants. His line of aMTBer wax based lubricants have been
-              keeping our collective drivetrains buttery smooth and silent since
-              we met him.
-              <br />
-              <br />
-              We are proud to represent both a great guy, and a great product
-              with aMTBer.
-            </p>
+            <div className="blurb-text">
+              {blurb}
+            </div>
             <div className="visit-button-wrapper">
               <button onClick={handleVisitClick} className="visit-button">
-                <p>VISIT</p> &nbsp; <span>|</span> &nbsp; {logo()}
+                <p>VISIT</p> &nbsp; <span>|</span> &nbsp; {wordmark()}
               </button>
             </div>
           </div>

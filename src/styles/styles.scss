@@ -3,6 +3,29 @@
 // Sass Utility Imports
 @import './sass-utilities/vairables.scss';
 @import './sass-utilities/mixins.scss';
+@import './vendor/include-media.scss';
+
+/*
++ Breakpoints +
+
+<mQs look like this:
+
+> @include media("<=tablet") {
+  -margin-right: 24px;
+}
+
+< current breakpoint settings are:
+
+> $breakpoints: (
+  -"phone": 425px,
+  -"tabletSmall": 768px,
+  -"tablet": 1025px,
+  -"tabletPort": 1366px,
+  -"desktop": 1440px,
+  -"LGdesktop": 1920px
+)
+
+*/
 
 :root {
   // Font Sizes
@@ -28,6 +51,20 @@
   --paraLineHeight: 2.441rem;
   --condensedLineHeight: 1.563rem;
   --contentMargin: 13.5vh;
+
+  // Breakpoints
+  --phone: 425px;
+  --tabletSmall: 768px;
+  --tablet: 1025px;
+  --tabletPort: 1366px;
+  --desktop: 1440px;
+  --LGdesktop: 1920px;
+
+
+  @include media("<=tablet") {
+    --contentMargin: calc(10 * var(--mVh));
+  }
+
 }
 
 
@@ -37,7 +74,7 @@
 html, 
 body {
   font-family: $font-primary;
-  font-size: 16px;
+  font-size: 1em;
   // font-weight: 500;
   letter-spacing: var(--smSpaced);
   color: $textPrimary;
@@ -120,5 +157,6 @@ button {
 @import './gallery.scss';
 
 // Small Components
+@import './pa-modal.scss';
 @import './small-components/buttons.scss';
 

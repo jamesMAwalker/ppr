@@ -1,6 +1,6 @@
 {
   "name": "plantpowerracing-2021",
-  "private": true,
+  "private": false,
   "description": "Simple info site for the team, built using Gatsby JS.",
   "version": "0.1.0",
   "author": "James Walker",
@@ -16,16 +16,15 @@
     "gatsby-plugin-transition-link": "^1.20.5",
     "gatsby-source-filesystem": "^2.8.0",
     "gatsby-transformer-sharp": "^2.9.0",
-    "gsap": "^3.5.1",
+    "gsap": "^3.6.0",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-fast-marquee": "^1.1.1",
     "react-helmet": "^5.2.1",
-    "react-intersection-observer": "^8.31.0",
-    "react-markdown": "^5.0.3",
-    "smooth-scrollbar": "^8.5.3"
+    "react-intersection-observer": "^8.31.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
@@ -36,7 +35,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0 -p 8000",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",

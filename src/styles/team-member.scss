@@ -55,7 +55,7 @@
     justify-content: center;
 
     &::before {
-      @include psuedoShade($blackTr2);
+      @include pseudoShade($blackTr2);
       z-index: 9;
     }
   }
@@ -130,7 +130,7 @@
 
   // darkening overlay
   &::before {
-    @include psuedoShade($blackTr);
+    @include pseudoShade($blackTr);
     z-index: 9;
   }
 

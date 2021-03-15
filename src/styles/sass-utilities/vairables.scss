@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 // Font Declarations
 $font-primary: 'Palanquin', "Helvetica Neue", Helvetica, sans-serif;;
-
+$font-code: 'JetBrains Mono', monospace;
 
 // Colors
 $white: rgb(255, 255, 255);
 $whiteTr: rgba(255, 255, 255, 0.5);
+$whiteTr2: rgba(255, 255, 255, 0.3);
 $off-white: rgb(240, 240, 240);
 
 $greyLight: rgb(190, 190, 190);
@@ -17,7 +18,7 @@ $black: rgb(20, 20, 20);
 $blackTr: rgba(20, 20, 20, 0.65);
 $blackTr2: rgba(20, 20, 20, 0.35);
 
-$textPrimary: rgb(39, 39, 39);
+$textPrimary: rgb(36, 36, 36);
 $textPrimaryTr: rgba(39, 39, 39, 0.7);
 
 $turquoise:rgb(77, 238, 254);

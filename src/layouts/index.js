@@ -8,6 +8,25 @@ import Footer from "../components/footer"
 import SponsorsBand from "../components/sponsors-band"
 
 const Layout = ({ children, location: { pathname } }) => {
+  // + Mobile version tracking
+  const [isMobile, setIsMobile] = useState(false)
+  const [mobileVH, setMobileVH] = useState(null)
+
+  useEffect(() => {
+    // Set mobile version viewport units
+    let vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty("--mVh", `${vh}px`)
+
+    // Breakpoint sensor for conditional rendering
+    const tabBP = getComputedStyle(document.documentElement).getPropertyValue(
+      "--tablet"
+    )
+    setMobileVH(vh)
+    setIsMobile(window.innerWidth <= parseInt(tabBP, 10))
+  }, [])
+ 
+ 
+ 
   // + Scroll position tracking
   const [footerRef, footerInView] = useInView({
     threshold: 0,
@@ -35,6 +54,7 @@ const Layout = ({ children, location: { pathname } }) => {
       }
     }
   }
+
 
   useEffect(() => {
     updateLinkContent()
@@ -89,7 +109,7 @@ const Layout = ({ children, location: { pathname } }) => {
               cover
               bg="rgb(77, 238, 254)"
               direction="left"
-              to={linkContent ? `/${linkContent}` : '/'}
+              to={linkContent ? `/${linkContent}` : "/"}
             >
               <div className="text hover-shadows">
                 {linkContent}
@@ -106,7 +126,7 @@ const Layout = ({ children, location: { pathname } }) => {
           className="extension extension--sponsors"
         ></span>
       </span>
-      <SponsorsBand />
+      <SponsorsBand isMobile={isMobile} />
       <span ref={footerRef} className="footer-trigger"></span>
       <Footer />
     </div>

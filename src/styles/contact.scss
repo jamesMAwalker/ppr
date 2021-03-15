@@ -1,17 +1,14 @@
-.video-section {
+.contact-section {
   position: relative;
   min-height: 87.5vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lightblue;
-  // z-index: 9;
-  
+
   .absolute-container {
     position: absolute;
     width: 100vw;
     height: 100%;
-
 
     .flex-container {
       display: flex;
@@ -20,6 +17,8 @@
       height: 100%;
 
       .content {
+        @include flexCenterCol;
+        flex-direction: column-reverse;
         position: relative;
         height: 100%;
         width: 100%;
@@ -52,8 +51,9 @@
             align-items: flex-start;
             justify-content: flex-end;
             color: $white;
+
             
-            h2 {
+            .contact-header {
               font-size: var(--headerFontSize);
               margin: 0;
             }
@@ -77,9 +77,12 @@
               position: relative;
               height: 15vh;
               width: 100%;
-              // background-color: rgba(255, 255, 255, 0.159);
               display: flex;
               flex-direction: column;
+
+              &::after {
+                @include pseudoBorderBottom(100%, $white);
+              }
 
               .email-label {
                 position: absolute;
@@ -98,7 +101,7 @@
                 padding-top: var(--photoGap);
                 padding-left: var(--photoGap);
                 border: none;
-                border-bottom: 3px solid $white;
+                // border-bottom: 3px solid $white;
                 font-size: var(--mLgFontSize);
                 letter-spacing: var(--TwoXSpaced);
                 color: $whiteTr;
@@ -110,7 +113,6 @@
                   transform: scale(.5) translateY(-150%);
                 }
               }
-
               
               .submit-arrow {
                 position: absolute;
@@ -144,43 +146,55 @@
   }
 }
 
-// //footer
-// footer {
-//   .featured-companies {
-//     background: $black;
-//     height: 200px;
-//     display: flex;
-//     align-items: center;
-//     .container {
-//       ul {
-//         display: flex;
-//         justify-content: space-around;
-//         padding: 0;
-//         align-items: center;
-//         flex-direction: row;
-//         li {
-//           text-align: center;
-//           img {
-//             width: 50%;
-//           }
-//         }
-//       }
-//     }
-//   }
-//   .footer {
-//     background: $off-white;
-//     height: 80px;
-//     .inner {
-//       padding: 0 120px;
-//       height: 80px;
-//       display: flex;
-//       align-items: center;
-//       justify-content: space-between;
-//       .socials {
-//         a {
-//           margin: 0 8px;
-//         }
-//       }
-//     }
-//   }
-// }
+.mobile-contact {
+  width: 100vw;
+  
+  &__header {
+    position: relative;
+    height: calc(var(--mVh) * 40);
+    width: 100vw;
+    background-color: steelblue;
+  }
+
+  .header-text {
+    @include flexCenterCol;
+    position: absolute;
+    height: 100%;
+    top: 50%;
+    left: 5%;
+    transform: translate(0, -50%);
+    align-items: flex-start;
+    font-weight: 700;
+    color: $whiteTr2;
+    overflow: hidden;
+    
+    span {
+      @include flexCenter;
+      font-size: calc(var(--mVh) * 12);
+      height: 33%;
+    }
+  }
+
+  .contact-text {
+    @include flexCenter;
+    margin: calc(var(--contentMargin) / 2) 0;
+
+    p {
+      width: 80%;
+      color: $white;
+    }
+  }
+
+  .mobile-email {
+    @include flexCenter;
+    cursor: pointer;
+    margin: 4rem 0 2rem 0;
+    font-family: $font-code;
+    font-size: var(--mFontSize);
+    color: $white;
+
+    .domain {
+      color: $turquoise;
+    }
+  }
+}
