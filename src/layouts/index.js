@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react"
+import { Helmet } from 'react-helmet'
+import gsap from 'gsap'
 import { useInView } from "react-intersection-observer"
 
 import Header from "../components/header"
@@ -6,11 +8,14 @@ import { InstaIcon, ScrollIcon, StravaIcon } from "../components/icons"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Footer from "../components/footer"
 import SponsorsBand from "../components/sponsors-band"
+import Meta from "../components/meta-tags"
+import MobileMenu from "../components/mobile-menu"
 
 const Layout = ({ children, location: { pathname } }) => {
   // + Mobile version tracking
   const [isMobile, setIsMobile] = useState(false)
   const [mobileVH, setMobileVH] = useState(null)
+  const [mmVisible, setMmVisible] = useState(true)
 
   useEffect(() => {
     // Set mobile version viewport units
@@ -40,6 +45,10 @@ const Layout = ({ children, location: { pathname } }) => {
     threshold: 0,
   })
 
+  const [mobileMenuRef, menuInView] = useInView({
+    threshold: 0,
+  })
+
   // - Scroll position state/setter/listener
   const [linkContent, setLinkContent] = useState("gallery")
 
@@ -59,6 +68,17 @@ const Layout = ({ children, location: { pathname } }) => {
   useEffect(() => {
     updateLinkContent()
   }, [footerInView, aboutInView, sponsorsInView])
+  
+  useEffect(() => {
+    setMmVisible(!mmVisible)
+
+    gsap.fromTo(".mobile-navigation", .4, {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+    })
+  }, [menuInView])
 
 
 
@@ -85,51 +105,57 @@ const Layout = ({ children, location: { pathname } }) => {
   }, [])
 
   return (
-    <div className="layout">
-      <Header />
-      <main className="layout-main">
-        {!footerInView && pageLocation["/"] && (
-          <div className="social-icons">
-            <div className="icon-wrapper">
-              <InstaIcon classN="social-icon" />
-              <InstaIcon classN="shadow pink" />
-              <InstaIcon classN="shadow turquoise" />
-            </div>
-            <div className="icon-wrapper">
-              <StravaIcon classN="social-icon" />
-              <StravaIcon classN="shadow pink" />
-              <StravaIcon classN="shadow turquoise" />
-            </div>
-          </div>
-        )}
-        {children}
-        {!footerInView && pageLocation["/"] && (
-          <nav className="fixed-link">
-            <AniLink
-              cover
-              bg="rgb(77, 238, 254)"
-              direction="left"
-              to={linkContent ? `/${linkContent}` : "/"}
-            >
-              <div className="text hover-shadows">
-                {linkContent}
-                <ScrollIcon />
+    <>
+      <Meta />
+      <MobileMenu isVisible={mmVisible} />
+      <div className="layout">
+        <Header />
+        <span className="mm-trigger" ref={mobileMenuRef}></span>
+        <main className="layout-main">
+          {!footerInView && pageLocation["/"] && (
+            <div className="social-icons">
+              <div className="icon-wrapper">
+                <InstaIcon classN="social-icon" />
+                <InstaIcon classN="shadow pink" />
+                <InstaIcon classN="shadow turquoise" />
               </div>
-            </AniLink>
-          </nav>
-        )}
-      </main>
-      <span className="vp-triggers">
-        <span ref={teamRef} className="extension extension--about"></span>
-        <span
-          ref={sponsorsRef}
-          className="extension extension--sponsors"
-        ></span>
-      </span>
-      <SponsorsBand isMobile={isMobile} />
-      <span ref={footerRef} className="footer-trigger"></span>
-      <Footer isMobile={isMobile} />
-    </div>
+              <div className="icon-wrapper">
+                <StravaIcon classN="social-icon" />
+                <StravaIcon classN="shadow pink" />
+                <StravaIcon classN="shadow turquoise" />
+              </div>
+            </div>
+          )}
+          {children}
+          {!footerInView && pageLocation["/"] && (
+            <nav className="fixed-link">
+              <AniLink
+                cover
+                bg="rgb(77, 238, 254)"
+                direction="left"
+                to={linkContent ? `/${linkContent}` : "/"}
+              >
+                <div className="text hover-shadows">
+                  {linkContent}
+                  <ScrollIcon />
+                </div>
+              </AniLink>
+            </nav>
+          )}
+        </main>
+
+        <span className="vp-triggers">
+          <span ref={teamRef} className="extension extension--about"></span>
+          <span
+            ref={sponsorsRef}
+            className="extension extension--sponsors"
+          ></span>
+        </span>
+        <SponsorsBand isMobile={isMobile} />
+        <span ref={footerRef} className="footer-trigger"></span>
+        <Footer isMobile={isMobile} />
+      </div>
+    </>
   )
 }
 

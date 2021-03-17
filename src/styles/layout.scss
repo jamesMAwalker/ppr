@@ -1,5 +1,61 @@
+.mobile-navigation {
+    @include media(">=tablet") {
+      display: none;
+    }
+    position: absolute;
+    z-index: $sparrow;
+    bottom: 15px;
+    right: 15px;
+    height: 8vh;
+    width: 8vh;
+    border-radius: 4px;
+    background-color: $blackTr2;
+    opacity: 0;
+    transition: all .4s;
+
+    &.menu-open {
+      background-color: $black;
+
+      svg {
+        transform: scale(.8);
+      }
+
+      path {
+        fill: $turquoise;
+      }
+    }
+
+    &.btn-visible {
+      position: fixed;
+      opacity: 1;
+
+    }
+    svg {
+      transform: rotate(180deg) scale(.5);
+      transition: all .2s;
+    }
+    path {
+      fill: $white;
+    }
+  }
+
+.menu-body {
+  visibility: collapse;
+  display: flex;
+  position: fixed;
+  z-index: $honeyBee;
+  bottom: 0;
+  left: 0;
+  background-color: $turquoise;
+  width: 100vw;
+  height: calc(var(--mVh) * 70);
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition-delay: visibility .4s !important;
+}
+
 .layout {
-  // height: 100%;
   width: 100%;
   z-index: 999;
 
@@ -145,6 +201,17 @@
     }
   }
 
+  
+
+  .mm-trigger {
+    position: absolute;
+    z-index: $falcon;
+    top: 0;
+    height: 20vh;
+    width: 100vw;
+    opacity: 0;
+  }
+
   .vp-triggers {
       position: relative;
       z-index: 999999;
@@ -166,5 +233,5 @@
           height: 150vh;
         }
       }
-    }
+  }
 }

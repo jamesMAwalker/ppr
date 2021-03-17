@@ -1,8 +1,21 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import gsap from 'gsap'
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import { PAWordMark } from "./Logo"
+import { ScrollIcon } from './icons'
+
+/*
+
+TODO {
+  # Experiment with react-use-gesture for swiping through
+  the gallery. 
+  # Need to rewrite mobile photoSwitch logic so that animations
+  can be applied. Re-rendering the component somehow...
+}
+
+*/
 
 const SupporterKit = ({ isMobile }) => {
   const [mainPhoto, setMainPhoto] = useState(["ph1", "", "", ""])
@@ -23,16 +36,27 @@ const SupporterKit = ({ isMobile }) => {
   }
 
   const photoNames = ['gravelSlide', 'jerseyRender', 'bigThree', 'luchos']
-  const [mobilePhoto, setmobilePhoto] = useState(0)
-  const handlePhotoSwitchMobile = e => {
-
+  const [mPhotoIdx, setMPhotoIdx] = useState(2)
+  const handlePhotoSwitchMobile = dir => {
+    if ((mPhotoIdx + dir) > 3) {
+      setMPhotoIdx(0)
+    } else if ((mPhotoIdx + dir) < 0) {
+      setMPhotoIdx(2)
+    } else {
+      setMPhotoIdx(mPhotoIdx + dir)
+    }
   }
 
+  useEffect(() => {
+    gsap.from('.photo__slide', .4, {
+      opacity: 0
+    })
+  }, [mPhotoIdx])
 
   const data = useStaticQuery(graphql`
     query {
       jerseyRender: file(
-        relativePath: { eq: "supporter-kit-images/ppr-jersey-render.jpg" }
+        relativePath: { eq: "supporter-kit-images/jersey--wide-s.png" }
       ) {
         childImageSharp {
           fluid(quality: 100) {
@@ -87,6 +111,7 @@ const SupporterKit = ({ isMobile }) => {
                   objectFit="contain"
                   objectPosition="50% 50%"
                   alt="render of cycling jersey"
+                  quality=""
                 />
               </div>
               <div
@@ -168,11 +193,15 @@ const SupporterKit = ({ isMobile }) => {
           <div className="mobile__photos">
             <div className="photo-slide">
               <Img
-                fluid={data.gravelSlide.childImageSharp.fluid}
+                fluid={data[photoNames[mPhotoIdx]].childImageSharp.fluid}
                 objectFit="cover"
                 objectPosition="50% 50%"
                 alt="cycling jersey in action"
               />
+              <div className="slide-controls">
+                <ScrollIcon classN="left" action={() => handlePhotoSwitchMobile(-1)} />
+                <ScrollIcon classN="right" action={() => handlePhotoSwitchMobile(1)}/>
+              </div>
             </div>
           </div>
           <div className="mobile__details">
