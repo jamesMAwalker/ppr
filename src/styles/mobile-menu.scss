@@ -1,0 +1,126 @@
+.mobile-navigation {
+    @include media(">=tablet") {
+      display: none;
+    }
+    position: absolute;
+    z-index: $sparrow;
+    bottom: 17px;
+    right: 17px;
+    height: 7.5vh;
+    width: 7.5vh;
+    padding: 0;
+    outline: none !important;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    background-color: $blackTr2;
+    opacity: 0;
+    transition: all .4s;
+
+    @include media("<=phoneSmall") {
+      height: 5vh;
+      width: 5vh;
+    }
+    
+    &.menu-open {
+      background-color: $black;
+      border: 1px solid $turquoise;
+
+      svg {
+        transform: scale(.8);
+      }
+
+      path {
+        fill: $turquoise;
+      }
+    }
+
+    &.btn-visible {
+      position: fixed;
+      opacity: 1;
+
+    }
+    svg {
+      transform: rotate(180deg) scale(.5);
+      transition: all .2s;
+    }
+    path {
+      fill: $white;
+    }
+  }
+
+.menu-body {
+  @include flexCenterCol;
+  justify-content: flex-end;
+  visibility: collapse;
+  position: fixed;
+  z-index: $honeyBee;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(var(--mVh) * 100);
+  height: 100vh;
+  margin-top: 12vh;
+  transform: scaleY(.75);
+  transform-origin: bottom;
+  opacity: 0;
+  background-color: $turquoise;
+}
+
+.menu-options {
+  @include flexCenterCol;
+  justify-content: space-evenly;
+  height: 53vh;
+  margin-bottom: 5vh;
+
+  p {
+    margin: 0;
+  }
+}
+
+.menu-footer {
+  @include  flexCenterCol;
+  justify-content: center;
+  height: 32vh;
+  width: 100vw;
+  padding-bottom: 2vh;
+  background-color: $black;
+  color: $turquoise;
+
+  .social {
+    @include flexCenter;
+    justify-content: flex-start;
+    width: 80%;
+    height: 25%;
+    svg {
+      height: 45%;
+      margin-right: 2rem;
+
+      @include media("<=phoneSmall") {
+        height: 40%;
+      }
+    }
+  }
+
+  svg {
+    height: 40%;
+  }
+  path {
+    fill: $turquoise;
+  }
+
+  .copyright {
+    height: 25%;
+    padding: 1rem 0;
+    text-align: center;
+
+    @include media("<=phoneSmall") {
+     margin-bottom: 1rem;
+    }
+    
+    p {
+      margin: .5rem;
+      margin: 0;
+      font-size: var(--smFontSize);
+    }
+  }
+}

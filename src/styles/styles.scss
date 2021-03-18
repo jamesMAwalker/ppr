@@ -17,6 +17,7 @@
 < current breakpoint settings are:
 
 > $breakpoints: (
+  -"phoneSmall": 350px,
   -"phone": 425px,
   -"tabletSmall": 768px,
   -"tablet": 1025px,
@@ -28,6 +29,13 @@
 */
 
 :root {
+  // Colors
+  --turquoise: rgb(77, 238, 254);
+  --pink: rgb(248, 201, 233);
+
+  --black: rgb(20, 20, 20);
+  --blackTr2: rgba(20, 20, 20, .35);
+
   // Font Sizes
   --heroFontSize: 4.768rem;
   --headerFontSize: 3.815rem;
@@ -144,6 +152,7 @@ button {
 @import './layout.scss';
 @import './sponsors-band.scss';
 @import './footer.scss';
+@import './mobile-menu.scss';
 
 // Sections & Pages
 @import './hero-grid.scss';

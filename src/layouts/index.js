@@ -3,9 +3,11 @@ import { Helmet } from 'react-helmet'
 import gsap from 'gsap'
 import { useInView } from "react-intersection-observer"
 
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+
 import Header from "../components/header"
 import { InstaIcon, ScrollIcon, StravaIcon } from "../components/icons"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+import { Logo } from '../components/Logo'
 import Footer from "../components/footer"
 import SponsorsBand from "../components/sponsors-band"
 import Meta from "../components/meta-tags"
@@ -15,7 +17,8 @@ const Layout = ({ children, location: { pathname } }) => {
   // + Mobile version tracking
   const [isMobile, setIsMobile] = useState(false)
   const [mobileVH, setMobileVH] = useState(null)
-  const [mmVisible, setMmVisible] = useState(true)
+  const [btnVisible, setBtnVisible] = useState(true)
+  const [menuVisible, setMenuVisible] = useState(false)
 
   useEffect(() => {
     // Set mobile version viewport units
@@ -29,7 +32,6 @@ const Layout = ({ children, location: { pathname } }) => {
     setMobileVH(vh)
     setIsMobile(window.innerWidth <= parseInt(tabBP, 10))
   }, [])
- 
  
  
   // + Scroll position tracking
@@ -64,13 +66,12 @@ const Layout = ({ children, location: { pathname } }) => {
     }
   }
 
-
   useEffect(() => {
     updateLinkContent()
   }, [footerInView, aboutInView, sponsorsInView])
   
   useEffect(() => {
-    setMmVisible(!mmVisible)
+    setBtnVisible(!btnVisible)
 
     gsap.fromTo(".mobile-navigation", .4, {
       opacity: 0,
@@ -89,9 +90,9 @@ const Layout = ({ children, location: { pathname } }) => {
     "/team": false,
   })
 
+  // track current page 
   useEffect(() => {
     const newLocationState = {}
-
     // if current page is x, set x of location state to true
     Object.keys(pageLocation).forEach(page => {
       if (page === pathname) {
@@ -104,10 +105,23 @@ const Layout = ({ children, location: { pathname } }) => {
     setPageLocation(newLocationState)
   }, [])
 
+  // Stop scroll while mobile menu is open
+  useEffect(() => {
+    if (menuVisible) {
+      document.documentElement.style.overflow = "hidden"
+    } else {
+      document.documentElement.style.overflow = "scroll"
+    }
+  }, [menuVisible])
+
   return (
     <>
       <Meta />
-      <MobileMenu isVisible={mmVisible} />
+      <MobileMenu
+        btnVisible={btnVisible}
+        menuVisible={menuVisible}
+        toggleMenu={() => setMenuVisible(!menuVisible)}
+      />
       <div className="layout">
         <Header />
         <span className="mm-trigger" ref={mobileMenuRef}></span>

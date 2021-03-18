@@ -1,9 +1,10 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import gsap from "gsap"
 
 import Img from "gatsby-image"
 
+import { Logo } from './Logo'
 import { ScrollIcon } from "./icons"
 
 
@@ -12,18 +13,56 @@ import { ScrollIcon } from "./icons"
 */
 
 
-const HeroGrid = () => {
+const HeroGrid = ({ isMobile }) => {
+  const [heroesLoaded, setHeroesLoaded] = useState([
+    false, 
+    false, 
+    false
+  ])
+  const [heroesAllLoaded, setHeroesAllLoaded] = useState(false)
   
+  const handleLoaded = (idx) => {
+    const newLoadState = heroesLoaded
+    newLoadState[idx] = true
+    setHeroesLoaded(newLoadState)
+    setTimeout(() => {
+      setHeroesAllLoaded(heroesLoaded.every(h => h === true))
+      gsap.to(".vp-shade", 1, { 
+        opacity: 0,
+        transform: "scale(2)"
+       })
+      gsap.to(".vp-shade", 1, { 
+        visibility: 'hidden',
+        delay: 1.5
+       })
+    }, 1000);
+  }
+
+  // animations
   useEffect(() => {
+    gsap.to(".vp-shade svg", 1, {
+      opacity: 1,
+      repeat: -1,
+      yoyo: true,
+    })
+
     gsap.from(".photo", 2, {
       opacity: 0,
+      delay: 2.5,
       stagger: { amount: 1 },
     })
+
+      gsap.from(".hero-text", 2, {
+        opacity: 0,
+        // transform: "scale(2)",
+        // letterSpacing: "100px",
+        delay: 3,
+        stagger: { amount: 1.5 },
+      })
     
     gsap.from(".hero-small", 1.5, {
       ease: "expo.InOut",
     })
-
 
     gsap.fromTo(
       ".hero-small img",
@@ -37,8 +76,9 @@ const HeroGrid = () => {
         ease: "expo.InOut",
       }
     )
-
   }, [])
+
+
 
   const data = useStaticQuery(graphql`
     query {
@@ -80,47 +120,82 @@ const HeroGrid = () => {
   `)
 
   return (
-    <main className="hero">
-      <div className="hero-grid">
-        <div className="hero-small photo left">
-          <Img
-            fadeIn="false"
-            fluid={data.heroLeft.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-          <div className="hero-text"><span>PLANT</span></div>
-        </div>
-        <div className="hero-center photo">
-          <Img
-            fadeIn="false"
-            loading="eager"
-            fluid={data.bannerCenter.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 100%"
-            alt=""
-          />
-          <div className="hero-text"><span><em>POWER</em></span></div>
-        </div>
-        <div className="hero-small photo right">
-          <Img
-            fadeIn="false"
-            fluid={data.heroRight.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-          <div className="hero-text right"><span>RACING</span></div>
-        </div>
+    <>
+      <div className={`vp-shade ${isMobile ? "black" : "white"}`}>
+        <Logo />
       </div>
-      <div className="scroll">
-        <div className="scroll-container">
-          <ScrollIcon />
-          <span className="hover-shadows">scroll down</span>
+      <main className="hero">
+        <div className="hero-grid">
+          <div className="hero-small photo left">
+            <div
+              className="shade"
+              style={{
+                background: `${!heroesAllLoaded ? "black" : ""}`,
+              }}
+            />
+            <Img
+              fadeIn
+              fluid={data.heroLeft.childImageSharp.fluid}
+              objectFit="cover"
+              objectPosition="50% 50%"
+              alt="a vegan cyclist"
+              onLoad={() => handleLoaded(0)}
+            />
+            <div className="hero-text">
+              <span>PLANT</span>
+            </div>
+          </div>
+          <div className="hero-center photo">
+            <div
+              className="shade"
+              style={{
+                background: `${!heroesAllLoaded ? "black" : ""}`,
+              }}
+            />
+            <Img
+              fadeIn
+              fluid={data.bannerCenter.childImageSharp.fluid}
+              objectFit="cover"
+              objectPosition="50% 100%"
+              alt="some vegan cyclists"
+              onLoad={() => handleLoaded(1)}
+            />
+            <div className="hero-text">
+              <span>
+                <em>POWER</em>
+              </span>
+            </div>
+          </div>
+          <div className="hero-small photo right">
+            <div
+              className="shade"
+              style={{
+                background: `${
+                  !heroesAllLoaded ? "var(--black)" : "var(--blackTr2)"
+                }`,
+              }}
+            />
+            <Img
+              fadeIn
+              fluid={data.heroRight.childImageSharp.fluid}
+              objectFit="cover"
+              objectPosition="50% 50%"
+              alt="some vegan cyclists"
+              onLoad={() => handleLoaded(2)}
+            />
+            <div className="hero-text right">
+              <span>RACING</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </main>
+        <div className="scroll">
+          <div className="scroll-container">
+            <ScrollIcon />
+            <span className="hover-shadows">scroll down</span>
+          </div>
+        </div>
+      </main>
+    </>
   )
 }
 

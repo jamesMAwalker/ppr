@@ -1,32 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import gsap from 'gsap'
+import React, { useEffect, useState } from "react"
+import gsap from "gsap"
 
-import { ScrollIcon } from './icons'
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
-const MobileMenu = ({ isVisible }) => {
-  const [menuOpen, setMenuOpen] = useState(false)
+import { Logo } from "./Logo"
+import { InstaIcon, ScrollIcon, StravaIcon } from "./icons"
+
+const MobileMenu = ({ btnVisible, menuVisible, toggleMenu }) => {
+  const [btnDisabled, setBtnDisabled] = useState(false)
 
   const handleMenuOpen = () => {
-    toggleMenu()
-    setMenuOpen(!menuOpen)
+    setBtnDisabled(true)
+    setTimeout(() => {
+      toggleMenuVis()
+      toggleMenu()
+      setBtnDisabled(false)
+    }, 100)
   }
 
-  const toggleMenu = () => {
-    if (!menuOpen) {
+  const toggleMenuVis = () => {
+    if (!menuVisible) {
       gsap
         .timeline()
         .to(".menu-body", 0.01, {
           visibility: "visible",
         })
-        .to(".menu-body", 0.3, {
+        .to(".menu-body", 0.2, {
           transform: "scaleY(1)",
           opacity: 1,
         })
     } else {
       gsap
         .timeline()
-        .to(".menu-body", 0.3, {
-          transform: "scaleY(0)",
+        .to(".menu-body", 0.15, {
+          transform: "scaleY(.75)",
           opacity: 0,
         })
         .to(".menu-body", 0.4, {
@@ -37,22 +44,65 @@ const MobileMenu = ({ isVisible }) => {
 
   return (
     <>
-      <div
+      <button
         className={`
         mobile-navigation 
-        ${!isVisible ? "btn-visible" : ""}
-        ${menuOpen ? "menu-open" : ""}
+        ${!btnVisible ? "btn-visible" : ""}
+        ${menuVisible ? "menu-open" : ""}
         `}
+        disabled={btnDisabled}
         onClick={handleMenuOpen}
       >
         <ScrollIcon />
-      </div>
+      </button>
       <div className="menu-body">
-        <p>HOME</p>
-        <p>CONTACT</p>
-        <p>TEAM</p>
-        <p>SPONSORS</p>
-        <p>GALLERY</p>
+        <div className="menu-options">
+          <AniLink
+            cover
+            bg="var(--pink)"
+            direction="left"
+            to="/"
+          ><p>HOME</p></AniLink>
+          <span>▪</span>
+          <AniLink
+            cover
+            bg="var(--pink)"
+            direction="left"
+            to="/"
+          ><p>CONTACT</p></AniLink>
+          <span>▪</span>
+          <AniLink
+            cover
+            bg="var(--pink)"
+            direction="left"
+            to="/team"
+          ><p>TEAM</p></AniLink>
+          <span>▪</span>
+          <AniLink
+            cover
+            bg="var(--pink)"
+            direction="left"
+            to="/sponsors"
+          ><p>SPONSORS</p></AniLink>
+          <span>▪</span>
+          <AniLink
+            cover
+            bg="var(--pink)"
+            direction="left"
+            to="/gallery"
+          ><p>GALLERY</p></AniLink>
+        </div>
+        <div className="menu-footer">
+          <div className="social">
+            <InstaIcon />
+            <StravaIcon />
+          </div>
+          <div className="copyright">
+            <Logo />
+            <p>PLANT ▪ POWER ▪ RACING</p>
+            <p>©2021</p>
+          </div>
+        </div>
       </div>
     </>
   )

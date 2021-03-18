@@ -32,7 +32,7 @@ const IndexPage = () => {
   
   return (
     <div className="content-container">
-      <HeroGrid />
+      <HeroGrid isMobile={isMobile}/>
       <About />
       <SupporterKit isMobile={isMobile} />
       <ContactSection isMobile={isMobile} mobileVH={mobileVH} />
