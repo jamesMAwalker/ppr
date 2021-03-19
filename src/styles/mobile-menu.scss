@@ -1,4 +1,4 @@
-.mobile-navigation {
+.mobile-nav-btn {
     @include media(">=tablet") {
       display: none;
     }
@@ -21,7 +21,7 @@
       width: 5vh;
     }
     
-    &.menu-open {
+    &.btn-open-style {
       background-color: $black;
       border: 1px solid $turquoise;
 

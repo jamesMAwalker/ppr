@@ -4,19 +4,36 @@
   position: relative;
   margin: var(--contentMargin) 0;
   height: 87.5vh;
+
+  @include media("<=tablet") {
+    height: 100vh;
+    margin: 0;
+    justify-content: flex-start;
+  }
   
   .absolute-wrapper {
     @include absoluteWrapper;
+
+    @include media("<=tablet") {
+      height: 100%;
+      margin: 0;
+    }
 
     &::-webkit-scrollbar {
       width: 0px;
       height: 2px;
       background-color: $white;
+      @include media("<=tablet") {
+        display: none;
+      }
     }
 
     &::-webkit-scrollbar-thumb {
       height: 2px;
       background-color: $pink;
+      @include media("<=tablet") {
+        display: none;
+      }
     }
   }
 

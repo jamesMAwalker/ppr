@@ -79,16 +79,28 @@ const members = [
 ]
 
 const TeamMembers = () => {
-  const [activeMember, setActiveMember] = useState(null)
+  const [activeMember, setActiveMember] = useState(-1)
+  const [anyActive, setAnyActive] = useState(false)
+
+  // console.log(anyActive)
 
   useEffect(() => {
     gsap.from(".animation-wrapper", 1, {
       opacity: 0,
     })
+
+    document.documentElement.style.overflow = `${
+      anyActive 
+      ? 'scroll'
+      : 'hidden'
+    }`
   }, [activeMember])
 
   const handleMemberClick = idx => {
     idx === activeMember ? setActiveMember(-1) : setActiveMember(idx)
+    setAnyActive(activeMember !== -1)
+    console.log("activeMember: ", activeMember)
+    console.log("anyActive: ", anyActive)
   }
 
   return (
@@ -103,7 +115,7 @@ const TeamMembers = () => {
                 key={member.name}
                 idx={idx}
                 member={member}
-                active={active}
+                expanded={active}
                 expandMember={handleMemberClick}
               />
             )

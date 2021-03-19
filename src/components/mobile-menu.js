@@ -46,9 +46,9 @@ const MobileMenu = ({ btnVisible, menuVisible, toggleMenu }) => {
     <>
       <button
         className={`
-        mobile-navigation 
+        mobile-nav-btn 
         ${!btnVisible ? "btn-visible" : ""}
-        ${menuVisible ? "menu-open" : ""}
+        ${menuVisible ? "btn-open-style" : ""}
         `}
         disabled={btnDisabled}
         onClick={handleMenuOpen}
@@ -62,35 +62,35 @@ const MobileMenu = ({ btnVisible, menuVisible, toggleMenu }) => {
             bg="var(--pink)"
             direction="left"
             to="/"
-          ><p>HOME</p></AniLink>
+          ><p onClick={handleMenuOpen}>HOME</p></AniLink>
           <span>▪</span>
           <AniLink
             cover
             bg="var(--pink)"
             direction="left"
             to="/"
-          ><p>CONTACT</p></AniLink>
+          ><p onClick={handleMenuOpen}>CONTACT</p></AniLink>
           <span>▪</span>
           <AniLink
             cover
             bg="var(--pink)"
             direction="left"
             to="/team"
-          ><p>TEAM</p></AniLink>
+          ><p onClick={handleMenuOpen}>TEAM</p></AniLink>
           <span>▪</span>
           <AniLink
             cover
             bg="var(--pink)"
             direction="left"
             to="/sponsors"
-          ><p>SPONSORS</p></AniLink>
+          ><p onClick={handleMenuOpen}>SPONSORS</p></AniLink>
           <span>▪</span>
           <AniLink
             cover
             bg="var(--pink)"
             direction="left"
             to="/gallery"
-          ><p>GALLERY</p></AniLink>
+          ><p onClick={handleMenuOpen}>GALLERY</p></AniLink>
         </div>
         <div className="menu-footer">
           <div className="social">

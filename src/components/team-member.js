@@ -5,7 +5,7 @@ import Img from "gatsby-image"
 
 import { InstaIcon, StravaIcon } from "../components/icons"
 
-const TeamMember = ({ idx, member, active, expandMember }) => {
+const TeamMember = ({ idx, member, expanded, expandMember }) => {
   const data = useStaticQuery(graphql`
     query {
       david: file(relativePath: { eq: "team-images/david.png" }) {
@@ -125,19 +125,19 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
 
   return (
     <div
-      className={`member ${active}`}
+      className={`member ${expanded}`}
       onClick={() => expandMember(idx)}
-      onKeyDown={e => {
+      onKeyDown={(e) => {
         if (e.code === 13) expandMember(idx)
       }}
       role="button"
       tabIndex={0}
     >
-      {!active ? (
+      {!expanded ? (
         <div className="animation-wrapper">
           <h4 className="name--closed">
             <div className="name-text">
-              {member.name.split(" ").map(n => (
+              {member.name.split(" ").map((n) => (
                 <span>{n}</span>
               ))}
             </div>
@@ -160,21 +160,26 @@ const TeamMember = ({ idx, member, active, expandMember }) => {
                 <div className="details__name">
                   <h2>{member.name}</h2>
                 </div>
-                <div className="details__role">{member.role}</div>
-                <div className="details__type">{member.type}</div>
-                <div className="social-links">
-                  <a
-                    href={`https://www.instagram.com/${member.social.insta}`}
-                    className="social-link"
-                  >
-                    <InstaIcon classN="member-social" />
-                  </a>
-                  <a
-                    href={`https://www.instagram.com/${member.social.strava}`}
-                    className="social-link"
-                  >
-                    <StravaIcon classN="member-social" />
-                  </a>
+                <div className="details__sub">
+                  <div className="details__role">{member.role}</div>
+                  <div className="country">🇩🇪</div>
+                  <div className="details__type">
+                    <em>{member.type}</em>
+                  </div>
+                  <div className="social-links">
+                    <a
+                      href={`https://www.instagram.com/${member.social.insta}`}
+                      className="social-link"
+                    >
+                      <InstaIcon classN="member-social" />
+                    </a>
+                    <a
+                      href={`https://www.instagram.com/${member.social.strava}`}
+                      className="social-link"
+                    >
+                      <StravaIcon classN="member-social" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

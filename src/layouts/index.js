@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
-import { Helmet } from 'react-helmet'
-import gsap from 'gsap'
+import { Helmet } from "react-helmet"
+import gsap from "gsap"
 import { useInView } from "react-intersection-observer"
 
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import Header from "../components/header"
 import { InstaIcon, ScrollIcon, StravaIcon } from "../components/icons"
-import { Logo } from '../components/Logo'
+import { Logo } from "../components/Logo"
 import Footer from "../components/footer"
 import SponsorsBand from "../components/sponsors-band"
 import Meta from "../components/meta-tags"
@@ -32,8 +32,7 @@ const Layout = ({ children, location: { pathname } }) => {
     setMobileVH(vh)
     setIsMobile(window.innerWidth <= parseInt(tabBP, 10))
   }, [])
- 
- 
+
   // + Scroll position tracking
   const [footerRef, footerInView] = useInView({
     threshold: 0,
@@ -69,19 +68,21 @@ const Layout = ({ children, location: { pathname } }) => {
   useEffect(() => {
     updateLinkContent()
   }, [footerInView, aboutInView, sponsorsInView])
-  
+
   useEffect(() => {
     setBtnVisible(!btnVisible)
 
-    gsap.fromTo(".mobile-navigation", .4, {
-      opacity: 0,
-    },
-    {
-      opacity: 1,
-    })
+    gsap.fromTo(
+      ".mobile-navigation",
+      0.4,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      }
+    )
   }, [menuInView])
-
-
 
   // + Page location tracking
   const [pageLocation, setPageLocation] = useState({
@@ -90,11 +91,11 @@ const Layout = ({ children, location: { pathname } }) => {
     "/team": false,
   })
 
-  // track current page 
+  // track current page
   useEffect(() => {
     const newLocationState = {}
     // if current page is x, set x of location state to true
-    Object.keys(pageLocation).forEach(page => {
+    Object.keys(pageLocation).forEach((page) => {
       if (page === pathname) {
         newLocationState[page] = true
       } else {
@@ -124,7 +125,9 @@ const Layout = ({ children, location: { pathname } }) => {
       />
       <div className="layout">
         <Header />
-        <span className="mm-trigger" ref={mobileMenuRef}></span>
+        {pageLocation["/"] && (
+          <span className="mm-trigger" ref={mobileMenuRef}></span>
+        )}
         <main className="layout-main">
           {!footerInView && pageLocation["/"] && (
             <div className="social-icons">

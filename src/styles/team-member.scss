@@ -9,6 +9,15 @@
   justify-content: center;
   transition: all 1.5s;
 
+  @include media("<=tablet") {
+    min-width: 80vw;
+  }
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
   // style proxy for gatsby-image-wrapper
   div {
     height: 100%;
@@ -26,14 +35,22 @@
   .name--closed {
     @include absoluteCentered;
     @include displayText($white);
-    z-index: 99;
+    z-index: $sparrow;
     margin: 0;
     opacity: 0;
     transition: all .5s;
+
+    @include media("<=tablet") {
+      opacity: 1;
+    }
     
     .name-text {
       display: flex;
       flex-direction: column;
+
+      @include media("<=tablet") {
+        opacity: 1;
+      }
     }
   }
 
@@ -41,6 +58,15 @@
   &.active {
     min-width: 50vw;
     transition: all 1s;
+
+    @include media("<=tablet") {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100vw;
+      z-index: $falcon;
+    }
 
     & > * {
       opacity: 1 !important;
@@ -64,25 +90,73 @@
     @include absoluteCentered;
     height: 90%;
     width: 100%;
-    z-index: 99;
+    z-index: $honeyBee;
 
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-template-areas: "left right";
-
     color: $white;
+
+    @include media("<=tablet") {
+      @include flexCenterCol;
+      justify-content: flex-start;
+      height: 100%
+    }
   }
 
   .details {
     @include flexCenterFull;
-    z-index: 99;
+    z-index: $honeyBee;
+
+    @include media("<=tablet") {
+      height: 27vh;
+      padding: 3vh;
+    }
 
     &__name {
       text-transform: uppercase;
+      
+      @include media("<=tablet") {
+        width: 65%;
+        display: flex;
+        align-items: flex-start;
+        // background-color: red;
+        h2 {
+          margin: 0 !important;
+          font-size: var(--xLgFontSize);
+        }
+      }
     }
     
     &__flex-wrapper {
       @include flexColLeftFull;
+
+      @include media("<=tablet") {
+        width: 80% !important;
+        // height: 90% !important;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: row;
+      }
+    }
+
+    &__sub {
+      @include media("<=tablet") {
+        @include flexCenterCol;
+        align-items: flex-end;
+        width: 35%;
+
+        & > * {
+          width: unset;
+        }
+      }
+    }
+
+    &__role {
+      @include media("<=tablet") {
+        text-transform: uppercase;
+        font-weight: 700;
+      }
     }
 
     & > * {
@@ -95,6 +169,10 @@
       margin: 1rem 0;
       width: 50%;
       justify-content: space-between;
+
+      @include media("<=tablet") {
+        width: 60%;
+      }
 
       .member-social {
         opacity: 0.8;
@@ -113,6 +191,12 @@
 
   .bio {
     @include flexCenter;
+
+    @include media("<=tablet") {
+      height: 65vh;
+      margin: 2.5vh 0;
+      align-items: flex-start;
+    }
     
     &__scroll-wrapper {
       @include scrollBarVert(4px, $white, $whiteTr);
@@ -120,11 +204,25 @@
       width: 90%;
       margin-right: 5%;
       overflow-y: scroll;
+
+      @include media("<=tablet") {
+        height: 90%;
+        width: calc(90% - 2rem);
+        margin: 0;
+        padding: 1rem;
+        border-radius: 10px; 
+        background-color: $blackTr2;
+      }
     }
 
     &__text {
       @include paragraphTextCondensed($white); 
       margin-right: 2rem;
+
+      @include media("<=tablet") {
+        margin: .5rem;
+        font-size: 1.1rem !important;
+      }
     }
   }
 
