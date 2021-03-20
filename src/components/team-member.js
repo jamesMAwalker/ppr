@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Img from "gatsby-image"
 
-import { InstaIcon, StravaIcon } from "../components/icons"
+import { InstaIcon, ScrollIcon, StravaIcon } from "../components/icons"
 
 const TeamMember = ({ idx, member, expanded, expandMember }) => {
   const data = useStaticQuery(graphql`
@@ -61,7 +61,7 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/david.png" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
+          fluid(maxWidth: 1200, quality: 75) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -70,7 +70,7 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/james.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
+          fluid(maxWidth: 1200, quality: 75) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -79,7 +79,7 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/josh.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
+          fluid(maxWidth: 1200, quality: 75) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -88,7 +88,7 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/mattia.png" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
+          fluid(maxWidth: 1200, quality: 75) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -97,7 +97,7 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/nick.jpg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
+          fluid(maxWidth: 1200, quality: 75) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -106,7 +106,7 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/oscar.jpg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
+          fluid(maxWidth: 1200, quality: 75) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -115,7 +115,7 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
         relativePath: { eq: "team-images/landscape-photos/taylor.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
+          fluid(maxWidth: 1200, quality: 75) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -158,14 +158,14 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
             <div className="details">
               <div className="details__flex-wrapper">
                 <div className="details__name">
-                  <h2>{member.name}</h2>
+                  {member.name.split(" ").map((n) => <h2>{n}</h2>)}
                 </div>
                 <div className="details__sub">
                   <div className="details__role">{member.role}</div>
-                  <div className="country">🇩🇪</div>
                   <div className="details__type">
                     <em>{member.type}</em>
                   </div>
+                  <div className="country">{member.flag}</div>
                   <div className="social-links">
                     <a
                       href={`https://www.instagram.com/${member.social.insta}`}
@@ -188,6 +188,9 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
                 <p className="bio__text">{member.bioText}</p>
               </div>
             </div>
+            <span className="close-btn">
+              <ScrollIcon />
+            </span>
           </div>
           <Img
             fadeIn
@@ -195,7 +198,8 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
             fluid={data[member.gqlId].childImageSharp.fluid}
             objectFit="cover"
             objectPosition="50% 100%"
-            alt=""
+            alt={member.id}
+            quality="75"
           />
         </div>
       )}

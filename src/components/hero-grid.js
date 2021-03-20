@@ -57,7 +57,7 @@ const HeroGrid = ({ isMobile }) => {
         // transform: "scale(2)",
         // letterSpacing: "100px",
         delay: 3,
-        stagger: { amount: 1.5 },
+        stagger: { amount: .5 },
       })
     
     gsap.from(".hero-small", 1.5, {

@@ -91,11 +91,16 @@
     height: 90%;
     width: 100%;
     z-index: $honeyBee;
-
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-template-areas: "left right";
     color: $white;
+
+    .close-btn {
+      svg {
+        height: 5vh;
+      }
+    }
 
     @include media("<=tablet") {
       @include flexCenterCol;
@@ -109,8 +114,8 @@
     z-index: $honeyBee;
 
     @include media("<=tablet") {
-      height: 27vh;
-      padding: 3vh;
+      height: 25vh;
+      padding: 3vh 3vh 0 3vh;
     }
 
     &__name {
@@ -119,11 +124,12 @@
       @include media("<=tablet") {
         width: 65%;
         display: flex;
+        flex-direction: column;
         align-items: flex-start;
         // background-color: red;
         h2 {
           margin: 0 !important;
-          font-size: var(--xLgFontSize);
+          font-size: var(--lgFontSize);
         }
       }
     }
@@ -172,6 +178,10 @@
 
       @include media("<=tablet") {
         width: 60%;
+
+        svg {
+          height: 3vh;
+        }
       }
 
       .member-social {
@@ -193,8 +203,8 @@
     @include flexCenter;
 
     @include media("<=tablet") {
-      height: 65vh;
-      margin: 2.5vh 0;
+      height: 67.5vh;
+      margin-top: 2.5vh;
       align-items: flex-start;
     }
     
@@ -209,8 +219,8 @@
         height: 90%;
         width: calc(90% - 2rem);
         margin: 0;
-        padding: 1rem;
-        border-radius: 10px; 
+        padding: .5rem;
+        border-radius: 5px 0 0 5px; 
         background-color: $blackTr2;
       }
     }
@@ -218,10 +228,12 @@
     &__text {
       @include paragraphTextCondensed($white); 
       margin-right: 2rem;
-
+      
       @include media("<=tablet") {
+        @include paragraphText($white); 
         margin: .5rem;
         font-size: 1.1rem !important;
+        letter-spacing: var(--smSpaced);
       }
     }
   }

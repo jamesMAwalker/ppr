@@ -10,6 +10,7 @@ const members = [
     id: "david",
     gqlId: "davidLS",
     name: "David Baar",
+    flag: "🇩🇪",
     role: "Captain",
     type: "Rouleur",
     social: { insta: "edelhelfer", strava: "160026" },
@@ -20,6 +21,7 @@ const members = [
     id: "taylor",
     gqlId: "taylorLS",
     name: "Taylor Dawson",
+    flag: "🇺🇸",
     role: "FASTMAN",
     type: "Puncheur",
     social: { insta: "taylorwdawson", strava: "571689" },
@@ -30,6 +32,7 @@ const members = [
     id: "nick",
     gqlId: "nickLS",
     name: "Nick Smith",
+    flag: "🇺🇸",
     role: "",
     type: "Time Trialist",
     social: { insta: "rshgrdbottmlss", strava: "5289858" },
@@ -40,6 +43,7 @@ const members = [
     id: "oscar",
     gqlId: "oscarLS",
     name: "Oscar Ochoa",
+    flag: "🇲🇽",
     role: "",
     type: "Time Trialist",
     social: { insta: "okamicog", strava: "703855" },
@@ -50,6 +54,7 @@ const members = [
     id: "mattia",
     gqlId: "mattiaLS",
     name: "Mattia Day",
+    flag: "🇺🇸",
     role: "GC",
     type: "Climber",
     social: { insta: "theothervegancyclist", strava: "22118917" },
@@ -60,6 +65,7 @@ const members = [
     id: "james",
     gqlId: "jamesLS",
     name: "James Walker",
+    flag: "🇵🇸",
     role: "GC",
     type: "Climber",
     social: { insta: "phronetic27", strava: "379856" },
@@ -70,6 +76,7 @@ const members = [
     id: "josh",
     gqlId: "joshLS",
     name: "Josh Mayhew",
+    flag: "🇧🇫",
     role: "SUPER DOMESTIQUE",
     type: "Climber",
     social: { insta: "joshmayhem_vxx", strava: "5280476" },
@@ -78,11 +85,9 @@ const members = [
   },
 ]
 
-const TeamMembers = () => {
+const TeamMembers = ({ btnVisible, setBtnVisible }) => {
   const [activeMember, setActiveMember] = useState(-1)
   const [anyActive, setAnyActive] = useState(false)
-
-  // console.log(anyActive)
 
   useEffect(() => {
     gsap.from(".animation-wrapper", 1, {
@@ -99,6 +104,7 @@ const TeamMembers = () => {
   const handleMemberClick = idx => {
     idx === activeMember ? setActiveMember(-1) : setActiveMember(idx)
     setAnyActive(activeMember !== -1)
+    setBtnVisible()
     console.log("activeMember: ", activeMember)
     console.log("anyActive: ", anyActive)
   }

@@ -6,7 +6,7 @@ import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { Logo } from "./Logo"
 import { InstaIcon, ScrollIcon, StravaIcon } from "./icons"
 
-const MobileMenu = ({ btnVisible, menuVisible, toggleMenu }) => {
+const MobileMenu = ({ btnVisible, menuVisible, pageLocation, toggleMenu }) => {
   const [btnDisabled, setBtnDisabled] = useState(false)
 
   const handleMenuOpen = () => {
@@ -44,6 +44,9 @@ const MobileMenu = ({ btnVisible, menuVisible, toggleMenu }) => {
 
   return (
     <>
+      {pageLocation !== "/" && !btnVisible && !menuVisible && (
+        <div className="current-page">{pageLocation}</div>
+      )}
       <button
         className={`
         mobile-nav-btn 
@@ -57,40 +60,25 @@ const MobileMenu = ({ btnVisible, menuVisible, toggleMenu }) => {
       </button>
       <div className="menu-body">
         <div className="menu-options">
-          <AniLink
-            cover
-            bg="var(--pink)"
-            direction="left"
-            to="/"
-          ><p onClick={handleMenuOpen}>HOME</p></AniLink>
+          <AniLink cover bg="var(--pink)" direction="left" to="/">
+            <p onClick={handleMenuOpen}>HOME</p>
+          </AniLink>
           <span>▪</span>
-          <AniLink
-            cover
-            bg="var(--pink)"
-            direction="left"
-            to="/"
-          ><p onClick={handleMenuOpen}>CONTACT</p></AniLink>
+          <AniLink cover bg="var(--pink)" direction="left" to="/">
+            <p onClick={handleMenuOpen}>CONTACT</p>
+          </AniLink>
           <span>▪</span>
-          <AniLink
-            cover
-            bg="var(--pink)"
-            direction="left"
-            to="/team"
-          ><p onClick={handleMenuOpen}>TEAM</p></AniLink>
+          <AniLink cover bg="var(--pink)" direction="left" to="/team">
+            <p onClick={handleMenuOpen}>TEAM</p>
+          </AniLink>
           <span>▪</span>
-          <AniLink
-            cover
-            bg="var(--pink)"
-            direction="left"
-            to="/sponsors"
-          ><p onClick={handleMenuOpen}>SPONSORS</p></AniLink>
+          <AniLink cover bg="var(--pink)" direction="left" to="/sponsors">
+            <p onClick={handleMenuOpen}>SPONSORS</p>
+          </AniLink>
           <span>▪</span>
-          <AniLink
-            cover
-            bg="var(--pink)"
-            direction="left"
-            to="/gallery"
-          ><p onClick={handleMenuOpen}>GALLERY</p></AniLink>
+          <AniLink cover bg="var(--pink)" direction="left" to="/gallery">
+            <p onClick={handleMenuOpen}>GALLERY</p>
+          </AniLink>
         </div>
         <div className="menu-footer">
           <div className="social">

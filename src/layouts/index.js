@@ -20,6 +20,7 @@ const Layout = ({ children, location: { pathname } }) => {
   const [btnVisible, setBtnVisible] = useState(true)
   const [menuVisible, setMenuVisible] = useState(false)
 
+  // set mobile vp units & create js breakpoint for mobile
   useEffect(() => {
     // Set mobile version viewport units
     let vh = window.innerHeight * 0.01
@@ -33,7 +34,7 @@ const Layout = ({ children, location: { pathname } }) => {
     setIsMobile(window.innerWidth <= parseInt(tabBP, 10))
   }, [])
 
-  // + Scroll position tracking
+  // useInView set up
   const [footerRef, footerInView] = useInView({
     threshold: 0,
   })
@@ -50,9 +51,10 @@ const Layout = ({ children, location: { pathname } }) => {
     threshold: 0,
   })
 
-  // - Scroll position state/setter/listener
+  // scroll position set/get
   const [linkContent, setLinkContent] = useState("gallery")
 
+  // function to change link 
   const updateLinkContent = () => {
     if (pathname === "/") {
       if (aboutInView && !sponsorsInView) {
@@ -65,15 +67,17 @@ const Layout = ({ children, location: { pathname } }) => {
     }
   }
 
+  // change link content based on visibility of triggers
   useEffect(() => {
     updateLinkContent()
   }, [footerInView, aboutInView, sponsorsInView])
 
+  // change mm btnVisible when menuInView changes 
   useEffect(() => {
     setBtnVisible(!btnVisible)
 
     gsap.fromTo(
-      ".mobile-navigation",
+      ".mobile-nav-btn",
       0.4,
       {
         opacity: 0,
@@ -84,7 +88,7 @@ const Layout = ({ children, location: { pathname } }) => {
     )
   }, [menuInView])
 
-  // + Page location tracking
+  // + Page location tracking state set/get
   const [pageLocation, setPageLocation] = useState({
     "/": true,
     "/gallery": false,
@@ -115,10 +119,21 @@ const Layout = ({ children, location: { pathname } }) => {
     }
   }, [menuVisible])
 
+
+  // pass props to child page elements
+  const childrenWithProps = React.Children.map(children, (child) =>
+    React.cloneElement(child, { btnVisible: btnVisible, setBtnVisible: () => setBtnVisible(!btnVisible) })
+  )
+
   return (
     <>
       <Meta />
       <MobileMenu
+        pageLocation={
+          pathname !== "/" 
+          ? pathname.replace("/", '')
+          : pathname
+        }
         btnVisible={btnVisible}
         menuVisible={menuVisible}
         toggleMenu={() => setMenuVisible(!menuVisible)}
@@ -143,7 +158,7 @@ const Layout = ({ children, location: { pathname } }) => {
               </div>
             </div>
           )}
-          {children}
+          {childrenWithProps}
           {!footerInView && pageLocation["/"] && (
             <nav className="fixed-link">
               <AniLink

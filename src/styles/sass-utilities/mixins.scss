@@ -11,14 +11,14 @@
 }
 
 @mixin paragraphText($color) {
-  line-height: var(--paraLineHeight);
+  line-height: var(--paraLineHeightBase);
   font-size: var(--baseFontSize);
   font-weight: 500;
   color: $color;
 }
 
 @mixin paragraphTextCondensed($color) {
-  line-height: var(--condensedLineHeight);
+  line-height: var(--paraLineHeightCond);
   font-size: 10px !important;
   font-weight: 300;
   color: $color;

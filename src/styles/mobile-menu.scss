@@ -4,7 +4,7 @@
     }
     position: absolute;
     z-index: $sparrow;
-    bottom: 17px;
+    bottom: 25px;
     right: 17px;
     height: 7.5vh;
     width: 7.5vh;
@@ -46,7 +46,19 @@
     path {
       fill: $white;
     }
-  }
+}
+
+.current-page {
+  position: fixed;
+  z-index: $sparrow;
+  top: 17px;
+  left: 25px;
+  color: $whiteTr;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: var(--mFontSize);
+  letter-spacing: calc(var(--FourXSpaced) * 2);
+}
 
 .menu-body {
   @include flexCenterCol;

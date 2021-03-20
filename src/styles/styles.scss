@@ -49,15 +49,17 @@
   --xSmFontSize: 0.64rem;
 
   // Text Mods
-  --smSpaced: .5px;
+  --smSpaced: 1px;
   --spaced: 1.5px;
   --xSpaced: 2px;
   --TwoXSpaced: 4.5px;
+  --FourXSpaced: 9px;
 
   // Spacing
   --photoGap: 17px;
-  --paraLineHeight: 2.441rem;
-  --condensedLineHeight: 1.563rem;
+  --paraLineHeightSpread: var(--xLgFontSize);
+  --paraLineHeightBase: var(--lgFontSize);
+  --paraLineHeightCond: var(--mLgFontSize);
   --contentMargin: 13.5vh;
 
   // Breakpoints
