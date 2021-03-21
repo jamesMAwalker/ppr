@@ -54,7 +54,7 @@ const Layout = ({ children, location: { pathname } }) => {
   // scroll position set/get
   const [linkContent, setLinkContent] = useState("gallery")
 
-  // function to change link 
+  // function to change link
   const updateLinkContent = () => {
     if (pathname === "/") {
       if (aboutInView && !sponsorsInView) {
@@ -72,7 +72,7 @@ const Layout = ({ children, location: { pathname } }) => {
     updateLinkContent()
   }, [footerInView, aboutInView, sponsorsInView])
 
-  // change mm btnVisible when menuInView changes 
+  // change mm btnVisible when menuInView changes
   useEffect(() => {
     setBtnVisible(!btnVisible)
 
@@ -119,21 +119,20 @@ const Layout = ({ children, location: { pathname } }) => {
     }
   }, [menuVisible])
 
-
   // pass props to child page elements
   const childrenWithProps = React.Children.map(children, (child) =>
-    React.cloneElement(child, { btnVisible: btnVisible, setBtnVisible: () => setBtnVisible(!btnVisible) })
+    React.cloneElement(child, {
+      isMobile: isMobile,
+      btnVisible: btnVisible,
+      setBtnVisible: () => setBtnVisible(!btnVisible),
+    })
   )
 
   return (
     <>
       <Meta />
       <MobileMenu
-        pageLocation={
-          pathname !== "/" 
-          ? pathname.replace("/", '')
-          : pathname
-        }
+        pageLocation={pathname !== "/" ? pathname.replace("/", "") : pathname}
         btnVisible={btnVisible}
         menuVisible={menuVisible}
         toggleMenu={() => setMenuVisible(!menuVisible)}
@@ -183,7 +182,9 @@ const Layout = ({ children, location: { pathname } }) => {
             className="extension extension--sponsors"
           ></span>
         </span>
-        <SponsorsBand isMobile={isMobile} />
+        {!(pathname === "/sponsors" && isMobile) && (
+          <SponsorsBand isMobile={isMobile} />
+        )}
         <span ref={footerRef} className="footer-trigger"></span>
         <Footer isMobile={isMobile} />
       </div>

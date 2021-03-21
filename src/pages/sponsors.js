@@ -68,7 +68,7 @@ const sponsorData = [
   },
 ]
 
-const Sponsors = () => {
+const Sponsors = ({ isMobile }) => {
   const [hoveredSponsor, sethoveredSponsor] = useState(null)
   const [activeSponsor, setActiveSponsor] = useState(null)
   const scrollBoxRef = useRef(null)
@@ -79,7 +79,7 @@ const Sponsors = () => {
     })
   }, [hoveredSponsor])
 
-  const handleSponsorClick = idx => {
+  const handleSponsorClick = (idx) => {
     idx === activeSponsor ? setActiveSponsor(-1) : setActiveSponsor(idx)
   }
 
@@ -91,9 +91,34 @@ const Sponsors = () => {
   }
 
   return (
-    <section className="sponsors-container">
-      <div className="absolute-wrapper" ref={scrollBoxRef} >
-        <div className="flex-wrapper">
+    <>
+      {!isMobile ? (
+        <section className="sponsors-container">
+          <div className="absolute-wrapper" ref={scrollBoxRef}>
+            <div className="flex-wrapper">
+              {sponsorData.map((s, idx) => {
+                const active = idx === activeSponsor ? "active" : ""
+
+                return (
+                  <Sponsor
+                    id={s.id}
+                    idx={idx}
+                    link={s.link}
+                    blurb={s.blurb.bio}
+                    logo={s.logo}
+                    wordmark={s.wordmark}
+                    active={active}
+                    expandSponsor={handleSponsorClick}
+                    scrollToSelected={scrollToSelected}
+                    isMobile={isMobile}
+                  />
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      ) : (
+        <div className="mobile-sponsors">
           {sponsorData.map((s, idx) => {
             const active = idx === activeSponsor ? "active" : ""
 
@@ -108,12 +133,13 @@ const Sponsors = () => {
                 active={active}
                 expandSponsor={handleSponsorClick}
                 scrollToSelected={scrollToSelected}
+                isMobile={isMobile}
               />
             )
           })}
         </div>
-      </div>
-    </section>
+      )}
+    </>
   )
 }
 

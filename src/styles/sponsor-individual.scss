@@ -12,6 +12,13 @@
   transition: all 1s;
   transition: border .2s;
 
+  @include media("<=tablet") {
+    background-color: $black;
+    min-width: unset; 
+    height: 100%;
+    width: 100%;
+  }
+
   &.active {
     min-width: 80vw;
     transition: all 1s;
@@ -173,5 +180,22 @@
     .shade-logo {
       transform: translateY(40vh);
     }
+  }
+}
+
+.mobile-sponsor {
+  @include flexCenter;
+  height: 100%;
+  width: 100%;
+  background-color: $pink;
+  transition: all .2s;
+
+  svg {
+    width: 60% !important;
+    transform: unset !important;
+  }
+
+  path {
+    fill: $black;
   }
 }
