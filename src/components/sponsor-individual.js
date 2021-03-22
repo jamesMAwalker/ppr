@@ -3,9 +3,11 @@ import { useStaticQuery, graphql } from "gatsby"
 import gsap from "gsap"
 
 import Img from "gatsby-image"
+import { ScrollIcon } from "./icons"
 
 const Sponsor = ({
   id,
+  sName, 
   link,
   blurb,
   logo,
@@ -15,6 +17,7 @@ const Sponsor = ({
   scrollToSelected,
   idx,
   isMobile,
+  setBtnVisible
 }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -63,6 +66,7 @@ const Sponsor = ({
     }
   `)
 
+  console.log(sName);
 
   useEffect(() => {
     gsap.fromTo(
@@ -103,7 +107,7 @@ const Sponsor = ({
   }
 
   const handleTouch = (e) => {
-    console.log('sponsor touched');
+    
     gsap.to(`.mobile-sponsor.s${idx.toString()}`, 0.2, {
       background: `${!active ? 'var(--white)' : 'var(--pink)' }`,
     })
@@ -114,6 +118,7 @@ const Sponsor = ({
       y: `${active ? "-10vh" : 0}`,
       ease: "power2.out",
     })
+    setBtnVisible()
 
     setTimeout(() => {
       expandSponsor(idx)
@@ -122,6 +127,7 @@ const Sponsor = ({
         y: "-10vh",
         ease: "power2.out"
       })
+      // enable interaction
       setDisabled(false)
     }, 750);
   }
@@ -185,11 +191,39 @@ const Sponsor = ({
           )}
         </div>
       ) : (
-        <div className={`mobile-sponsor s${idx}`} onClick={handleTouch} disabled={disabled} >
+        <div
+          className={`mobile-sponsor s${idx}`}
+          onClick={handleTouch}
+          disabled={disabled}
+        >
           {!active ? (
             <>{logo()}</>
           ) : (
-            <div className="expanded-sponsor">{logo()}</div>
+            <div className="expanded-sponsor">
+              <div className="expanded-sponsor__header">{wordmark()}</div>
+              <div className="expanded-sponsor__body">
+                <div className="expanded-sponsor__content">
+                  <div className="blurb-text">{blurb}</div>
+                  <div className="visit-button">
+                    <span>VISIT | {sName}</span>
+                    
+                  </div>
+                  <div className="close-btn-wrapper">
+                    <ScrollIcon/>
+                  </div>
+                </div>
+                <div className="bg-img">
+                  <Img
+                    fadeIn
+                    loading="eager"
+                    fluid={data[id].childImageSharp.fluid}
+                    objectFit="cover"
+                    objectPosition="50% 100%"
+                    alt={`Logo for the ${id} sponsor company`}
+                  />
+                </div>
+              </div>
+            </div>
           )}
         </div>
       )}

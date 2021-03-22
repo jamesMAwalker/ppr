@@ -1,6 +1,6 @@
 // + Mixins + //
 
-// > Typography
+//////////////////// > Typography > ////////////////////////
 @mixin displayText($color) {
   text-transform: uppercase;
   text-align: center;
@@ -25,7 +25,7 @@
 }
 
 
-// > Pseudos
+//////////////////// > Pseudos > ////////////////////////
 @mixin pseudoShade($color) {
   position: absolute;
   content: '';
@@ -74,7 +74,7 @@
 
 }
 
-// > Positioning
+//////////////////// > Positioning > ////////////////////////
 @mixin absoluteCentered {
   position: absolute;
   top: 50%;
@@ -84,7 +84,7 @@
 
 
 
-// > FLEX Positioning
+//////////////////// > FLEX > //////////////////////// Positioning
 @mixin flexCenter {
   display: flex;
   align-items: center;
@@ -117,7 +117,7 @@
 
 
 
-// > Wrappers
+//////////////////// > Wrappers > ////////////////////////
 
 @mixin absoluteWrapper {
   z-index: 99;
@@ -134,4 +134,11 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+
+//////////////////// > Sizing Functions > ////////////////////////
+
+@mixin useMvh($prop, $factor) {
+  #{$prop}: calc(var(--mVh) * #{$factor})
 }

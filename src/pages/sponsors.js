@@ -26,6 +26,7 @@ import { SPONSOR_INFOS } from "../assets/partner-blurbs"
 const sponsorData = [
   {
     id: "amtber",
+    name: "aMTBer",
     link: "https://www.spacejam.com",
     blurb: SPONSOR_INFOS.amtber,
     logo: AmtberLogo,
@@ -33,6 +34,7 @@ const sponsorData = [
   },
   {
     id: "bikeLegal",
+    name: "Bike Legal",
     link: "https://www.spacejam.com",
     blurb: SPONSOR_INFOS.bikelegal,
     logo: BLLogo,
@@ -40,6 +42,7 @@ const sponsorData = [
   },
   {
     id: "FC",
+    name: "Fingers Crossed",
     link: "https://www.spacejam.com",
     blurb: SPONSOR_INFOS.fingerscrossed,
     logo: FCLogo,
@@ -47,6 +50,7 @@ const sponsorData = [
   },
   {
     id: "FS",
+    name: "Four Sigmatic",
     link: "https://www.spacejam.com",
     blurb: SPONSOR_INFOS.fourSigmatic,
     logo: FSLogo,
@@ -54,6 +58,7 @@ const sponsorData = [
   },
   {
     id: "POC",
+    name: "POC Sports",
     link: "https://www.spacejam.com",
     blurb: SPONSOR_INFOS.poc,
     logo: POCLogo,
@@ -61,6 +66,7 @@ const sponsorData = [
   },
   {
     id: "s4g",
+    name: "Switch4Good",
     link: "https://www.spacejam.com",
     blurb: SPONSOR_INFOS.switch4good,
     logo: S4GLogo,
@@ -68,7 +74,7 @@ const sponsorData = [
   },
 ]
 
-const Sponsors = ({ isMobile }) => {
+const Sponsors = ({ isMobile, setBtnVisible }) => {
   const [hoveredSponsor, sethoveredSponsor] = useState(null)
   const [activeSponsor, setActiveSponsor] = useState(null)
   const scrollBoxRef = useRef(null)
@@ -78,6 +84,13 @@ const Sponsors = ({ isMobile }) => {
       opacity: 0,
     })
   }, [hoveredSponsor])
+
+  useEffect(() => {
+    // toggle page scroll
+    document.documentElement.style.overflow = `${
+      activeSponsor !== -1 ? "hidden" : "scroll"
+    }`
+  }, [activeSponsor])
 
   const handleSponsorClick = (idx) => {
     idx === activeSponsor ? setActiveSponsor(-1) : setActiveSponsor(idx)
@@ -98,7 +111,6 @@ const Sponsors = ({ isMobile }) => {
             <div className="flex-wrapper">
               {sponsorData.map((s, idx) => {
                 const active = idx === activeSponsor ? "active" : ""
-
                 return (
                   <Sponsor
                     id={s.id}
@@ -125,6 +137,7 @@ const Sponsors = ({ isMobile }) => {
             return (
               <Sponsor
                 id={s.id}
+                sName={s.name}
                 idx={idx}
                 link={s.link}
                 blurb={s.blurb.bio}
@@ -134,6 +147,7 @@ const Sponsors = ({ isMobile }) => {
                 expandSponsor={handleSponsorClick}
                 scrollToSelected={scrollToSelected}
                 isMobile={isMobile}
+                setBtnVisible={setBtnVisible}
               />
             )
           })}
