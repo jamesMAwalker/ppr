@@ -4,6 +4,7 @@ import Img from "gatsby-image"
 const GalleryModal = ({ toggleModal, imgSrc }) => {
   return (
     <div className="modal" onClick={toggleModal}>
+      <span className="close-button">&#10006;</span>
       <div className="modal-image">
         <Img
           fadeIn

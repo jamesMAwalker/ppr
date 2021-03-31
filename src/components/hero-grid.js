@@ -41,19 +41,17 @@ const HeroGrid = ({ isMobile }) => {
       yoyo: true,
     })
 
-    gsap.from(".photo", 2, {
+    gsap.from(".photo", 1, {
       opacity: 0,
       delay: 2.5,
-      stagger: { amount: 1 },
+      stagger: { amount: .5 },
     })
 
-      gsap.from(".hero-text", 2, {
-        opacity: 0,
-        // transform: "scale(2)",
-        // letterSpacing: "100px",
-        delay: 3,
-        stagger: { amount: .5 },
-      })
+    gsap.from(".hero-text", 1, {
+      opacity: 0,
+      delay: 3,
+      stagger: { amount: .1 },
+    })
     
     gsap.from(".hero-small", 1.5, {
       ease: "expo.InOut",

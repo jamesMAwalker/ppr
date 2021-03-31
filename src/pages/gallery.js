@@ -3,6 +3,7 @@ import gsap from "gsap"
 import { useInView } from "react-intersection-observer"
 import { useStaticQuery, graphql } from "gatsby"
 
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Img from "gatsby-image"
 
@@ -27,6 +28,8 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
   }, [gallTopInView])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollToPlugin)
+
     gsap.from(".gallery", 0.8, {
       ease: "expo.InOut",
       // opacity: .2,
@@ -67,21 +70,41 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
   const handleModalOpen = (idx) => {
     setModalPhoto(idx)
     setModalOpen(true)
+    
+    setTimeout(() => {
+      gsap.to(".gallery .modal", 0.5, {
+        opacity: 1,
+      })
+    }, 200);
   }
 
-  console.log('data.galleryPhotos.edges: ', data.galleryPhotos.edges);
+  const scrollTop = () => {
+    alert('rocket to the TOP');
+    gsap.to(".gallery .absolute-wrapper", 1, {
+      scrollTo: 0,
+    })
+  }
+
+  const closeModalAnimated = () => {
+    gsap.to(".gallery .modal", .5, {
+      opacity: 0,
+    })
+    setTimeout(() => {
+      setModalOpen(false)
+    }, 500);
+  }
   
   return (
     <>
       <div ref={pageRef} className="gallery">
-        {modalOpen && (
-          <GalleryModal
-            toggleModal={() => setModalOpen(false)}
-            imgSrc={
-              data.galleryPhotos.edges[modalPhoto].node.childImageSharp.fluid
-            }
-          />
-        )}
+          {modalOpen && (
+            <GalleryModal
+              toggleModal={closeModalAnimated}
+              imgSrc={
+                data.galleryPhotos.edges[modalPhoto].node.childImageSharp.fluid
+              }
+            />
+          )}
         <div className="absolute-wrapper">
           {!footerInView && (
             <div className="gallery-btn left">
@@ -126,7 +149,9 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
             ))}
           </div>
           {!footerInView && !isMobile && (
-            <div className="back-to-top">▲ back to top</div>
+            <div className="back-to-top" onClick={scrollTop}>
+              ▲ back to top
+            </div>
           )}
           {!footerInView && (
             <div className="gallery-btn season-selectors">
