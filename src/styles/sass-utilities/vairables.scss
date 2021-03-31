@@ -20,6 +20,7 @@ $greyDark: rgb(95, 95, 95);
 
 $black: rgb(20, 20, 20);
 $blackTr: rgba(20, 20, 20, 0.65);
+$blackTr1: rgba(20, 20, 20, 0.8);
 $blackTr2: rgba(20, 20, 20, 0.35);
 
 $textPrimary: rgb(36, 36, 36);
@@ -35,6 +36,8 @@ $pinkTr: rgba(248, 201, 233, 0.6);
 $menuClr: rgb(77, 238, 254);
 $menuAcc: rgb(20, 20, 20);
 
+$menuClr: $white;
+$menuAcc: rgb(20, 20, 20);
 
 // Z-Index
 $marianaTrench: -300;

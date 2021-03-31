@@ -18,7 +18,7 @@ TODO {
 */
 
 const SupporterKit = ({ isMobile }) => {
-  const [mainPhoto, setMainPhoto] = useState(["ph1", "", "", ""])
+  const [mainPhoto, setMainPhoto] = useState(["", "", "ph1", ""])
   const handlePhotoSwitch = e => {
     const clickedPhoto = parseInt(e.target.id, 10)
 

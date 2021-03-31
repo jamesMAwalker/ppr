@@ -30,7 +30,7 @@
 
     &::-webkit-scrollbar-thumb {
       height: 2px;
-      background-color: $pink;
+      background-color: $greyDark;
       @include media("<=tablet") {
         display: none;
       }

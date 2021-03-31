@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Img from "gatsby-image"
 
 import { InstaIcon, ScrollIcon, StravaIcon } from "../components/icons"
 
-const TeamMember = ({ idx, member, expanded, expandMember }) => {
+const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }) => {
   const data = useStaticQuery(graphql`
     query {
       david: file(relativePath: { eq: "team-images/david.png" }) {
@@ -123,9 +123,13 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
     }
   `)
 
+  
+
   return (
     <div
+      ref={memberRef}
       className={`member ${expanded}`}
+      id={`member-${idx}`}
       onClick={() => expandMember(idx)}
       onKeyDown={(e) => {
         if (e.code === 13) expandMember(idx)
@@ -158,14 +162,16 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
             <div className="details">
               <div className="details__flex-wrapper">
                 <div className="details__name">
-                  {member.name.split(" ").map((n) => <h2>{n}</h2>)}
+                  {member.name.split(" ").map((n) => (
+                    <h2>{n}</h2>
+                  ))}
                 </div>
                 <div className="details__sub">
                   <div className="details__role">{member.role}</div>
                   <div className="details__type">
                     <em>{member.type}</em>
                   </div>
-                  <div className="country">{member.flag}</div>
+                  <div className="country"><span role="img" aria-label="flag of team member's location">{member.flag}</span></div>
                   <div className="social-links">
                     <a
                       href={`https://www.instagram.com/${member.social.insta}`}
@@ -185,7 +191,7 @@ const TeamMember = ({ idx, member, expanded, expandMember }) => {
             </div>
             <div className="bio">
               <div className="bio__scroll-wrapper">
-                <p className="bio__text">{member.bioText}</p>
+                <article className="bio__text">{member.bioText}</article>
               </div>
             </div>
             <span className="close-btn">

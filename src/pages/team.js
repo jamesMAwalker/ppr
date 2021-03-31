@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 
 import TeamMember from "../components/team-member"
@@ -85,9 +85,11 @@ const members = [
   },
 ]
 
-const TeamMembers = ({ btnVisible, setBtnVisible }) => {
+const TeamMembers = ({ btnVisible, setBtnVisible, isMobile }) => {
   const [activeMember, setActiveMember] = useState(-1)
   const [anyActive, setAnyActive] = useState(false)
+
+  const memberRef = useRef(null)
 
   useEffect(() => {
     gsap.from(".animation-wrapper", 1, {
@@ -105,8 +107,15 @@ const TeamMembers = ({ btnVisible, setBtnVisible }) => {
     idx === activeMember ? setActiveMember(-1) : setActiveMember(idx)
     setAnyActive(activeMember !== -1)
     setBtnVisible()
-    console.log("activeMember: ", activeMember)
-    console.log("anyActive: ", anyActive)
+    scrollToMember(idx)
+  }
+
+  const scrollToMember = (idx) => {
+    if (typeof(idx) === "number" && idx < 10 && idx > -1) {
+      const scrollTo = document.querySelector(`#member-${idx}`).offsetLeft
+      const scrollWindow = document.querySelector(".absolute-wrapper")
+      scrollWindow.scrollLeft = scrollTo - 25
+    }
   }
 
   return (
@@ -118,8 +127,10 @@ const TeamMembers = ({ btnVisible, setBtnVisible }) => {
 
             return (
               <TeamMember
+                memberRef={memberRef}
                 key={member.name}
                 idx={idx}
+                isMobile={isMobile}
                 member={member}
                 expanded={active}
                 expandMember={handleMemberClick}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import gsap from "gsap"
 
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Img from "gatsby-image"
 
 import { Logo } from './Logo'
@@ -38,7 +39,7 @@ const HeroGrid = ({ isMobile }) => {
     }, 1000);
   }
 
-  // animations
+  // Start animations
   useEffect(() => {
     gsap.to(".vp-shade svg", 1, {
       opacity: 1,
@@ -77,6 +78,27 @@ const HeroGrid = ({ isMobile }) => {
       }
     )
   }, [])
+
+  // Scroll animations
+  useEffect(() => {
+    if (!isMobile) {
+      gsap.registerPlugin(ScrollTrigger)
+
+      gsap.to(".hero-grid .photo", 1, {
+        scrollTrigger: {
+          trigger: ".hero-grid .photo",
+          start: "bottom bottom-=13.5%",
+          toggleActions: "restart none none none",
+          scrub: 2,
+        },
+        // ease: "power2.inout",
+        stagger: {
+          amount: 0.25,
+        },
+        // y: `${!isMobile ? "-40vw" : 0}`,
+      })
+    }
+  }, [isMobile])
 
 
 
@@ -186,12 +208,6 @@ const HeroGrid = ({ isMobile }) => {
             <div className="hero-text right">
               <span>RACING</span>
             </div>
-          </div>
-        </div>
-        <div className="scroll">
-          <div className="scroll-container">
-            <ScrollIcon />
-            <span className="hover-shadows">scroll down</span>
           </div>
         </div>
       </main>

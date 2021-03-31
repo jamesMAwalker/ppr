@@ -8,6 +8,7 @@
   .absolute-wrapper {
     @include absoluteWrapper;
     overflow-y: hidden;
+    transition: all .2s;
     
     &::-webkit-scrollbar {
       width: 0px;

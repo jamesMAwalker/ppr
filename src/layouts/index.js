@@ -19,6 +19,7 @@ const Layout = ({ children, location: { pathname } }) => {
   const [mobileVH, setMobileVH] = useState(null)
   const [btnVisible, setBtnVisible] = useState(true)
   const [menuVisible, setMenuVisible] = useState(false)
+  const [galleryScrolled, setGalleryScrolled] = useState(false)
 
   // set mobile vp units & create js breakpoint for mobile
   useEffect(() => {
@@ -27,11 +28,11 @@ const Layout = ({ children, location: { pathname } }) => {
     document.documentElement.style.setProperty("--mVh", `${vh}px`)
 
     // Breakpoint sensor for conditional rendering
-    const tabBP = getComputedStyle(document.documentElement).getPropertyValue(
+    const tabBP = parseInt(getComputedStyle(document.documentElement).getPropertyValue(
       "--tablet"
-    )
+    , 10))
     setMobileVH(vh)
-    setIsMobile(window.innerWidth <= parseInt(tabBP, 10))
+    setIsMobile(window.innerWidth <= tabBP)
   }, [])
 
   // useInView set up
@@ -125,6 +126,7 @@ const Layout = ({ children, location: { pathname } }) => {
       isMobile: isMobile,
       btnVisible: btnVisible,
       setBtnVisible: () => setBtnVisible(!btnVisible),
+      setGalleryScrolled: () => setGalleryScrolled(!galleryScrolled)
     })
   )
 
@@ -132,13 +134,14 @@ const Layout = ({ children, location: { pathname } }) => {
     <>
       <Meta />
       <MobileMenu
+        isMobile={isMobile}
         pageLocation={pathname !== "/" ? pathname.replace("/", "") : pathname}
         btnVisible={btnVisible}
         menuVisible={menuVisible}
         toggleMenu={() => setMenuVisible(!menuVisible)}
       />
       <div className="layout">
-        <Header />
+        <Header pageLocation={pathname} galleryScrolled={galleryScrolled}/>
         {pageLocation["/"] && (
           <span className="mm-trigger" ref={mobileMenuRef}></span>
         )}

@@ -93,14 +93,22 @@ const Sponsors = ({ isMobile, setBtnVisible }) => {
   }, [activeSponsor])
 
   const handleSponsorClick = (idx) => {
+    scrollToSponsor(idx)
     idx === activeSponsor ? setActiveSponsor(-1) : setActiveSponsor(idx)
   }
 
-  const scrollToSelected = (newPos) => {
-    console.log(scrollBoxRef)
-    console.log("scrollLeft before", scrollBoxRef.current.scrollLeft)
-    scrollBoxRef.current.scrollLeft = newPos
-    console.log("scrollLeft after", scrollBoxRef.current.scrollLeft)
+  const scrollToSponsor = (idx) => {
+    if (typeof(idx) === "number" && idx < 10 && idx > -1) {
+      const scrollWindow = document.querySelector(".absolute-wrapper")
+      setTimeout(() => {
+        const scrollTo = document.querySelector(`#sponsor-${idx}`).offsetLeft
+        scrollWindow.scrollTo({
+          left: `${scrollTo}`,
+          behavior: 'smooth'
+        })
+        console.dir(document.querySelector(".absolute-wrapper"));
+      }, 500);
+    }
   }
 
   return (
@@ -121,7 +129,6 @@ const Sponsors = ({ isMobile, setBtnVisible }) => {
                     wordmark={s.wordmark}
                     active={active}
                     expandSponsor={handleSponsorClick}
-                    scrollToSelected={scrollToSelected}
                     isMobile={isMobile}
                   />
                 )
@@ -145,7 +152,6 @@ const Sponsors = ({ isMobile, setBtnVisible }) => {
                 wordmark={s.wordmark}
                 active={active}
                 expandSponsor={handleSponsorClick}
-                scrollToSelected={scrollToSelected}
                 isMobile={isMobile}
                 setBtnVisible={setBtnVisible}
               />

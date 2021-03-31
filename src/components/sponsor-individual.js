@@ -66,8 +66,6 @@ const Sponsor = ({
     }
   `)
 
-  console.log(sName);
-
   useEffect(() => {
     gsap.fromTo(
       ".blurb-area",
@@ -88,20 +86,6 @@ const Sponsor = ({
   const [disabled, setDisabled] = useState(false)
 
   const handleClick = (e) => {
-    /*
-      TODO
-      # When sponsor is clicked, autoscroll component edge to left of screen
-    */
-
-    // console.log(e)
-    // console.log("e.screenX: ", e.screenX)
-    // console.log("window.innerWidth: ", window.innerWidth)
-    // console.log("60vw: ", window.innerWidth * 0.6)
-    // scrollToSelected((e.screenX - window.innerWidth * 0.6) * idx)
-    // console.log(
-    //   "e.screenX + (window.innerWidth * .6): ",
-    //   e.screenX + window.innerWidth * 0.6
-    // )
     expandSponsor(idx)
     setHovered(false)
   }
@@ -142,10 +126,11 @@ const Sponsor = ({
       {!isMobile ? (
         <div
           className={`
-        sponsor 
-        ${hovered ? "hovered" : ""}
-        ${active ? "active" : ""}
-      `}
+            sponsor 
+            ${hovered ? "hovered" : ""}
+            ${active ? "active" : ""}
+          `}
+          id={`sponsor-${idx}`}
           onClick={handleClick}
         >
           {!active ? (

@@ -6,7 +6,7 @@ import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { Logo } from "./Logo"
 import { InstaIcon, ScrollIcon, StravaIcon } from "./icons"
 
-const MobileMenu = ({ btnVisible, menuVisible, pageLocation, toggleMenu }) => {
+const MobileMenu = ({ btnVisible, isMobile, menuVisible, pageLocation, toggleMenu }) => {
   const [btnDisabled, setBtnDisabled] = useState(false)
 
   const handleMenuOpen = () => {
@@ -26,14 +26,14 @@ const MobileMenu = ({ btnVisible, menuVisible, pageLocation, toggleMenu }) => {
           visibility: "visible",
         })
         .to(".menu-body", 0.2, {
-          transform: "scaleY(1)",
+          transform: "translateY(0)",
           opacity: 1,
         })
     } else {
       gsap
         .timeline()
         .to(".menu-body", 0.15, {
-          transform: "scaleY(.75)",
+          transform: "translateY(5vh)",
           opacity: 0,
         })
         .to(".menu-body", 0.4, {
@@ -44,8 +44,8 @@ const MobileMenu = ({ btnVisible, menuVisible, pageLocation, toggleMenu }) => {
 
   return (
     <>
-      {pageLocation !== "/" && !btnVisible && !menuVisible && (
-        <div className="current-page">{pageLocation}</div>
+      {pageLocation !== "/" && !btnVisible && !menuVisible && isMobile && (
+        <div className="current-page">▪{pageLocation}</div>
       )}
       <button
         className={`
@@ -60,7 +60,18 @@ const MobileMenu = ({ btnVisible, menuVisible, pageLocation, toggleMenu }) => {
       </button>
       <div className="menu-body">
         <div className="menu-options">
-          <AniLink cover bg="var(--pink)" direction="left" to="/">
+          <AniLink
+            cover
+            duration={4}
+            bg="
+              url('https://res.cloudinary.com/jameswalker-work/image/upload/v1616922764/cover-slider-2_ohaszl.png')
+              center / contain
+              var(--black)
+              no-repeat  
+            "
+            direction="left"
+            to="/"
+          >
             <p onClick={handleMenuOpen}>HOME</p>
           </AniLink>
           <span>▪</span>
@@ -68,7 +79,12 @@ const MobileMenu = ({ btnVisible, menuVisible, pageLocation, toggleMenu }) => {
             <p onClick={handleMenuOpen}>CONTACT</p>
           </AniLink>
           <span>▪</span>
-          <AniLink cover bg="var(--pink)" direction="left" to="/team">
+          <AniLink
+            cover
+            bg="linear-gradient(pink, lightblue)"
+            direction="left"
+            to="/team"
+          >
             <p onClick={handleMenuOpen}>TEAM</p>
           </AniLink>
           <span>▪</span>
@@ -85,11 +101,17 @@ const MobileMenu = ({ btnVisible, menuVisible, pageLocation, toggleMenu }) => {
             <InstaIcon />
             <StravaIcon />
           </div>
-          <div className="copyright">
+          <AniLink
+            className="copyright"
+            cover
+            bg="var(--pink)"
+            direction="right"
+            to="/"
+          >
             <Logo />
             <p>PLANT ▪ POWER ▪ RACING</p>
             <p>©2021</p>
-          </div>
+          </AniLink>
         </div>
       </div>
     </>

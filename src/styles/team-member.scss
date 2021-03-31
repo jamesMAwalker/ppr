@@ -35,6 +35,7 @@
   .name--closed {
     @include absoluteCentered;
     @include displayText($white);
+    cursor: pointer;
     z-index: $sparrow;
     margin: 0;
     opacity: 0;
@@ -56,7 +57,7 @@
 
   // expands member to 3x width and includes more info
   &.active {
-    min-width: 50vw;
+    min-width: 55vw;
     transition: all 1s;
 
     @include media("<=tablet") {
@@ -81,7 +82,7 @@
     justify-content: center;
 
     &::before {
-      @include pseudoShade($blackTr2);
+      @include pseudoShade($blackTr);
       z-index: 9;
     }
   }
@@ -92,20 +93,36 @@
     width: 100%;
     z-index: $honeyBee;
     display: grid;
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: 40% 60%;
     grid-template-areas: "left right";
     color: $white;
 
     .close-btn {
+      margin-left: 2vw;
       svg {
         height: 5vh;
+        transform: rotate(90deg);
+      }
+      path {
+        stroke: white;
+        fill: transparent;
+        transition: all .2s;
+      }
+      &:hover {
+        path {
+          fill: $white;
+        }
       }
     }
 
     @include media("<=tablet") {
       @include flexCenterCol;
       justify-content: flex-start;
-      height: 100%
+      height: 100%;
+      svg {
+        margin-left: 0;
+        transform: rotate(0);
+      }
     }
   }
 
@@ -173,14 +190,14 @@
     .social-links {
       @include flexCenter;
       margin: 1rem 0;
-      width: 50%;
+      width: 80%;
       justify-content: space-between;
 
       @include media("<=tablet") {
         width: 60%;
 
         svg {
-          height: 3vh;
+          height: 2vh;
         }
       }
 
@@ -206,11 +223,12 @@
       height: 67.5vh;
       margin-top: 2.5vh;
       align-items: flex-start;
+      width: 90%;
     }
     
     &__scroll-wrapper {
       @include scrollBarVert(4px, $white, $whiteTr);
-      height: 75%;
+      height: 85%;
       width: 90%;
       margin-right: 5%;
       overflow-y: scroll;
@@ -228,6 +246,15 @@
     &__text {
       @include paragraphTextCondensed($white); 
       margin-right: 2rem;
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      li::before {
+        content: "•"; /* Insert content that looks like bullets */
+        padding-right: 8px;
+      }
       
       @include media("<=tablet") {
         @include paragraphText($white); 
