@@ -6,12 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Img from "gatsby-image"
 
 import { Logo } from './Logo'
-import { ScrollIcon } from "./icons"
-
-
-/*
-! Gatsby Img has an "onLoad" function. Display a loading modal (on mobile at least) that is turned off once the Img has loaded fully.
-*/
 
 
 const HeroGrid = ({ isMobile }) => {
@@ -39,7 +33,7 @@ const HeroGrid = ({ isMobile }) => {
     }, 1000);
   }
 
-  // Start animations
+  // > Start Animations
   useEffect(() => {
     gsap.to(".vp-shade svg", 1, {
       opacity: 1,
@@ -79,7 +73,7 @@ const HeroGrid = ({ isMobile }) => {
     )
   }, [])
 
-  // Scroll animations
+  // > Scroll Animations
   useEffect(() => {
     if (!isMobile) {
       gsap.registerPlugin(ScrollTrigger)

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react"
-import gsap from 'gsap'
 import { useStaticQuery, graphql } from "gatsby"
+import gsap from 'gsap'
+
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
 import Img from "gatsby-image"
 
 import { PAWordMark } from "./Logo"
@@ -47,11 +50,42 @@ const SupporterKit = ({ isMobile }) => {
     }
   }
 
+  // > Start Animations
   useEffect(() => {
     gsap.from('.photo__slide', .4, {
       opacity: 0
     })
   }, [mPhotoIdx])
+
+  // > Scroll Animations
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    gsap.from(".photos", 1, {
+      scrollTrigger: {
+        trigger: ".kit-section",
+        scrub: 0.75,
+        start: "top bottom+=50%",
+        end: "top bottom-=80%",
+        markers: true, 
+      },
+      stagger: {
+        amount: 0.5,
+      },
+      x: "-20vw",
+    })
+    gsap.from(".content", 1, {
+      scrollTrigger: {
+        trigger: ".kit-section",
+        scrub: 1
+      },
+      stagger: {
+        amount: .5
+      },
+      y: "30vh",
+      opacity: .5
+    })
+  }, [])
 
   const data = useStaticQuery(graphql`
     query {
