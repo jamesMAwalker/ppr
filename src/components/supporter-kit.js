@@ -61,22 +61,21 @@ const SupporterKit = ({ isMobile }) => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    gsap.from(".photos", 1, {
+    gsap.from(".photos .photo-grid", 1, {
       scrollTrigger: {
-        trigger: ".kit-section",
+        trigger: ".photos .photo-grid",
         scrub: 0.75,
         start: "top bottom+=50%",
         end: "top bottom-=80%",
-        markers: true, 
       },
       stagger: {
         amount: 0.5,
       },
-      x: "-20vw",
+      x: `${isMobile ? "20vw" : 0}`,
     })
     gsap.from(".content", 1, {
       scrollTrigger: {
-        trigger: ".kit-section",
+        trigger: ".content",
         scrub: 1
       },
       stagger: {

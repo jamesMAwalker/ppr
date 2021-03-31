@@ -7,6 +7,7 @@ import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Img from "gatsby-image"
 
 import { ScrollIcon } from "../components/icons"
+import GalleryModal from "../components/gallery-modal"
 
 const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -74,17 +75,12 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
     <>
       <div ref={pageRef} className="gallery">
         {modalOpen && (
-          <div className="modal" onClick={() => setModalOpen(false)}>
-            <div className="modal-image">
-              <Img
-                fadeIn
-                fluid={data.galleryPhotos.edges[modalPhoto].node.childImageSharp.fluid}
-                objectFit="contain"
-                objectPosition="50% 50%"
-                alt=""
-              />
-            </div>
-          </div>
+          <GalleryModal
+            toggleModal={() => setModalOpen(false)}
+            imgSrc={
+              data.galleryPhotos.edges[modalPhoto].node.childImageSharp.fluid
+            }
+          />
         )}
         <div className="absolute-wrapper">
           {!footerInView && (

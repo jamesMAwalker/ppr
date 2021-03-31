@@ -85,11 +85,10 @@ const HeroGrid = ({ isMobile }) => {
           toggleActions: "restart none none none",
           scrub: 2,
         },
-        // ease: "power2.inout",
         stagger: {
           amount: 0.25,
         },
-        // y: `${!isMobile ? "-40vw" : 0}`,
+        y: `${isMobile ? "-40vw" : 0}`,
       })
     }
   }, [isMobile])
