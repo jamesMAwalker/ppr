@@ -17,23 +17,29 @@ $off-white: rgb(240, 240, 240);
 $greyLight: rgb(190, 190, 190);
 $grey: rgb(149, 149, 149);
 $greyDark: rgb(95, 95, 95);
+$greyDark2: rgb(36, 36, 36);
+$greyDark2: rgb(36, 36, 36);
+$greyDark2Tr: rgba(36, 36, 36, 0.6);
 
 $black: rgb(20, 20, 20);
 $blackTr: rgba(20, 20, 20, 0.65);
 $blackTr1: rgba(20, 20, 20, 0.8);
 $blackTr2: rgba(20, 20, 20, 0.35);
 
-$textPrimary: rgb(36, 36, 36);
-$textPrimaryTr: rgba(39, 39, 39, 0.7);
+// $turquoise:rgb(77, 238, 254);
+// $turquoiseTr:rgba(77, 239, 254, 0.7);
+// $turquoiseTr2:rgba(77, 239, 254, 0.1);
+// $turquoiseTr3:rgba(77, 239, 254, 0.9);
 
-$turquoise:rgb(77, 238, 254);
-$turquoiseTr:rgba(77, 239, 254, 0.6);
-$turquoiseTr2:rgba(77, 239, 254, 0.1);
+$turquoise: rgb(77, 219, 254);
+$turquoiseTr: rgba(77, 219, 254, 0.6);
+$turquoiseTr2: rgba(77, 219, 254, 0.1);
+$turquoiseTr3: rgba(77, 219, 254, 0.9);
 
 $pink: rgb(248, 201, 233);
 $pinkTr: rgba(248, 201, 233, 0.6);
 
-$menuClr: rgb(77, 238, 254);
+$menuClr: $turquoise;
 $menuAcc: rgb(20, 20, 20);
 
 $menuClr: $white;

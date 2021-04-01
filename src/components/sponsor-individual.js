@@ -158,7 +158,7 @@ const Sponsor = ({
                 <div className="blurb-text">{blurb}</div>
                 <div className="visit-button-wrapper">
                   <button onClick={handleVisitClick} className="visit-button">
-                    <p>VISIT</p> &nbsp; <span>|</span> &nbsp; {wordmark()}
+                    {wordmark()} <span>▶</span>
                   </button>
                 </div>
               </div>
@@ -191,10 +191,9 @@ const Sponsor = ({
                   <div className="blurb-text">{blurb}</div>
                   <div className="visit-button">
                     <span>VISIT | {sName}</span>
-                    
                   </div>
                   <div className="close-btn-wrapper">
-                    <ScrollIcon/>
+                    <ScrollIcon />
                   </div>
                 </div>
                 <div className="bg-img">

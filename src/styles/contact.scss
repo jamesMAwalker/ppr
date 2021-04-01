@@ -101,14 +101,13 @@
                 padding-top: var(--photoGap);
                 padding-left: var(--photoGap);
                 border: none;
-                // border-bottom: 3px solid $white;
                 font-size: var(--mLgFontSize);
                 letter-spacing: var(--TwoXSpaced);
                 color: $whiteTr;
                 outline: none;
 
                 &:focus + label {
-                  color: $textPrimary;
+                  color: $greyDark2;
                   transform-origin: left;
                   transform: scale(.5) translateY(-150%);
                 }

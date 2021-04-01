@@ -30,14 +30,14 @@
 
 :root {
   // Colors
-  --turquoise: rgb(77, 238, 254);
-  --pink: rgb(248, 201, 233);
+  --turquoise: $turquoise;
+  --pink: $pink;
 
-  --black: rgb(20, 20, 20);
-  --blackTr2: rgba(20, 20, 20, .35);
+  --black: $black;
+  --blackTr2: $blackTr2;
 
-  --white: rgb(255, 255, 255);
-  --whiteTr: rgba(255, 255, 255, 0.58);
+  --white: $white;
+  --whiteTr: $whiteTr;
 
   // Font Sizes
   --heroFontSize: 4.768rem;
@@ -87,10 +87,10 @@
 html, 
 body {
   font-family: $font-primary;
-  font-size: 1em;
+  font-size: 15px;
   // font-weight: 500;
   letter-spacing: var(--smSpaced);
-  color: $textPrimary;
+  color: $greyDark2;
   margin: 0;
   padding: 0;
   background-color: $white;

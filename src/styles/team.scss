@@ -37,6 +37,31 @@
     }
   }
 
+  .scroll-container {
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: unset !important;
+      width: 0px !important;
+      height: 2px !important;
+      background-color: $white !important;
+      @include media("<=tablet") {
+        display: none;
+      }
+    }
+
+    &::-webkit-scrollbar-thumb {
+      display: unset !important;
+      height: 2px !important;
+      background-color: $black !important;
+      @include media("<=tablet") {
+        display: none;
+      }
+    }
+  }
+
   .flex-wrapper {
     @include flexWrapper;
 

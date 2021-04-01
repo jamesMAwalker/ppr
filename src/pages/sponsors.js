@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 
+import ScrollContainer from "react-indiana-drag-scroll"
+
 import Sponsor from "../components/sponsor-individual"
 
 import {
@@ -98,16 +100,16 @@ const Sponsors = ({ isMobile, setBtnVisible }) => {
   }
 
   const scrollToSponsor = (idx) => {
-    if (typeof(idx) === "number" && idx < 10 && idx > -1) {
-      const scrollWindow = document.querySelector(".absolute-wrapper")
+    if (typeof idx === "number" && idx < 10 && idx > -1) {
+      const scrollWindow = document.querySelector(".scroll-container")
       setTimeout(() => {
         const scrollTo = document.querySelector(`#sponsor-${idx}`).offsetLeft
         scrollWindow.scrollTo({
           left: `${scrollTo}`,
-          behavior: 'smooth'
+          behavior: "smooth",
         })
-        console.dir(document.querySelector(".absolute-wrapper"));
-      }, 500);
+        console.dir(document.querySelector(".absolute-wrapper"))
+      }, 500)
     }
   }
 
@@ -116,24 +118,30 @@ const Sponsors = ({ isMobile, setBtnVisible }) => {
       {!isMobile ? (
         <section className="sponsors-container">
           <div className="absolute-wrapper" ref={scrollBoxRef}>
-            <div className="flex-wrapper">
-              {sponsorData.map((s, idx) => {
-                const active = idx === activeSponsor ? "active" : ""
-                return (
-                  <Sponsor
-                    id={s.id}
-                    idx={idx}
-                    link={s.link}
-                    blurb={s.blurb.bio}
-                    logo={s.logo}
-                    wordmark={s.wordmark}
-                    active={active}
-                    expandSponsor={handleSponsorClick}
-                    isMobile={isMobile}
-                  />
-                )
-              })}
-            </div>
+            <ScrollContainer
+              className="scroll-container"
+              horizontal
+              vertical={false}
+            >
+              <div className="flex-wrapper">
+                {sponsorData.map((s, idx) => {
+                  const active = idx === activeSponsor ? "active" : ""
+                  return (
+                    <Sponsor
+                      id={s.id}
+                      idx={idx}
+                      link={s.link}
+                      blurb={s.blurb.bio}
+                      logo={s.logo}
+                      wordmark={s.wordmark}
+                      active={active}
+                      expandSponsor={handleSponsorClick}
+                      isMobile={isMobile}
+                    />
+                  )
+                })}
+              </div>
+            </ScrollContainer>
           </div>
         </section>
       ) : (

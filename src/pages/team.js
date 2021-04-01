@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 
+import ScrollContainer from "react-indiana-drag-scroll"
+
 import TeamMember from "../components/team-member"
 
 import { MEMBER_BIOS } from "../assets/member-bios"
@@ -121,23 +123,29 @@ const TeamMembers = ({ btnVisible, setBtnVisible, isMobile }) => {
   return (
     <section className="team-container">
       <div className="absolute-wrapper">
-        <div className="flex-wrapper">
-          {members.map((member, idx) => {
-            const active = idx === activeMember ? "active" : ""
+        <ScrollContainer
+          className="scroll-container"
+          horizontal
+          vertical={false}
+        >
+          <div className="flex-wrapper">
+            {members.map((member, idx) => {
+              const active = idx === activeMember ? "active" : ""
 
-            return (
-              <TeamMember
-                memberRef={memberRef}
-                key={member.name}
-                idx={idx}
-                isMobile={isMobile}
-                member={member}
-                expanded={active}
-                expandMember={handleMemberClick}
-              />
-            )
-          })}
-        </div>
+              return (
+                <TeamMember
+                  memberRef={memberRef}
+                  key={member.name}
+                  idx={idx}
+                  isMobile={isMobile}
+                  member={member}
+                  expanded={active}
+                  expandMember={handleMemberClick}
+                />
+              )
+            })}
+          </div>
+        </ScrollContainer>
       </div>
     </section>
   )

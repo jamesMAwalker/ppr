@@ -11,23 +11,36 @@
     transition: all .2s;
     
     &::-webkit-scrollbar {
-      width: 0px;
-      height: 2px;
+     display: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      display: none;
+    }
+  } 
+
+  .scroll-container {
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: unset !important;
+      width: 2px !important;
+      height: 2px !important;
       background-color: $white;
     }
 
     &::-webkit-scrollbar-thumb {
-      height: 2px;
-      background-color: $blackTr2;
+      display: unset !important;
+      height: 2px !important;
+      width: 2px !important;
+      background-color: $black;
     }
   }
 
   .flex-wrapper {
     @include flexWrapper;
-    
-    // & > *:not(:last-child) {
-    //   margin-right: 17px;
-    // }
   }
 }
 

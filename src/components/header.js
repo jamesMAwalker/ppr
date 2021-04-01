@@ -45,6 +45,12 @@ const Header = ({ galleryScrolled, pageLocation }) => {
               <Link to="/team">
                 <span className="hover-shadows">Team</span>
               </Link>
+              <Link to="/sponsors">
+                <span className="hover-shadows">Sponsors</span>
+              </Link>
+              <Link to="/">
+                <span className="hover-shadows">Events</span>
+              </Link>
               <Link to="/contact">
                 <span className="hover-shadows">Contact</span>
               </Link>

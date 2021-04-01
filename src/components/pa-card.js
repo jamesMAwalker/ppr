@@ -21,17 +21,39 @@ const PACard = () => {
     })
   }, [cardOpen])
 
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     paPeople: file(relativePath: { eq: "sponsor-images/PA.webp" }) {
+  //       childImageSharp {
+  //         fluid(maxWidth: 1200, quality: 50) {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+
   const data = useStaticQuery(graphql`
     query {
-      paPeople: file(relativePath: { eq: "sponsor-images/PA.webp" }) {
-        childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
+      paImages: allFile(
+        filter: { relativeDirectory: { eq: "pa-images" } }
+        sort: { fields: base, order: ASC }
+      ) {
+        edges {
+          node {
+            base
+            childImageSharp {
+              fluid(maxWidth: 150, quality: 80) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }
     }
   `)
+
+  console.log(data.paImages.edges[1].node.childImageSharp.fluid)
 
   return (
     <>
@@ -52,7 +74,7 @@ const PACard = () => {
                 <Img
                   fadeIn
                   loading="eager"
-                  fluid={data.paPeople.childImageSharp.fluid}
+                  fluid={data.paImages.edges[0].node.childImageSharp.fluid}
                   objectFit="cover"
                   objectPosition="50% 100%"
                   alt="plant athletic apparel clad people"
@@ -62,21 +84,34 @@ const PACard = () => {
                 <div className="modal-blurb">
                   <div className="p1">
                     Plant Power Racing is proud to to partner with Plant
-                    Athletic. We share their principles, as well as love and
-                    support them as people.
+                    Athletic. We share their commitment to a more vegan world,
+                    as well as love and support them as people.
                   </div>
                   <br />
                   <div className="p2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eius, mollitia exercitationem! Facilis pariatur dicta fugit
-                    quae voluptate asperiores commodi nisi vero porro sed?
-                  </div>
-                  <br/>
-                  <div className="p3">
                     Check out their store to support ethically and sustainably
                     produced athletic apparel.
                   </div>
                 </div>
+                <div className="certifications">
+                  <img
+                    src={data.paImages.edges[1].node.childImageSharp.fluid.src}
+                    alt=""
+                  />
+                  <img
+                    src={data.paImages.edges[2].node.childImageSharp.fluid.src}
+                    alt=""
+                  />
+                  <img
+                    src={data.paImages.edges[3].node.childImageSharp.fluid.src}
+                    alt=""
+                  />
+                  <img
+                    src={data.paImages.edges[4].node.childImageSharp.fluid.src}
+                    alt=""
+                  />
+                </div>
+                <div className="hashtag">#BE THE PROOF</div>
                 <button className="toPA-button">VISIT PLANT ATHLETIC</button>
               </div>
             </>
