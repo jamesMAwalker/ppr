@@ -66,23 +66,24 @@ const SupporterKit = ({ isMobile }) => {
         trigger: ".photos .photo-grid",
         scrub: 0.75,
         start: "top bottom+=50%",
-        end: "top bottom-=80%",
+        end: "top bottom-=50%",
       },
       stagger: {
         amount: 0.5,
       },
-      x: `${isMobile ? "20vw" : 0}`,
+      x: `${isMobile ? "-10vw" : 0}`,
     })
     gsap.from(".content", 1, {
       scrollTrigger: {
         trigger: ".content",
-        scrub: 1
+        end: "top bottom-=40%",
+        scrub: 1,
       },
       stagger: {
-        amount: .5
+        amount: 0.5,
       },
-      y: "30vh",
-      opacity: .5
+      y: "10vh",
+      opacity: 0.5,
     })
   }, [])
 

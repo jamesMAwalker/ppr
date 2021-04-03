@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import "../styles/styles.scss"
 import About from "../components/about"
 import ContactSection from "../components/contact-section"
+import EventsSection from "../components/events"
 import HeroGrid from "../components/hero-grid"
 import SupporterKit from "../components/supporter-kit"
 
@@ -35,6 +36,7 @@ const IndexPage = () => {
       <HeroGrid isMobile={isMobile}/>
       <About isMobile={isMobile} />
       <SupporterKit isMobile={isMobile} />
+      <EventsSection isMobile={isMobile}/>
       <ContactSection isMobile={isMobile} mobileVH={mobileVH} />
     </div>
   )

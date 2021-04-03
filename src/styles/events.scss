@@ -1,0 +1,127 @@
+.events-header {
+  @include flexCenterCol;
+  margin-top: var(--contentMargin);
+  height: 15vh;
+  background-color: $black;
+  justify-content: space-evenly;
+  color: $white;
+  font-family: $font-title;
+  font-size: var(--xLgFontSize);
+  font-weight: 600;
+  letter-spacing: var(--TwoXSpaced);
+}
+
+.events {
+  height: 100vh;
+  display: grid;
+  gap: calc(var(--photoGap) * 4);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100%;
+
+  @include media("<=tablet") {
+    margin-bottom: calc(var(--contentMargin) * 2);
+    padding-bottom: calc(var(--contentMargin) / 2);
+    height: unset;
+    grid-template-columns: repeat(3, 100vw);
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+
+    @include scrollBarLat(2px, $grey, transparent);
+  }
+
+  .event-col {
+    max-height: 87.5vh;
+    overflow-y: hidden;
+
+    @include media("<=tablet") {
+      scroll-snap-align: center;
+    }
+  }
+
+  .map-img {
+    position: relative;
+    height: 30vh;
+    width: 100%;
+    overflow: hidden;
+    div {
+      height: 100%;
+      width: 100%;
+    }
+    img {
+      object-fit: cover !important;
+    }
+
+    .event-link {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      path {
+        fill: $strava;
+      }
+    }
+  }
+
+  .details-flex-wrapper {
+    @include flexCenterCol;
+  }
+
+  .details {
+    @include flexCenterCol;
+    width: 90%;
+    align-items: flex-start;
+    margin-top: calc(var(--photoGap) * 2);
+    text-transform: uppercase;
+    letter-spacing: var(--xSpaced);
+    font-weight: 600;
+    color: $grey;
+  }
+
+  .ride-title {
+    font-size: var(--mFontSize);
+    font-weight: 700;
+    letter-spacing: var(--TwoXSpaced);
+    color: $black;
+    @include media("<=tablet") {
+      color: $white;
+    }
+  }
+
+  .description {
+    width: 90%;
+    height: 25vh;
+    color: $grey;
+    overflow-y: scroll;
+  }
+
+  .leader-info {
+    @include flexCenter;
+    justify-content: flex-start;
+    margin-top: 1.5rem;
+    width: 90%;
+
+    @include media("<=tablet") {
+      color: $grey;
+    }
+  }
+
+  .leader-img {
+    width: 8vh;
+    height: 8vh;
+    margin-right: 1rem;
+  }
+
+  .leader-name {
+    span {
+      font-weight: 600;
+    }
+  }
+  .insta-handle {
+    transition: all .2s;
+    span {
+      color: $turquoise;
+    }
+    &:hover {
+      color: $turquoise;
+    }
+  }
+}
