@@ -25,7 +25,8 @@
     "react-fast-marquee": "^1.1.2",
     "react-helmet": "^6.1.0",
     "react-indiana-drag-scroll": "^1.8.1",
-    "react-intersection-observer": "^8.31.0"
+    "react-intersection-observer": "^8.31.0",
+    "react-locomotive-scroll": "^0.1.7"
   },
   "devDependencies": {
     "prettier": "^2.2.1"
