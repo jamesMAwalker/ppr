@@ -115,15 +115,15 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
   return (
     <>
       <div ref={pageRef} className="gallery">
-          {modalOpen && (
-            <GalleryModal
-              toggleModal={closeModalAnimated}
-              meta={GALLERY_META[modalPhoto]}
-              imgSrc={
-                data.galleryPhotos.edges[modalPhoto].node.childImageSharp.fluid
-              }
-            />
-          )}
+        {modalOpen && (
+          <GalleryModal
+            fadeIn
+            loading="eager"
+            toggleModal={closeModalAnimated}
+            meta={GALLERY_META[modalPhoto]}
+            idx={modalPhoto}
+          />
+        )}
         <div className="absolute-wrapper">
           {!footerInView && (
             <div className="gallery-btn left">
