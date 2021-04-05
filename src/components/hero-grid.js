@@ -184,7 +184,7 @@ const HeroGrid = ({ isMobile }) => {
               className="shade"
               style={{
                 background: `${
-                  !heroesAllLoaded ? "var(--black)" : "var(--blackTr2)"
+                  !heroesAllLoaded ? "black" : ""
                 }`,
               }}
             />
