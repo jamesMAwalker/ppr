@@ -22,7 +22,7 @@ const ContactSection = ({ isMobile, mobileVH }) => {
   return (
     <>
       {!isMobile ? (
-        <section className="contact-section">
+        <section className="contact-section" id="contact">
           <div className="absolute-container">
             <div className="flex-container">
               <div className="content">

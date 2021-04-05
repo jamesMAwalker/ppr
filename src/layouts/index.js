@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { Helmet } from "react-helmet"
 import gsap from "gsap"
 import { useInView } from "react-intersection-observer"
 
@@ -28,9 +27,12 @@ const Layout = ({ children, location: { pathname } }) => {
     document.documentElement.style.setProperty("--mVh", `${vh}px`)
 
     // Breakpoint sensor for conditional rendering
-    const tabBP = parseInt(getComputedStyle(document.documentElement).getPropertyValue(
-      "--tablet"
-    , 10))
+    const tabBP = parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue(
+        "--tablet",
+        10
+      )
+    )
     setMobileVH(vh)
     setIsMobile(window.innerWidth <= tabBP)
   }, [])
@@ -100,7 +102,7 @@ const Layout = ({ children, location: { pathname } }) => {
   useEffect(() => {
     const newLocationState = {}
     // if current page is x, set x of location state to true
-    Object.keys(pageLocation).forEach((page) => {
+    Object.keys(pageLocation).forEach(page => {
       if (page === pathname) {
         newLocationState[page] = true
       } else {
@@ -121,12 +123,12 @@ const Layout = ({ children, location: { pathname } }) => {
   }, [menuVisible])
 
   // pass props to child page elements
-  const childrenWithProps = React.Children.map(children, (child) =>
+  const childrenWithProps = React.Children.map(children, child =>
     React.cloneElement(child, {
       isMobile: isMobile,
       btnVisible: btnVisible,
       setBtnVisible: () => setBtnVisible(!btnVisible),
-      setGalleryScrolled: () => setGalleryScrolled(!galleryScrolled)
+      setGalleryScrolled: () => setGalleryScrolled(!galleryScrolled),
     })
   )
 
@@ -140,8 +142,8 @@ const Layout = ({ children, location: { pathname } }) => {
         menuVisible={menuVisible}
         toggleMenu={() => setMenuVisible(!menuVisible)}
       />
-      <div className="layout">
-        <Header pageLocation={pathname} galleryScrolled={galleryScrolled}/>
+      <div className="layout" data-scroll-container>
+        <Header pageLocation={pathname} galleryScrolled={galleryScrolled} />
         {pageLocation["/"] && (
           <span className="mm-trigger" ref={mobileMenuRef}></span>
         )}

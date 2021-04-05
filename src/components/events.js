@@ -9,51 +9,6 @@ import { StravaIcon } from "./icons"
 
 import { EVENTS_INFO } from '../assets/events-data'
 
-// const eventsInfo = [
-//   {
-//     title: "Tahoe Burrito Run",
-//     picIdx: 0,
-//     day: "Thursdays",
-//     time: "7:00AM",
-//     startLoc: "Bijou Park",
-//     desc:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae tortor vestibulum, pulvinar nibh interdum, molestie lorem. Maecenas suscipit lectus quis dolor euismod, laoreet fermentum enim rhoncus.",
-//     leader: {
-//       name: "Monica Morariu",
-//       picIdx: 1,
-//       insta: "plantpoweredviata",
-//     },
-//   },
-//   {
-//     title: "Malibu Onehundred",
-//     picIdx: 2,
-//     day: "Saturdays",
-//     time: "7:00AM",
-//     startLoc: "Primo Passo Coffee",
-//     desc:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae tortor vestibulum, pulvinar nibh interdum, molestie lorem. Maecenas suscipit lectus quis dolor euismod, laoreet fermentum enim rhoncus.  ",
-//     leader: {
-//       name: "Taylor Dawson",
-//       picIdx: "3",
-//       insta: "taylorwdawson",
-//     },
-//   },
-//   {
-//     title: "Hai Van Horses",
-//     picIdx: 4,
-//     day: "Sundays",
-//     time: "6:00AM",
-//     startLoc: "CVBD",
-//     desc:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae tortor vestibulum, pulvinar nibh interdum, molestie lorem. Maecenas suscipit lectus quis dolor euismod, laoreet fermentum enim rhoncus.",
-//     leader: {
-//       name: "James Walker",
-//       picIdx: 5,
-//       insta: "phronetic27",
-//     },
-//   },
-// ]
-
 const EventsSection = ({ isMobile }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -104,7 +59,7 @@ const EventsSection = ({ isMobile }) => {
           <span>RIDE WITH US</span>
         </div>
       )}
-      <section className="events">
+      <section className="events" id="events">
         {EVENTS_INFO.map(ev => {
           return (
             <div className="event-col">

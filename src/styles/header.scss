@@ -60,6 +60,9 @@
       justify-content: space-evenly;
 
       nav {
+        & > * {
+          cursor: pointer;
+        }
 
         a {
           margin: 0 20px ;

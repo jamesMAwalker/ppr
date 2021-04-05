@@ -79,7 +79,7 @@ const About = () => {
   `)
 
   return (
-    <section id="blurb" className="about">
+    <section id="about" className="about">
       <div className="inner-about">
         <div className="about-text">
           <h3>
