@@ -10,7 +10,9 @@ import Img from "gatsby-image"
 import { ScrollIcon } from "../components/icons"
 import GalleryModal from "../components/gallery-modal"
 
-const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
+import { GALLERY_META } from '../assets/gallery-meta-data'
+
+const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalPhoto, setModalPhoto] = useState(0)
   const pageRef = useRef(null)
@@ -23,10 +25,12 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
     threshold: .6,
   })
 
+  // Hides nav when gallery scrolls
   useEffect(() => {
     setGalleryScrolled()
   }, [gallTopInView])
 
+  // Start Animations
   useEffect(() => {
     gsap.registerPlugin(ScrollToPlugin)
 
@@ -42,6 +46,15 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
       stagger: { amount: 1 },
     })
   }, [])
+
+  // Stop scroll while modal open
+  useEffect(() => {
+    if (modalOpen) {
+      document.documentElement.style.overflow = "hidden"
+    } else {
+      document.documentElement.style.overflow = "scroll"
+    }
+  }, [modalOpen])
 
   const data = useStaticQuery(graphql`
     query {
@@ -70,6 +83,9 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
   const handleModalOpen = (idx) => {
     setModalPhoto(idx)
     setModalOpen(true)
+
+    // hides mobile menu 
+    setBtnVisible()
     
     setTimeout(() => {
       gsap.to(".gallery .modal", 0.5, {
@@ -91,6 +107,9 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
     setTimeout(() => {
       setModalOpen(false)
     }, 500);
+
+     // hides mobile menu 
+    setBtnVisible()
   }
   
   return (
@@ -99,6 +118,7 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
           {modalOpen && (
             <GalleryModal
               toggleModal={closeModalAnimated}
+              meta={GALLERY_META[modalPhoto]}
               imgSrc={
                 data.galleryPhotos.edges[modalPhoto].node.childImageSharp.fluid
               }
@@ -133,6 +153,7 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
               <div
                 className={`photo photo${idx + 1}`}
                 key={photo.node.id}
+                idx={idx}
                 style={{ gridArea: `p${idx + 1}` }}
                 onClick={() => handleModalOpen(idx)}
               >

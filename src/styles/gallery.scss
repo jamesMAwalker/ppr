@@ -39,11 +39,39 @@
     
     &-image {
       @include flexCenter;
+      // position: relative;
       height: 95%;
       width: 95%;
       div {
         width: 90%;
         max-height: 95%;
+      }
+    }
+
+    .meta-data {
+      position: absolute;
+      bottom: 2vh;
+      right: 2vh;
+      width: 100% !important;
+      color: $white;
+
+      @include media("<=tablet") {
+        bottom: 5vh;
+        right: 1rem;
+      }
+
+    }
+
+    .meta-flex-wrapper {
+      @include flexCenterCol;
+      width: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+      align-items: flex-end;
+
+      .photographer-link {
+        cursor: pointer;
+        color: $turquoise;
       }
     }
 
