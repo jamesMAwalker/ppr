@@ -51,14 +51,51 @@
       object-fit: cover !important;
     }
 
+    .ride-stats {
+      @include flexCenter;
+      z-index: $honeyBee;
+      position: absolute;
+      left: 15px;
+      bottom: 10px;
+      height: 10%;
+      width: 70%;
+      justify-content: space-between;
+      color: $white;
+      font-size: var(--mFontSize);
+      opacity: 0;
+    }
+
     .event-link {
+      cursor: pointer;
+      z-index: $sparrow;
       position: absolute;
       bottom: 10px;
       right: 10px;
+      transition: all .2s;
       path {
         fill: $strava;
       }
+      &:hover {
+        path {
+          fill: $white
+        }
+      }
     }
+
+    &:hover {
+      &::after,
+      .ride-stats {
+        opacity: 1;
+      }
+    }
+
+    &::after {
+      @include pseudoShade($blackTr);
+      opacity: 0;
+      background: linear-gradient(transparent, $blackTr);
+      transition: .2s all;
+    }
+
   }
 
   .details-flex-wrapper {

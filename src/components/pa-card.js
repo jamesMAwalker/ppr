@@ -69,6 +69,7 @@ const PACard = () => {
         <div className="pa-modal">
           {cardOpen && (
             <>
+              <div className="close-btn" onClick={handleCardOpen} >▶</div>
               <div className="pa-img">
                 <PAWordMarkWhite />
                 <Img
@@ -112,7 +113,13 @@ const PACard = () => {
                   />
                 </div>
                 <div className="hashtag">#BE THE PROOF</div>
-                <button className="toPA-button">VISIT PLANT ATHLETIC</button>
+                <a
+                  className="toPA-button"
+                  href="https://plantathletic.com/"
+                  target="_blank"
+                >
+                  VISIT PLANT ATHLETIC
+                </a>
               </div>
             </>
           )}

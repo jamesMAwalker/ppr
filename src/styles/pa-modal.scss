@@ -6,6 +6,23 @@
   height: 100vh;
   width: 30%;
   background-color: $turquoiseTr3;
+  overflow: hidden;
+
+  .close-btn {
+    cursor: pointer;
+    position: absolute;
+    color: $blackTr2;
+    top: calc((var(--contentMargin) / 3) + 50%);
+    // top: 50%;
+    left: -6px;
+    transform: scaleY(3);
+    font-size: var(--xLgFontSize);
+    transition: all .2s;
+
+    &:hover {
+      color: $black;
+    }
+  }
 
   .pa-img {
     @include flexCenter;
@@ -79,7 +96,9 @@
   }
 
   .toPA-button {
+    cursor: pointer;
     position: relative;
+    padding: 1rem 3rem;
     background-color: transparent;
     border: 2px solid transparent;
     color: $turquoise;

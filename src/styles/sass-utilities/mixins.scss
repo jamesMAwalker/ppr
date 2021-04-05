@@ -33,7 +33,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: $color;
+  background: $color;
 }
 
 @mixin pseudoBorderBottom($width, $color) {
@@ -57,6 +57,8 @@
     background-color: $trackCol;
     border-radius: 10px;
   }
+  scrollbar-color: $thumbCol $trackCol;
+  scrollbar-width: $width;
 }
 
 @mixin scrollBarLat($height, $thumbCol, $trackCol) {
@@ -70,7 +72,8 @@
     background-color: $trackCol;
     border-radius: 10px;
   }
-
+  scrollbar-color: $thumbCol $trackCol !important;
+  scrollbar-width: $height !important;
 }
 
 //////////////////// > Positioning > ////////////////////////

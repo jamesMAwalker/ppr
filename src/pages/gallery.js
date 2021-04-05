@@ -79,7 +79,6 @@ const TeamGallery = ({ isMobile, setGalleryScrolled }) => {
   }
 
   const scrollTop = () => {
-    alert('rocket to the TOP');
     gsap.to(".gallery .absolute-wrapper", 1, {
       scrollTo: 0,
     })
