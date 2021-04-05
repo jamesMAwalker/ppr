@@ -6,13 +6,13 @@ import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import Header from "../components/header"
 import { InstaIcon, ScrollIcon, StravaIcon } from "../components/icons"
-import { Logo } from "../components/Logo"
 import Footer from "../components/footer"
 import SponsorsBand from "../components/sponsors-band"
 import Meta from "../components/meta-tags"
 import MobileMenu from "../components/mobile-menu"
 
 const Layout = ({ children, location: { pathname } }) => {
+  
   // + Mobile version tracking
   const [isMobile, setIsMobile] = useState(false)
   const [mobileVH, setMobileVH] = useState(null)
@@ -188,7 +188,7 @@ const Layout = ({ children, location: { pathname } }) => {
           ></span>
         </span>
         {!(pathname === "/sponsors" && isMobile) && (
-          <SponsorsBand isMobile={isMobile} />
+          <SponsorsBand isMobile={isMobile} pageLocation={pathname} />
         )}
         <span ref={footerRef} className="footer-trigger"></span>
         <Footer isMobile={isMobile} />

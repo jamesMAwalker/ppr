@@ -12,16 +12,25 @@ import {
 } from "../components/Logo"
 
 const sponsorLogos = [
-  { name: 'AM', logo: AmtberLogo },
-  { name: 'BL', logo: BLLogo },
-  { name: 'FC', logo: FCLogo },
-  { name: 'FS', logo: FSLogo },
-  { name: 'PA', logo: PALogo },
-  { name: 'POC', logo: POCLogo },
-  { name: 'S4G', logo: S4GLogo },
+  {
+    name: "AM",
+    logo: AmtberLogo,
+    link: "https://amtber.com/",
+  },
+  { name: "BL", logo: BLLogo, link: "https://bikelegalfirm.com/" },
+  { name: "FC", logo: FCLogo, link: "https://fingerscrossed.design/" },
+  { name: "FS", logo: FSLogo, link: "https://us.foursigmatic.com/" },
+  { name: "PA", logo: PALogo, link: "https://plantathletic.com/" },
+  {
+    name: "POC",
+    logo: POCLogo,
+    link: "https://www.pocsports.com/collections/cycling",
+  },
+  { name: "S4G", logo: S4GLogo, link: "https://switch4good.org/" },
 ]
 
   const SponsorsBand = ({ isMobile }) => {
+
   return (
     <div className="sponsors-band">
       {!isMobile ? (
@@ -29,9 +38,9 @@ const sponsorLogos = [
           {sponsorLogos.map(l => {
             const fill = l.name !== "PA" ? "white" : ""
             return (
-              <div key={l.name} className={`logo-wrapper ${fill}`}>
+              <a key={l.name} href={l.link} target="_blank" className={`logo-wrapper ${fill}`}>
                 {l.logo()}
-              </div>
+              </a>
             )
           })}
         </div>
@@ -44,9 +53,14 @@ const sponsorLogos = [
           {sponsorLogos.map(l => {
             const notPA = l.name !== "PA" ? "notPA" : ""
             return (
-              <div key={l.name} className={`marquee-logo ${notPA}`}>
+              <a
+                key={l.name}
+                className={`marquee-logo ${notPA}`}
+                href={l.link}
+                target="_blank"
+              >
                 {l.logo()}
-              </div>
+              </a>
             )
           })}
         </Marquee>
