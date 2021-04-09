@@ -45,33 +45,25 @@ const About = () => {
       opacity: 0,
     })
   }, [])
-
+  
   const data = useStaticQuery(graphql`
     query {
-      aboutTop: file(
-        relativePath: { eq: "about-images/sea-otter-3s.jpeg" }
-      ) {
-        childImageSharp {
-          fluid(maxWidth: 1200) {
-            ...GatsbyImageSharpFluid
-          }
+      aboutPhotos: allFile(
+        filter: {
+          extension: { regex: "/(jpg|png|jpeg)/" }
+          relativeDirectory: { eq: "about-images" }
         }
-      }
-      aboutMid: file(
-        relativePath: { eq: "about-images/wilson-rest.jpeg" }
+        sort: { fields: base, order: ASC }
       ) {
-        childImageSharp {
-          fluid(maxWidth: 1200) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      aboutBottom: file(
-        relativePath: { eq: "about-images/fast-mattia.jpg" }
-      ) {
-        childImageSharp {
-          fluid(maxWidth: 1200) {
-            ...GatsbyImageSharpFluid
+        edges {
+          node {
+            id
+            base
+            childImageSharp {
+              fluid(quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }
@@ -83,10 +75,10 @@ const About = () => {
       <div className="inner-about">
         <div className="about-text">
           <h3>
-            Performance, 
-            <br/> 
-            positivity, 
-            <br /> 
+            Performance,
+            <br />
+            positivity,
+            <br />
             purpose.
           </h3>
           <p>
@@ -104,24 +96,15 @@ const About = () => {
           </div>
         </div>
         <div className="about-images">
-          <Img
-            fluid={data.aboutTop.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-          <Img
-            fluid={data.aboutMid.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
-          <Img
-            fluid={data.aboutBottom.childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 50%"
-            alt=""
-          />
+          {data.aboutPhotos.edges.map((photo, idx) => (
+            <Img
+              fadeIn
+              fluid={photo.node.childImageSharp.fluid}
+              objectFit="contain"
+              objectPosition="50% 50%"
+              alt=""
+            />
+          ))}
         </div>
       </div>
     </section>

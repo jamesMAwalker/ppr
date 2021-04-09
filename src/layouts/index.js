@@ -72,8 +72,22 @@ const Layout = ({ children, location: { pathname } }) => {
 
   // change link content based on visibility of triggers
   useEffect(() => {
-    updateLinkContent()
+    gsap.to(".fixed-link", 0.5, {
+      opacity: 0,
+      x: "500vh"
+    })
+    setTimeout(() => {
+      updateLinkContent()
+    }, 200);
+    gsap.to(".fixed-link", 0.5, {
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: .2
+      }
+    })
   }, [footerInView, aboutInView, sponsorsInView])
+
 
   // change mm btnVisible when menuInView changes
   useEffect(() => {

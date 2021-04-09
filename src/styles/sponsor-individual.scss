@@ -44,7 +44,7 @@
 
     &-exp {
       @include flexCenter;
-      clip-path: unset;
+      clipPath: unset;
       position: absolute;
       z-index: 9;
       transform: translateY(-50%);

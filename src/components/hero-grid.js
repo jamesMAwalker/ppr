@@ -101,7 +101,7 @@ const HeroGrid = ({ isMobile }) => {
         childImageSharp {
           fluid(
             maxWidth: 1200
-            quality: 100
+            quality: 80
           ) {
             ...GatsbyImageSharpFluid
           }
@@ -111,7 +111,7 @@ const HeroGrid = ({ isMobile }) => {
         childImageSharp {
           fluid(
             maxWidth: 1200
-            quality: 100
+            quality: 80
           ) {
             ...GatsbyImageSharpFluid
           }
@@ -123,7 +123,7 @@ const HeroGrid = ({ isMobile }) => {
         childImageSharp {
           fluid(
             maxWidth: 1200
-            quality: 100
+            quality: 80
           ) {
             ...GatsbyImageSharpFluid
           }

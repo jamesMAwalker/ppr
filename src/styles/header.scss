@@ -44,17 +44,19 @@
         justify-content: center;
 
         svg {
-          transform: translateY(1vh);
+          transform: translateY(1vh) scale(.75);
+          &:hover {
+            path {
+              stroke: black;
+              stroke-width: 1px;
+              fill-opacity: 1;
+            }
+          }
         }
         path {
           shape-rendering: geometricPrecision;
+          transition: all .4s;
         }
-
-        // a {
-        //   font-weight: 700;
-        //   text-decoration: none;
-        //   color: $black;
-        // }
       }
     }
 

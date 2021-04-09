@@ -19,47 +19,67 @@ const Sponsor = ({
   isMobile,
   setBtnVisible
 }) => {
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     amtber: file(relativePath: { eq: "sponsor-images/amtber.webp" }) {
+  //       childImageSharp {
+  //         fluid(maxWidth: 1200, quality: 50) {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //     bikeLegal: file(relativePath: { eq: "sponsor-images/bike-legal.webp" }) {
+  //       childImageSharp {
+  //         fluid(maxWidth: 1200, quality: 50) {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //     FC: file(relativePath: { eq: "sponsor-images/FC.webp" }) {
+  //       childImageSharp {
+  //         fluid(maxWidth: 1200, quality: 50) {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //     FS: file(relativePath: { eq: "sponsor-images/FS.jpg" }) {
+  //       childImageSharp {
+  //         fluid(maxWidth: 1200, quality: 50) {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //     POC: file(relativePath: { eq: "sponsor-images/POC.jpg" }) {
+  //       childImageSharp {
+  //         fluid(maxWidth: 1200, quality: 50) {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //     s4g: file(relativePath: { eq: "sponsor-images/s4g.jpg" }) {
+  //       childImageSharp {
+  //         fluid(maxWidth: 1200, quality: 50) {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
   const data = useStaticQuery(graphql`
     query {
-      amtber: file(relativePath: { eq: "sponsor-images/amtber.webp" }) {
-        childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      bikeLegal: file(relativePath: { eq: "sponsor-images/bike-legal.webp" }) {
-        childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      FC: file(relativePath: { eq: "sponsor-images/FC.webp" }) {
-        childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      FS: file(relativePath: { eq: "sponsor-images/FS.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      POC: file(relativePath: { eq: "sponsor-images/POC.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      s4g: file(relativePath: { eq: "sponsor-images/s4g.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
+      sponsorPhotos: allFile(
+        filter: {extension: {regex: "/(jpg|png|jpeg|webp)/"}, relativeDirectory: {eq: "sponsor-images"}}
+        sort: {fields: base, order: ASC}
+      ) {
+        edges {
+          node {
+            id
+            base
+            childImageSharp {
+              fluid(quality: 75) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }
@@ -142,7 +162,9 @@ const Sponsor = ({
                 <Img
                   fadeIn
                   loading="eager"
-                  fluid={data[id].childImageSharp.fluid}
+                  fluid={
+                    data.sponsorPhotos.edges[idx].node.childImageSharp.fluid
+                  }
                   objectFit="cover"
                   objectPosition="50% 100%"
                   alt={`Logo for the ${id} sponsor company`}
@@ -166,7 +188,9 @@ const Sponsor = ({
                 <Img
                   fadeIn
                   loading="eager"
-                  fluid={data[id].childImageSharp.fluid}
+                  fluid={
+                    data.sponsorPhotos.edges[idx].node.childImageSharp.fluid
+                  }
                   objectFit="cover"
                   objectPosition="50% 100%"
                   alt={`Logo for the ${id} sponsor company`}
@@ -200,7 +224,7 @@ const Sponsor = ({
                   <Img
                     fadeIn
                     loading="eager"
-                    fluid={data[id].childImageSharp.fluid}
+                    fluid={data.sponsorPhotos.edges[idx].node.childImageSharp.fluid}
                     objectFit="cover"
                     objectPosition="50% 100%"
                     alt={`Logo for the ${id} sponsor company`}
