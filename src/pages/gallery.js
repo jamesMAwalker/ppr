@@ -56,6 +56,17 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
     }
   }, [modalOpen])
 
+  // listen for esc keypress and close modal
+  useEffect(() => {
+    const close = (e) => {
+      if (e.keyCode === 27) {
+        closeModalAnimated()
+      }
+    }
+    window.addEventListener("keydown", close)
+    return () => window.removeEventListener("keydown", close)
+  }, [])
+
   const data = useStaticQuery(graphql`
     query {
       galleryPhotos: allFile(
