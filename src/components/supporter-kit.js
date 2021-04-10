@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import gsap from 'gsap'
+import { useSwipeable } from "react-swipeable"
 
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -22,7 +23,7 @@ TODO {
 
 const SupporterKit = ({ isMobile }) => {
   const [mainPhoto, setMainPhoto] = useState(["", "", "ph1", ""])
-  const handlePhotoSwitch = e => {
+  const handlePhotoSwitch = (e) => {
     const clickedPhoto = parseInt(e.target.id, 10)
 
     const selection = mainPhoto.map((p, i) => {
@@ -38,22 +39,34 @@ const SupporterKit = ({ isMobile }) => {
     console.log("mainPhoto: ", mainPhoto)
   }
 
-  const photoNames = ['gravelSlide', 'jerseyRender', 'bigThree', 'luchos']
+  const photoNames = ["gravelSlide", "jerseyRender", "bigThree", "luchos"]
   const [mPhotoIdx, setMPhotoIdx] = useState(2)
-  const handlePhotoSwitchMobile = dir => {
-    if ((mPhotoIdx + dir) > 3) {
-      setMPhotoIdx(0)
-    } else if ((mPhotoIdx + dir) < 0) {
-      setMPhotoIdx(2)
-    } else {
-      setMPhotoIdx(mPhotoIdx + dir)
-    }
+  const handlePhotoSwitchMobile = (dir) => {
+    gsap.to(".mobile__photos", .2, {
+      opacity: 0
+    })
+    
+    setTimeout(() => {
+      if (mPhotoIdx + dir > 3) {
+        setMPhotoIdx(0)
+      } else if (mPhotoIdx + dir < 0) {
+        setMPhotoIdx(3)
+      } else {
+        setMPhotoIdx(mPhotoIdx + dir)
+      }
+      gsap.to(".mobile__photos", 0.4, {
+        opacity: 1,
+        transition: {
+          delay: 0.4,
+        },
+      })
+    }, 200);
   }
 
   // > Start Animations
   useEffect(() => {
-    gsap.from('.photo__slide', .4, {
-      opacity: 0
+    gsap.from(".photo__slide", 0.4, {
+      opacity: 0,
     })
   }, [mPhotoIdx])
 
@@ -124,6 +137,12 @@ const SupporterKit = ({ isMobile }) => {
     }
   `)
 
+  // swipe gesture detection for mobile
+  const handlers = useSwipeable({
+    onSwipedLeft: (eventData) => handlePhotoSwitchMobile(1),
+    onSwipedRight: (eventData) => handlePhotoSwitchMobile(-1),
+  })
+
   return (
     <section className="kit-section">
       {!isMobile ? (
@@ -136,7 +155,7 @@ const SupporterKit = ({ isMobile }) => {
                 role="button"
                 tabIndex={0}
                 onClick={handlePhotoSwitch}
-                onKeyDown={e => {
+                onKeyDown={(e) => {
                   if (e.code === 13) handlePhotoSwitch()
                 }}
               >
@@ -154,7 +173,7 @@ const SupporterKit = ({ isMobile }) => {
                 role="button"
                 tabIndex={0}
                 onClick={handlePhotoSwitch}
-                onKeyDown={e => {
+                onKeyDown={(e) => {
                   if (e.code === 13) handlePhotoSwitch()
                 }}
               >
@@ -171,7 +190,7 @@ const SupporterKit = ({ isMobile }) => {
                 role="button"
                 tabIndex={0}
                 onClick={handlePhotoSwitch}
-                onKeyDown={e => {
+                onKeyDown={(e) => {
                   if (e.code === 13) handlePhotoSwitch()
                 }}
               >
@@ -188,7 +207,7 @@ const SupporterKit = ({ isMobile }) => {
                 role="button"
                 tabIndex={0}
                 onClick={handlePhotoSwitch}
-                onKeyDown={e => {
+                onKeyDown={(e) => {
                   if (e.code === 13) handlePhotoSwitch()
                 }}
               >
@@ -224,7 +243,7 @@ const SupporterKit = ({ isMobile }) => {
         </>
       ) : (
         <div className="mobile">
-          <div className="mobile__photos">
+          <div className="mobile__photos" {...handlers}>
             <div className="photo-slide">
               <Img
                 fluid={data[photoNames[mPhotoIdx]].childImageSharp.fluid}
@@ -233,8 +252,18 @@ const SupporterKit = ({ isMobile }) => {
                 alt="cycling jersey in action"
               />
               <div className="slide-controls">
-                <ScrollIcon classN="left" action={() => handlePhotoSwitchMobile(-1)} />
-                <ScrollIcon classN="right" action={() => handlePhotoSwitchMobile(1)}/>
+                <div className="pseudo-wrapper">
+                  <ScrollIcon
+                    classN="left"
+                    action={() => handlePhotoSwitchMobile(-1)}
+                  />
+                </div>
+                <div className="pseudo-wrapper">
+                  <ScrollIcon
+                    classN="right"
+                    action={() => handlePhotoSwitchMobile(1)}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -260,9 +289,11 @@ const SupporterKit = ({ isMobile }) => {
               SITIP, based in Northern Italy.
             </p>
             <div className="get-btn">
-              <button onClick={() => window.open(
-                "https://www.plantathletic.com/",
-                )} >GET THE KIT</button>
+              <button
+                onClick={() => window.open("https://www.plantathletic.com/")}
+              >
+                GET THE KIT
+              </button>
             </div>
           </div>
         </div>

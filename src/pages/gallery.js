@@ -81,7 +81,10 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
             id
             base
             childImageSharp {
-              fluid(maxWidth: 750, quality: 100) {
+              fluid(
+                maxWidth: 750, 
+                quality: 100,
+              ) {
                 ...GatsbyImageSharpFluid_withWebp_tracedSVG
               }
             }
@@ -122,6 +125,8 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
      // hides mobile menu 
     setBtnVisible()
   }
+
+
   
   return (
     <>
