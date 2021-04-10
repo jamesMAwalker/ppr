@@ -11,49 +11,49 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
       david: file(relativePath: { eq: "team-images/david.png" }) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       james: file(relativePath: { eq: "team-images/james.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       josh: file(relativePath: { eq: "team-images/josh.png" }) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       mattia: file(relativePath: { eq: "team-images/mattia.png" }) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       nick: file(relativePath: { eq: "team-images/nick2.png" }) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       oscar: file(relativePath: { eq: "team-images/oscar.png" }) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       taylor: file(relativePath: { eq: "team-images/taylor.png" }) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 50) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -62,7 +62,7 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
       ) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 75) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -71,7 +71,7 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
       ) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 75) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -80,7 +80,7 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
       ) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 75) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -89,7 +89,7 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
       ) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 75) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -98,7 +98,7 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
       ) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 75) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -107,7 +107,7 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
       ) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 75) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -116,7 +116,7 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
       ) {
         childImageSharp {
           fluid(maxWidth: 1200, quality: 75) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

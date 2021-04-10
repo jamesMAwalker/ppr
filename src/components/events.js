@@ -24,7 +24,7 @@ const EventsSection = ({ isMobile }) => {
             id
             childImageSharp {
               fluid(quality: 75) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

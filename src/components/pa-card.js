@@ -21,18 +21,6 @@ const PACard = () => {
     })
   }, [cardOpen])
 
-  // const data = useStaticQuery(graphql`
-  //   query {
-  //     paPeople: file(relativePath: { eq: "sponsor-images/PA.webp" }) {
-  //       childImageSharp {
-  //         fluid(maxWidth: 1200, quality: 50) {
-  //           ...GatsbyImageSharpFluid
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
-
   const data = useStaticQuery(graphql`
     query {
       paImages: allFile(
@@ -44,7 +32,7 @@ const PACard = () => {
             base
             childImageSharp {
               fluid(maxWidth: 150, quality: 80) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

@@ -93,15 +93,15 @@ const SupporterKit = ({ isMobile }) => {
         relativePath: { eq: "supporter-kit-images/jersey--wide-s.png" }
       ) {
         childImageSharp {
-          fluid(quality: 100) {
-            ...GatsbyImageSharpFluid
+          fluid(maxWidth: 900, quality: 100) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       bigThree: file(relativePath: { eq: "supporter-kit-images/big-3.jpeg" }) {
         childImageSharp {
-          fluid(quality: 100) {
-            ...GatsbyImageSharpFluid
+          fluid(maxWidth: 900, quality: 100) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -109,15 +109,15 @@ const SupporterKit = ({ isMobile }) => {
         relativePath: { eq: "supporter-kit-images/gravel-slide.jpeg" }
       ) {
         childImageSharp {
-          fluid(quality: 100) {
-            ...GatsbyImageSharpFluid
+          fluid(maxWidth: 900, quality: 100) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       luchos: file(relativePath: { eq: "supporter-kit-images/luchos.jpeg" }) {
         childImageSharp {
-          fluid(quality: 100) {
-            ...GatsbyImageSharpFluid
+          fluid(maxWidth: 900, quality: 100) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

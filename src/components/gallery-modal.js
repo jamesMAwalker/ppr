@@ -19,7 +19,7 @@ const GalleryModal = ({idx, toggleModal, meta }) => {
             base
             childImageSharp {
               fluid(maxWidth: 1200, quality: 100) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

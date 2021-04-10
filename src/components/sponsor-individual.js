@@ -19,52 +19,6 @@ const Sponsor = ({
   isMobile,
   setBtnVisible
 }) => {
-  // const data = useStaticQuery(graphql`
-  //   query {
-  //     amtber: file(relativePath: { eq: "sponsor-images/amtber.webp" }) {
-  //       childImageSharp {
-  //         fluid(maxWidth: 1200, quality: 50) {
-  //           ...GatsbyImageSharpFluid
-  //         }
-  //       }
-  //     }
-  //     bikeLegal: file(relativePath: { eq: "sponsor-images/bike-legal.webp" }) {
-  //       childImageSharp {
-  //         fluid(maxWidth: 1200, quality: 50) {
-  //           ...GatsbyImageSharpFluid
-  //         }
-  //       }
-  //     }
-  //     FC: file(relativePath: { eq: "sponsor-images/FC.webp" }) {
-  //       childImageSharp {
-  //         fluid(maxWidth: 1200, quality: 50) {
-  //           ...GatsbyImageSharpFluid
-  //         }
-  //       }
-  //     }
-  //     FS: file(relativePath: { eq: "sponsor-images/FS.jpg" }) {
-  //       childImageSharp {
-  //         fluid(maxWidth: 1200, quality: 50) {
-  //           ...GatsbyImageSharpFluid
-  //         }
-  //       }
-  //     }
-  //     POC: file(relativePath: { eq: "sponsor-images/POC.jpg" }) {
-  //       childImageSharp {
-  //         fluid(maxWidth: 1200, quality: 50) {
-  //           ...GatsbyImageSharpFluid
-  //         }
-  //       }
-  //     }
-  //     s4g: file(relativePath: { eq: "sponsor-images/s4g.jpg" }) {
-  //       childImageSharp {
-  //         fluid(maxWidth: 1200, quality: 50) {
-  //           ...GatsbyImageSharpFluid
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
   const data = useStaticQuery(graphql`
     query {
       sponsorPhotos: allFile(
@@ -76,8 +30,8 @@ const Sponsor = ({
             id
             base
             childImageSharp {
-              fluid(quality: 75) {
-                ...GatsbyImageSharpFluid
+              fluid(quality: 100) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

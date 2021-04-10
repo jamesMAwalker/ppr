@@ -60,8 +60,8 @@ const About = () => {
             id
             base
             childImageSharp {
-              fluid(quality: 100) {
-                ...GatsbyImageSharpFluid
+              fluid(maxWidth: 1000, quality: 100) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

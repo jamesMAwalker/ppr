@@ -99,21 +99,15 @@ const HeroGrid = ({ isMobile }) => {
         relativePath: { eq: "full-sized-images/hero-center.jpeg" }
       ) {
         childImageSharp {
-          fluid(
-            maxWidth: 1200
-            quality: 80
-          ) {
-            ...GatsbyImageSharpFluid
+          fluid(maxWidth: 1000, quality: 80) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       heroLeft: file(relativePath: { eq: "full-sized-images/hero-left.png" }) {
         childImageSharp {
-          fluid(
-            maxWidth: 1200
-            quality: 80
-          ) {
-            ...GatsbyImageSharpFluid
+          fluid(maxWidth: 1000, quality: 80) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -121,16 +115,15 @@ const HeroGrid = ({ isMobile }) => {
         relativePath: { eq: "full-sized-images/hero-right.jpeg" }
       ) {
         childImageSharp {
-          fluid(
-            maxWidth: 1200
-            quality: 80
-          ) {
-            ...GatsbyImageSharpFluid
+          fluid(maxWidth: 1000, quality: 80) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
     }
   `)
+
+  console.log("data: ", data );
 
   return (
     <>
