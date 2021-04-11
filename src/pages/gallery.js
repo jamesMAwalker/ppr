@@ -56,7 +56,7 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
     }
   }, [modalOpen])
 
-  // listen for esc keypress and close modal
+  // listen for keypress and close modal
   useEffect(() => {
     const close = (e) => {
       if (e.keyCode === 27) {
@@ -65,6 +65,17 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
     }
     window.addEventListener("keydown", close)
     return () => window.removeEventListener("keydown", close)
+  }, [])
+
+  useEffect(() => {
+    const open = (e) => {
+      if (e.keyCode === 13) {
+        const curIdx = e.target.getAttribute("idx") 
+        handleModalOpen(curIdx)
+      }
+    }
+    window.addEventListener("keydown", open)
+    return () => window.removeEventListener("keydown", open)
   }, [])
 
   const data = useStaticQuery(graphql`
@@ -170,6 +181,8 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
                 className={`photo photo${idx + 1}`}
                 key={photo.node.id}
                 idx={idx}
+                tabIndex={0}
+                role="button"
                 style={{ gridArea: `p${idx + 1}` }}
                 onClick={() => handleModalOpen(idx)}
               >

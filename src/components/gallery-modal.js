@@ -29,7 +29,13 @@ const GalleryModal = ({idx, toggleModal, meta }) => {
   `)
 
   return (
-    <div className="modal" onClick={toggleModal}>
+    <div 
+      className="modal" 
+      role="button"
+      tabIndex={0}
+      onClick={toggleModal}
+      onKeyDown={toggleModal}
+    >
       <span className="close-button">&#10006;</span>
       <div className="modal-image">
         <Img
