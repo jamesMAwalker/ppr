@@ -38,7 +38,7 @@ const sponsorLogos = [
           {sponsorLogos.map(l => {
             const fill = l.name !== "PA" ? "white" : ""
             return (
-              <a key={l.name} href={l.link} target="_blank" className={`logo-wrapper ${fill}`}>
+              <a key={l.name} href={l.link} target="_blank" rel="noreferrer" className={`logo-wrapper ${fill}`}>
                 {l.logo()}
               </a>
             )
@@ -57,7 +57,7 @@ const sponsorLogos = [
                 key={l.name}
                 className={`marquee-logo ${notPA}`}
                 href={l.link}
-                target="_blank"
+                target="_blank" rel="noreferrer"
               >
                 {l.logo()}
               </a>

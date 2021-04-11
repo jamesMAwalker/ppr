@@ -82,7 +82,7 @@ const EventsSection = ({ isMobile }) => {
                 </div>
                 <a
                   href={`https://www.strava.com/${ev.link}`}
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   className="event-link"
                 >
                   <StravaIcon />
@@ -118,7 +118,7 @@ const EventsSection = ({ isMobile }) => {
                     </div>
                     <div className="insta-handle">
                       <a
-                        target="_blank"
+                        target="_blank" rel="noreferrer"
                         href={`https://www.instagram.com/${ev.leader.insta}`}
                       >
                         <span>@</span>

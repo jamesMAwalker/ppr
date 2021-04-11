@@ -7,7 +7,7 @@ import PACard from '../components/pa-card'
 import { LogoColor } from './Logo'
 
 const Header = ({ galleryScrolled, pageLocation }) => {
-  console.log('galleryScrolled: ', galleryScrolled);
+  
   const [innrNavVis, setInnrNavVis] = useState(0)
 
 

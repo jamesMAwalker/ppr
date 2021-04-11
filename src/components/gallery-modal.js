@@ -48,7 +48,7 @@ const GalleryModal = ({idx, toggleModal, meta }) => {
             <span>{meta.date}</span>
             <span>Pictured : {meta.members}</span>
             <span>
-              <a href={meta.photographer.link} target="_blank">
+              <a href={meta.photographer.link} target="_blank" rel="noreferrer">
                 Photographer :{" "}
                 <span className="photographer-link">
                   {meta.photographer.name}

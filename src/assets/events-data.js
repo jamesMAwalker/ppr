@@ -12,7 +12,7 @@ export const EVENTS_INFO = [
     desc:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae tortor vestibulum, pulvinar nibh interdum, molestie lorem. Maecenas suscipit lectus quis dolor euismod, laoreet fermentum enim rhoncus.",
     leader: {
-      name: "Monica Morariu",
+      name: "Monica Morairiu",
       picIdx: 1,
       insta: "plantpoweredviata",
     },

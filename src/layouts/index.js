@@ -35,6 +35,10 @@ const Layout = ({ children, location: { pathname } }) => {
     )
     setMobileVH(vh)
     setIsMobile(window.innerWidth <= tabBP)
+
+    gsap.config({
+      nullTargetWarn: false
+    })
   }, [])
 
   // useInView set up

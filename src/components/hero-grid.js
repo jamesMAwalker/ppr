@@ -123,8 +123,6 @@ const HeroGrid = ({ isMobile }) => {
     }
   `)
 
-  console.log("data: ", data );
-
   return (
     <>
       <div className={`vp-shade ${isMobile ? "black" : "white"}`}>

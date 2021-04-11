@@ -41,7 +41,7 @@ const PACard = () => {
     }
   `)
 
-  console.log(data.paImages.edges[1].node.childImageSharp.fluid)
+  
 
   return (
     <>
@@ -104,7 +104,7 @@ const PACard = () => {
                 <a
                   className="toPA-button"
                   href="https://plantathletic.com/"
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                 >
                   VISIT PLANT ATHLETIC
                 </a>
