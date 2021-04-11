@@ -14,6 +14,12 @@ const PACard = () => {
     setCardOpen(!cardOpen)
   }
 
+  const handleKeypress = (e) => {
+    if (e.keyCode === 13) {
+      handleCardOpen()
+    }
+  } 
+
   useEffect(() => {
     gsap.from(".pa-modal", 0.5, {
       opacity: 0,
@@ -47,17 +53,26 @@ const PACard = () => {
     <>
       <div
         className={`PA-square ${cardOpen ? "open" : ""}`}
+        tabIndex={0}
+        role="button"
         onClick={handleCardOpen}
+        onKeyDown={handleKeypress}
       >
-        <Link>
-          <PALogo />
-        </Link>
+        <PALogo />
       </div>
       {cardOpen && (
         <div className="pa-modal">
           {cardOpen && (
             <>
-              <div className="close-btn" onClick={handleCardOpen} >▶</div>
+              <div
+                className="close-btn"
+                tabIndex={0}
+                role="button"
+                onClick={handleCardOpen}
+                onKeyDown={handleKeypress}
+              >
+                ▶
+              </div>
               <div className="pa-img">
                 <PAWordMarkWhite />
                 <Img
@@ -104,7 +119,8 @@ const PACard = () => {
                 <a
                   className="toPA-button"
                   href="https://plantathletic.com/"
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   VISIT PLANT ATHLETIC
                 </a>

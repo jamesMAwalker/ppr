@@ -15,7 +15,6 @@ const Layout = ({ children, location: { pathname } }) => {
   
   // + Mobile version tracking
   const [isMobile, setIsMobile] = useState(false)
-  const [mobileVH, setMobileVH] = useState(null)
   const [btnVisible, setBtnVisible] = useState(true)
   const [menuVisible, setMenuVisible] = useState(false)
   const [galleryScrolled, setGalleryScrolled] = useState(false)
@@ -33,7 +32,6 @@ const Layout = ({ children, location: { pathname } }) => {
         10
       )
     )
-    setMobileVH(vh)
     setIsMobile(window.innerWidth <= tabBP)
 
     gsap.config({

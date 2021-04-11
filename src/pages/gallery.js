@@ -67,16 +67,16 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
     return () => window.removeEventListener("keydown", close)
   }, [])
 
-  useEffect(() => {
-    const open = (e) => {
-      if (e.keyCode === 13) {
-        const curIdx = e.target.getAttribute("idx") 
-        handleModalOpen(curIdx)
-      }
-    }
-    window.addEventListener("keydown", open)
-    return () => window.removeEventListener("keydown", open)
-  }, [])
+  // useEffect(() => {
+  //   const open = (e) => {
+  //     if (e.keyCode === 13) {
+  //       const curIdx = e.target.getAttribute("idx") 
+  //       handleModalOpen(curIdx)
+  //     }
+  //   }
+  //   window.addEventListener("keydown", open)
+  //   return () => window.removeEventListener("keydown", open)
+  // }, [])
 
   const data = useStaticQuery(graphql`
     query {
@@ -119,10 +119,23 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
     }, 200);
   }
 
+  const handleEnterKey = (e) => {
+    if (e.keyCode === 13) {
+      const curIdx = e.target.getAttribute("idx")
+      handleModalOpen(curIdx)
+    }
+  }
+
   const scrollTop = () => {
     gsap.to(".gallery .absolute-wrapper", 1, {
       scrollTo: 0,
     })
+  }
+
+  const keyScrollTop = (e) => {
+    if (e.keyCode === 13) {
+      scrollTop()
+    }
   }
 
   const closeModalAnimated = () => {
@@ -185,6 +198,7 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
                 role="button"
                 style={{ gridArea: `p${idx + 1}` }}
                 onClick={() => handleModalOpen(idx)}
+                onKeyDown={handleEnterKey}
               >
                 {/* <p>{photo.node.id}</p> */}
                 <Img
@@ -198,15 +212,15 @@ const TeamGallery = ({ isMobile, setGalleryScrolled, setBtnVisible }) => {
             ))}
           </div>
           {!footerInView && !isMobile && (
-            <div className="back-to-top" onClick={scrollTop}>
+            <div className="back-to-top" tabIndex={0} role="button" onClick={scrollTop} onKeyDown={keyScrollTop} >
               ▲ back to top
             </div>
           )}
           {!footerInView && (
             <div className="gallery-btn season-selectors">
-              <a className="selector">2020</a>
-              <a className="selector">2019</a>
-              <a className="selector">2018</a>
+              <a href="/gallery#2020" className="selector">2020</a>
+              <a href="/gallery#2019" className="selector">2019</a>
+              <a href="/gallery#2018" className="selector">2018</a>
             </div>
           )}
         </div>

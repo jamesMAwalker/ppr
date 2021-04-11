@@ -64,6 +64,20 @@ const Sponsor = ({
     setHovered(false)
   }
 
+  const handleEnterKey = (e) => {
+    if (e.keyCode === 13) {
+      const curIdx = e.target.getAttribute("idx")
+      handleClick(curIdx)
+    }
+  }
+
+  const handleEnterKeyMobile = (e) => {
+    if (e.keyCode === 13) {
+      const curIdx = e.target.getAttribute("idx")
+      handleTouch(curIdx)
+    }
+  }
+
   const handleTouch = (e) => {
     
     gsap.to(`.mobile-sponsor.s${idx.toString()}`, 0.2, {
@@ -104,8 +118,12 @@ const Sponsor = ({
             ${hovered ? "hovered" : ""}
             ${active ? "active" : ""}
           `}
+          idx={idx}
+          tabIndex={0}
+          role="button"
           id={`sponsor-${idx}`}
           onClick={handleClick}
+          onKeyDown={handleEnterKey}
         >
           {!active ? (
             <>
@@ -157,6 +175,9 @@ const Sponsor = ({
         <div
           className={`mobile-sponsor s${idx}`}
           onClick={handleTouch}
+          tabIndex={0}
+          role="button"
+          onKeyDown={handleEnterKeyMobile}
           disabled={disabled}
         >
           {!active ? (

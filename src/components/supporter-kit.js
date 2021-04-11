@@ -98,7 +98,7 @@ const SupporterKit = ({ isMobile }) => {
       y: "10vh",
       opacity: 0.5,
     })
-  }, [])
+  }, [isMobile])
 
   const data = useStaticQuery(graphql`
     query {

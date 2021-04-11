@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Img from "gatsby-image"
@@ -127,7 +127,6 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
 
   return (
     <div
-      ref={memberRef}
       className={`member ${expanded}`}
       id={`member-${idx}`}
       onClick={() => expandMember(idx)}

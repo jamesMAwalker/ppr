@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import gsap from "gsap"
 
 import AniLink from "gatsby-plugin-transition-link/AniLink"
@@ -16,6 +16,12 @@ const MobileMenu = ({ btnVisible, isMobile, menuVisible, pageLocation, toggleMen
       toggleMenu()
       setBtnDisabled(false)
     }, 100)
+  }
+
+  const handleEnterKey = (e) => {
+    if (e.keyCode === 13) {
+      handleMenuOpen()
+    }
   }
 
   const toggleMenuVis = () => {
@@ -72,11 +78,25 @@ const MobileMenu = ({ btnVisible, isMobile, menuVisible, pageLocation, toggleMen
             direction="left"
             to="/"
           >
-            <p onClick={handleMenuOpen}>HOME</p>
+            <p
+              onClick={handleMenuOpen}
+              onKeyDown={handleEnterKey}
+              role="button"
+              tabIndex={0}
+            >
+              HOME
+            </p>
           </AniLink>
           <span>▪</span>
           <AniLink cover bg="var(--pink)" direction="left" to="/">
-            <p onClick={handleMenuOpen}>CONTACT</p>
+            <p
+              onClick={handleMenuOpen}
+              onKeyDown={handleEnterKey}
+              role="button"
+              tabIndex={0}
+            >
+              CONTACT
+            </p>
           </AniLink>
           <span>▪</span>
           <AniLink
@@ -85,15 +105,31 @@ const MobileMenu = ({ btnVisible, isMobile, menuVisible, pageLocation, toggleMen
             direction="left"
             to="/team"
           >
-            <p onClick={handleMenuOpen}>TEAM</p>
+            <p
+              onClick={handleMenuOpen}
+              onKeyDown={handleEnterKey}
+              role="button"
+              tabIndex={0}
+            >
+              TEAM
+            </p>
           </AniLink>
           <span>▪</span>
           <AniLink cover bg="var(--pink)" direction="left" to="/sponsors">
-            <p onClick={handleMenuOpen}>SPONSORS</p>
+            <p onClick={handleMenuOpen} onKeyDown={handleEnterKey} tabIndex={0} role="button" >
+              SPONSORS
+            </p>
           </AniLink>
           <span>▪</span>
           <AniLink cover bg="var(--pink)" direction="left" to="/gallery">
-            <p onClick={handleMenuOpen}>GALLERY</p>
+            <p
+              onClick={handleMenuOpen}
+              onKeyDown={handleEnterKey}
+              role="button"
+              tabIndex={0}
+            >
+              GALLERY
+            </p>
           </AniLink>
         </div>
         <div className="menu-footer">

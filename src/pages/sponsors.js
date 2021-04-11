@@ -77,7 +77,6 @@ const sponsorData = [
 ]
 
 const Sponsors = ({ isMobile, setBtnVisible }) => {
-  const [hoveredSponsor, sethoveredSponsor] = useState(null)
   const [activeSponsor, setActiveSponsor] = useState(null)
   const scrollBoxRef = useRef(null)
 
@@ -85,7 +84,7 @@ const Sponsors = ({ isMobile, setBtnVisible }) => {
     gsap.from(".animation-wrapper", 1, {
       opacity: 0,
     })
-  }, [hoveredSponsor])
+  }, [])
 
   useEffect(() => {
     // toggle page scroll
