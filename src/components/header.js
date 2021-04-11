@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"
+import { Link as ScrollLink } from "react-scroll"
 
 import PACard from '../components/pa-card'
 
@@ -10,8 +10,6 @@ const Header = ({ galleryScrolled, pageLocation }) => {
   
   const [innrNavVis, setInnrNavVis] = useState(0)
 
-
-
   useEffect(() => {
     if (pageLocation === "/gallery") {
       const newVis = galleryScrolled ? 0 : 1
@@ -19,7 +17,7 @@ const Header = ({ galleryScrolled, pageLocation }) => {
     } else {
       setInnrNavVis(1)
     }
-  }, [galleryScrolled])
+  }, [galleryScrolled, pageLocation])
 
   return (
     <header className="header">
