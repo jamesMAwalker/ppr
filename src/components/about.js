@@ -7,7 +7,6 @@ import Img from "gatsby-image"
 
 
 const About = () => {
-  
   // + Scroll animations
   useEffect(() => {
     const tabBP = parseInt(
@@ -98,11 +97,12 @@ const About = () => {
         <div className="about-images">
           {data.aboutPhotos.edges.map((photo, idx) => (
             <Img
+              key={photo.title}
               fadeIn
               fluid={photo.node.childImageSharp.fluid}
               objectFit="contain"
               objectPosition="50% 50%"
-              alt=""
+              alt={photo.title}
             />
           ))}
         </div>

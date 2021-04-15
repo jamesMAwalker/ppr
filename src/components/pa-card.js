@@ -3,7 +3,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import gsap from "gsap"
 
 import Img from "gatsby-image"
-import { Link } from "gatsby"
 
 import { PALogo, PAWordMarkWhite } from "../components/Logo"
 
@@ -21,6 +20,9 @@ const PACard = () => {
   } 
 
   useEffect(() => {
+    gsap.config({
+      nullTargetWarn: false,
+    })
     gsap.from(".pa-modal", 0.5, {
       opacity: 0,
       x: "10vw",

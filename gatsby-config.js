@@ -16,7 +16,16 @@ module.exports = {
         layout: require.resolve(`./src/layouts/index.js`),
       },
     },
+    {
+      resolve: `gatsby-source-sanity`,
+      options: {
+        projectId: `ntn6dlx6`,
+        dataset: `production`,
+        // graphqlTag: "default",
+      },
+    },
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,

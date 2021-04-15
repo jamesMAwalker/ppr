@@ -62,7 +62,7 @@ const EventsSection = ({ isMobile }) => {
       <section className="events" id="events">
         {EVENTS_INFO.map(ev => {
           return (
-            <div className="event-col">
+            <div className="event-col" key={ev.title} >
               <div className="map-img">
                 <Img
                   fadeIn

@@ -65,6 +65,9 @@ const SupporterKit = ({ isMobile }) => {
 
   // > Start Animations
   useEffect(() => {
+     gsap.config({
+       nullTargetWarn: false,
+     })
     gsap.from(".photo__slide", 0.4, {
       opacity: 0,
     })
@@ -73,6 +76,10 @@ const SupporterKit = ({ isMobile }) => {
   // > Scroll Animations
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
+
+     gsap.config({
+       nullTargetWarn: false,
+     })
 
     gsap.from(".photos .photo-grid", 1, {
       scrollTrigger: {
