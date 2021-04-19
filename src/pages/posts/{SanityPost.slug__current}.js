@@ -12,28 +12,14 @@ const sanityConfig = { projectId: "ntn6dlx6", dataset: "production" }
 const BlogPage = ({ data: { sanityPost } }) => {
   console.log('sanityPost as sanityPost: ', sanityPost);
   const mainImageAssetId = sanityPost.mainImage.asset.id
-  const authorImageAssetId = sanityPost.authors[0].author.image.asset.id
+  console.log('mainImageAssetId: ', mainImageAssetId);
+  // const authorImageAssetId = sanityPost.authors[0].author.image.asset.id
 
-  const excerptText = sanityPost.excerpt[0].children[0].text
-  const authorName = sanityPost.authors[0].author.name
+  const excerptText = sanityPost?.excerpt[0]?.children[0]?.text ?? ""
+  const authorName = sanityPost.author.name
 
-  const sharedImageOptions = {
-    formats: ["auto", "webp", "avif"],
-    placeHolder: "dominantColor",
-    quality: 100
-  }
-
-  const mainImageData = getGatsbyImageData(
-    mainImageAssetId,
-    { ...sharedImageOptions, width: 1000 },
-    sanityConfig
-  )
-
-  const authorImageData = getGatsbyImageData(
-    authorImageAssetId,
-    { ...sharedImageOptions },
-    sanityConfig
-  )
+  const mainImageData = sanityPost.mainImage.asset.gatsbyImageData
+  const authorImageData = sanityPost.author.image.asset.gatsbyImageData
 
 
   return (
@@ -42,9 +28,7 @@ const BlogPage = ({ data: { sanityPost } }) => {
         <GatsbyImage image={mainImageData} />
       </div>
       <div className="blog-header-area">
-        <div className="blog-header-title">
-          {sanityPost.title}
-        </div>
+        <div className="blog-header-title">{sanityPost.title}</div>
         <div className="blog-details">
           <p className="blog-excerpt-quote">
             "<br/>{excerptText}<br/>"
@@ -120,28 +104,6 @@ export default BlogPage
 
 
 export const pageQuery = graphql`
-  fragment SanityImage on SanityMainImage {
-    crop {
-      _key
-      _type
-      top
-      bottom
-      left
-      right
-    }
-    hotspot {
-      _key
-      _type
-      x
-      y
-      height
-      width
-    }
-    asset {
-      _id
-    }
-  }
-
   query PostPageQuery($id: String!) {
     sanityPost(id: { eq: $id }) {
       id
@@ -160,21 +122,18 @@ export const pageQuery = graphql`
         }
       }
       mainImage {
-        ...SanityImage
         asset {
-          assetId
           id
+          gatsbyImageData(formats: [WEBP,AVIF,AUTO])
         }
       }
-      authors {
-        author {
-          name
-          _createdAt
-          image {
-            alt
-            asset {
-              id
-            }
+      author {
+        name
+        _createdAt
+        image {
+          asset {
+            id
+            gatsbyImageData(fit: FILLMAX, formats: [WEBP,AVIF,AUTO])
           }
         }
       }

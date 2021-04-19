@@ -15,11 +15,12 @@ const Blogs = ({ data }) => {
     <main className="blogs">
       <div className="blogs-grid-wrapper">
         {data.entryData.edges.map(({ node: entry }, idx) => {
+          console.log('entry from blogS page: ', entry);
           const mainImageAssetId = entry.mainImage.asset.id
-          const authorImageAssetId = entry.authors[0].author.image.asset.id
+          // const authorImageAssetId = entry.author.image.asset.id
 
           const excerptText = entry.excerpt[0].children[0].text
-          const authorName = entry.authors[0].author.name
+          const authorName = entry?.author?.name ?? "PPR Team"
 
           const sharedImageOptions = {
             formats: ["auto", "webp", "avif"],
@@ -32,11 +33,11 @@ const Blogs = ({ data }) => {
             sanityConfig
           )
 
-          const authorImageData = getGatsbyImageData(
-            authorImageAssetId,
-            { ...sharedImageOptions },
-            sanityConfig
-          )
+          // const authorImageData = getGatsbyImageData(
+          //   authorImageAssetId,
+          //   { ...sharedImageOptions },
+          //   sanityConfig
+          // )
 
           const center = idx === 3 ? "center" : ""
 
@@ -50,7 +51,7 @@ const Blogs = ({ data }) => {
               <div className="blog-card-subtitle">{excerptText}</div>
               <div className="blog-card-author">
                 <div className="blog-card-author-photo">
-                  <GatsbyImage image={authorImageData} />
+                  {/* <GatsbyImage image={authorImageData} /> */}
                 </div>
                 <div className="blog-card-author-name">
                   by <span>{authorName}</span>
@@ -88,6 +89,7 @@ export const data = graphql`
             asset {
               assetId
               id
+              gatsbyImageData(fit: FILLMAX, formats: [WEBP,AVIF,AUTO])
             }
           }
           body {
@@ -95,15 +97,13 @@ export const data = graphql`
               text
             }
           }
-          authors {
-            author {
-              name
-              _createdAt
-              image {
-                alt
-                asset {
-                  id
-                }
+          author {
+            name
+            _createdAt
+            image {
+              asset {
+                id
+                gatsbyImageData(fit: FILLMAX, formats: [WEBP,AVIF,AUTO])
               }
             }
           }
