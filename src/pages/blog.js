@@ -2,55 +2,15 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import gsap from "gsap"
 
-import Img from "gatsby-image"
+import { Link } from 'gatsby'
 import { getGatsbyImageData } from "gatsby-source-sanity"
 import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
 
 const sanityConfig = { projectId: "ntn6dlx6", dataset: "production" }
 
-const Blogs = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      entryData: allSanityPost {
-        edges {
-          node {
-            title
-            excerpt {
-              children {
-                text
-              }
-            }
-            mainImage {
-              asset {
-                assetId
-                id
-              }
-            }
-            body {
-              children {
-                text
-              }
-            }
-            authors {
-              author {
-                name
-                _createdAt
-                image {
-                  alt
-                  asset {
-                    id
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  console.log(data.entryData.edges)
-
+const Blogs = ({ data }) => {
+  console.log('data from blog posts page: ', data);
+  
   return (
     <main className="blogs">
       <div className="blogs-grid-wrapper">
@@ -81,18 +41,22 @@ const Blogs = () => {
           const center = idx === 3 ? "center" : ""
 
           return (
-            <section className={`blog ${center}`}>
-              <div className="blog-title">{entry.title}</div>
-              <div className="blog-subt blog-excerpt">{excerptText}</div>
-              <div className="blog-author">
-                <div className="blog-author-photo">
+            <section className={`blog-card ${center}`}>
+              <div className="blog-card-title">
+                <Link to={entry.gatsbyPath}>
+                  {entry.title}
+                </Link>  
+              </div>
+              <div className="blog-card-subtitle">{excerptText}</div>
+              <div className="blog-card-author">
+                <div className="blog-card-author-photo">
                   <GatsbyImage image={authorImageData} />
                 </div>
-                <div className="blog-author-name">
+                <div className="blog-card-author-name">
                   by <span>{authorName}</span>
                 </div>
               </div>
-              <div className="blog-bgphoto">
+              <div className="blog-card-bgphoto">
                 <GatsbyImage image={mainImageData} />
               </div>
             </section>
@@ -104,3 +68,47 @@ const Blogs = () => {
 }
 
 export default Blogs
+
+export const data = graphql`
+  query {
+    entryData: allSanityPost(sort: { fields: _updatedAt, order: ASC }) {
+      edges {
+        node {
+          gatsbyPath(filePath: "/posts/{SanityPost.slug__current}")
+          title
+          slug {
+            current
+          }
+          excerpt {
+            children {
+              text
+            }
+          }
+          mainImage {
+            asset {
+              assetId
+              id
+            }
+          }
+          body {
+            children {
+              text
+            }
+          }
+          authors {
+            author {
+              name
+              _createdAt
+              image {
+                alt
+                asset {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

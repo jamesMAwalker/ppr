@@ -19,9 +19,16 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        projectId: `ntn6dlx6`,
+        projectId: `v0rw1hdx`,
         dataset: `production`,
         // graphqlTag: "default",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-sanity-image",
+      options: {
+        projectId: "v0rw1hdx",
+        dataset: "production",
       },
     },
     `gatsby-transformer-sharp`,

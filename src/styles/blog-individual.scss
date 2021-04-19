@@ -1,0 +1,79 @@
+.blog-page {
+  @include flexCenterCol;
+  grid-area: content;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.blog {
+  &-main-image {
+    width: 80%;
+    height: 70vh;
+    margin-top: var(--contentMargin);
+    div,
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &-header-area {
+    @include flexCenter;
+    width: calc(80% * .9);
+    background-color: $white;
+  }
+  &-header-title {
+    transform: translateY(-17vh);
+    width: 55%;
+    margin-right: 5%;
+    font-weight: 700;
+    font-size: var(--heroFontSize);
+    font-size: 9vh;
+    font-family: $font-title;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 150%;
+    color: $white;
+    mix-blend-mode: difference;
+  }
+  &-details {
+    @include flexCenterCol;
+    width: 42.5%;
+    align-items: flex-end;
+
+    .blog-excerpt-quote {
+      font-style: italic;
+      font-weight: 600;
+      color: $black;
+      text-align: right;
+      line-height: 250%;
+    }
+
+    &-author {
+      @include flexCenter;
+
+    }
+    &-author-thumbnail {
+      height: 50px;
+      width: 50px;
+      margin-right: 1rem;
+      div,
+      img {
+        border-radius: 200px;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+  &-content {
+    width: calc(80% * .8);
+    margin-bottom: var(--contentMargin);
+  }
+  &-subtitle {
+    font-size: var(--lgFontSize);
+    font-weight: 600;
+  }
+  &-text {
+    line-height: 200%;
+  }
+}
