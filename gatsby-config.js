@@ -26,7 +26,8 @@ module.exports = {
         overlayDrafts: true,
         token:
           "skKbmMz6xD1c29LWXqDJeyKBCe2TkgVsy0USillhuJCZqDK56F0DPMduZ3dEPMWMauAZ1PBpXXbze0YPFoOEbazKzULK6TiChXEYOplUL54S29RUM5DrCWNUlH7ppYzf63TdyPpTzyZkwS2IsTESSXnWfJbDlGyEPec60EFh7X5YrO6I6B52", // or leave blank for unauthenticated usage
-        useCdn: false,
+        useCdn: true,
+        withCredentials: true
         // graphqlTag: "default",
       },
     },
