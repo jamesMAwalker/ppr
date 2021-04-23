@@ -41,10 +41,14 @@
 
       h3 {
         margin: 0;
-        font-size: var(--mLgFontSize);
+        font-size: var(--xLgFontSize);
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: var(--spaced);
+        letter-spacing: var(--FourXSpaced);
+        
+        @include media("<=tablet") {
+         font-size: var(--lgFontSize);
+        }
       }
 
       p {
@@ -78,7 +82,7 @@
       gap: var(--photoGap);
       grid-template-rows: repeat(3, 1fr);
       grid-template-columns: 100%;
-
+      
       @include media("<=tablet") {
         display: none;
       }

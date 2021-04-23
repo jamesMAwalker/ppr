@@ -22,7 +22,7 @@
       display: flex;
       align-items: center;
       justify-content: space-evenly;
-      
+
       .nav-header {
         @include media("<=tablet") {
           display: none;
@@ -44,7 +44,7 @@
         justify-content: center;
 
         svg {
-          transform: translateY(1vh) scale(.75);
+          transform: translateY(1vh) scale(0.75);
           &:hover {
             path {
               stroke: black;
@@ -55,47 +55,98 @@
         }
         path {
           shape-rendering: geometricPrecision;
-          transition: all .4s;
+          transition: all 0.4s;
         }
       }
     }
 
     .navigation {
-
       display: flex;
       align-items: center;
       justify-content: space-evenly;
-
+      transition: all .5s;
+      
       nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        transition: all .5s;
+
         & > * {
           cursor: pointer;
         }
 
+        .last {
+          position: relative;
+          // margin-right: 20px;
+          button {
+            cursor: pointer;
+            margin-left: 10px;
+            padding: 0 !important;
+            font-size: 1.25rem;
+            background-color: transparent;
+            color: $black;
+            transition: all .2s;
+            &:hover {
+              transform: scale(1.25);
+            }
+          }
+        }
+
+        .about-menu {
+          @include flexCenter;
+          position: absolute;
+          right: -35vh;
+          justify-content: space-evenly;
+          height: var(--contentMargin);
+          width: 35vh;
+          background-color: $black;
+          text-align: center;
+          a {
+            margin: 0;
+          }
+          span {
+            text-align: center;
+            color: $white !important;
+            font-weight: 200;
+            transition: all .2s;
+            &:hover {
+              color: $pink;
+              font-weight: 700;
+            }
+          }
+          & .shade {
+            @include pseudoShade($white);
+            top: 0;
+            left: -1%;
+            // opacity: 0;
+            transform-origin: right;
+            right: 0 !important;
+            width: 102%;
+          }
+        }
+
         a {
-          margin: 0 20px ;
+          margin: 0 20px;
           text-transform: uppercase;
           text-decoration: none;
           letter-spacing: 2px;
           font-size: var(--baseFontSize);
           font-weight: 700;
           color: $black;
-
-          &:last-child {
-            margin-right: 0;
-          }
         }
       }
 
       .PA-square {
         cursor: pointer;
-        margin-left: 40px;
+        z-index: $honeyBee;
         height: var(--contentMargin);
         width: var(--contentMargin);
         background-color: $pink;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all .2s;
+        transition: all 0.2s;
 
         &.open {
           z-index: $sparrow;

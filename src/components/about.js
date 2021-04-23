@@ -1,10 +1,11 @@
 import React, { useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import gsap from 'gsap'
+// import gsap from 'gsap'
 
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+// import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Img from "gatsby-image"
 
+import { slowScrollUpFadeIn } from "../animations/slowUpFadeIn"
 
 const About = () => {
   // + Scroll animations
@@ -17,34 +18,13 @@ const About = () => {
     )
     const isMobile = window.innerWidth <= tabBP
 
-    gsap.registerPlugin(ScrollTrigger)
-
-    gsap.from(".about-text", 0.5, {
-      scrollTrigger: {
-        start: "top bottom",
-        trigger: ".about-text",
-      },
-      stagger: {
-        amount: 0.75,
-      },
-      // y: `${!isMobile ? "40vh" : 0}`,
-      opacity: `${!isMobile ? 0 : 1}`,
-    })
-    gsap.from(".about-images div", 1, {
-      scrollTrigger: {
-        trigger: ".about-images div",
-        start: "top bottom-=40%",
-        toggleActions: "restart none none none",
-        scrub: 2,
-      },
-      x: "30vw",
-      stagger: {
-        amount: 0.75,
-      },
-      opacity: 0,
-    })
+    // (el, op=2, y=3)
+    slowScrollUpFadeIn(".about-images div")
+    if (!isMobile) {
+      slowScrollUpFadeIn(".about-text", 1, 2)
+    }
   }, [])
-  
+
   const data = useStaticQuery(graphql`
     query {
       aboutPhotos: allFile(
