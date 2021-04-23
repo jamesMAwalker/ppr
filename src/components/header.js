@@ -136,13 +136,13 @@ const Header = ({ galleryScrolled, pageLocation }) => {
                   </Link>
                   <div className="about-menu">
                     <div className="shade" />
-                    <Link to="about" >
+                    <Link to="/#about" >
                       <span>STORY</span>
                     </Link>
                     <Link to="/team">
                       <span>TEAM</span>
                     </Link>
-                    <Link to="contact" >
+                    <Link to="/#contact" >
                       <span>CONTACT</span>
                     </Link>
                   </div>

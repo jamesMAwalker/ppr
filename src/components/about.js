@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 // import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Img from "gatsby-image"
 
-import { slowScrollUpFadeIn } from "../animations/slowUpFadeIn"
+import { slowScrollUpFadeIn } from "../animations/scrollAnimations"
 
 const About = () => {
   // + Scroll animations

@@ -9,6 +9,7 @@ export const slowScrollUpFadeIn = (el, opDelay = 2, yDelay = 3) => {
       trigger: el,
       start: "top bottom-=20%",
     },
+    ease: "expo.out",
     opacity: 0,
     stagger: {
       amount: 0.75,
@@ -19,9 +20,24 @@ export const slowScrollUpFadeIn = (el, opDelay = 2, yDelay = 3) => {
       trigger: el,
       start: "top bottom-=20%",
     },
+    ease: "expo.out",
     y: "10vh",
     stagger: {
       amount: 0.5,
     },
   })
 }
+
+export const fadeIn = (el, opDelay = 3) => {
+  gsap.from(el, opDelay, {
+    scrollTrigger: {
+      trigger: el,
+      start: "top bottom-=20%",
+    },
+    opacity: 0,
+    stagger: {
+      amount: 0.75,
+    },
+  })
+}
+

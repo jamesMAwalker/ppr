@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 import Img from "gatsby-image"
 
+import { slowScrollUpFadeIn, fadeIn } from '../animations/scrollAnimations'
+
 import { PAWordMark } from "./Logo"
 import { ScrollIcon } from './icons'
 
@@ -76,35 +78,13 @@ const SupporterKit = ({ isMobile }) => {
   // > Scroll Animations
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
-
-     gsap.config({
-       nullTargetWarn: false,
-     })
-
-    gsap.from(".photos .photo-grid", 1, {
-      scrollTrigger: {
-        trigger: ".photos .photo-grid",
-        scrub: 0.75,
-        start: "top bottom+=50%",
-        end: "top bottom-=50%",
-      },
-      stagger: {
-        amount: 0.5,
-      },
-      x: `${isMobile ? "-10vw" : 0}`,
+    gsap.config({
+      nullTargetWarn: false,
     })
-    gsap.from(".content", 1, {
-      scrollTrigger: {
-        trigger: ".content",
-        end: "top bottom-=40%",
-        scrub: 1,
-      },
-      stagger: {
-        amount: 0.5,
-      },
-      y: "10vh",
-      opacity: 0.5,
-    })
+    if (!isMobile) {
+      slowScrollUpFadeIn(".content", 3, 1.5)
+      fadeIn(".photos .photo-grid", 1)
+    }
   }, [isMobile])
 
   const data = useStaticQuery(graphql`
