@@ -14,24 +14,25 @@ const HeroGrid = ({ isMobile }) => {
     false, 
     false
   ])
-  const [heroesAllLoaded, setHeroesAllLoaded] = useState(false)
+  const [heroesAllLoaded, setHeroesAllLoaded] = useState(true)
   
   const handleLoaded = (idx) => {
     const newLoadState = heroesLoaded
     newLoadState[idx] = true
     setHeroesLoaded(newLoadState)
-    setTimeout(() => {
-      setHeroesAllLoaded(heroesLoaded.every(h => h === true))
-      gsap.to(".vp-shade", 1, { 
-        opacity: 0,
-        transform: "scale(2)"
-       })
-      gsap.to(".vp-shade", 1, { 
-        visibility: 'hidden',
-        delay: 1.5
-       })
-    }, 1000);
   }
+  
+  setTimeout(() => {
+    // setHeroesAllLoaded(heroesLoaded.every(h => h === true))
+    gsap.to(".vp-shade", 1, { 
+      opacity: 0,
+      transform: "scale(2)"
+     })
+    gsap.to(".vp-shade", 1, { 
+      visibility: 'hidden',
+      delay: 1.5
+     })
+  }, 1000);
 
   // > Start Animations
   useEffect(() => {
@@ -71,35 +72,13 @@ const HeroGrid = ({ isMobile }) => {
     )
   }, [])
 
-  // > Scroll Animations
-  useEffect(() => {
-    if (!isMobile) {
-      gsap.registerPlugin(ScrollTrigger)
-
-      gsap.to(".hero-grid .photo", 1, {
-        scrollTrigger: {
-          trigger: ".hero-grid .photo",
-          start: "bottom bottom-=13.5%",
-          toggleActions: "restart none none none",
-          scrub: 2,
-        },
-        stagger: {
-          amount: 0.25,
-        },
-        y: `${isMobile ? "-40vw" : 0}`,
-      })
-    }
-  }, [isMobile])
-
-
-
   const data = useStaticQuery(graphql`
     query {
       bannerCenter: file(
         relativePath: { eq: "full-sized-images/hero-center.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1000, quality: 80) {
+          fluid(maxWidth: 2000, quality: 100) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
@@ -123,76 +102,99 @@ const HeroGrid = ({ isMobile }) => {
     }
   `)
 
+  console.log("data from hero-grid: ", data);
+
   return (
     <>
       <div className={`vp-shade ${isMobile ? "black" : "white"}`}>
         <Logo />
       </div>
-      <main className="hero">
-        <div className="hero-grid">
-          <div className="hero-small photo left">
-            <div
-              className="shade"
-              style={{
-                background: `${!heroesAllLoaded ? "black" : ""}`,
-              }}
-            />
-            <Img
-              fadeIn
-              fluid={data.heroLeft.childImageSharp.fluid}
-              objectFit="cover"
-              objectPosition="50% 50%"
-              alt="a vegan cyclist"
-              onLoad={() => handleLoaded(0)}
-            />
-            <div className="hero-text">
-              <span>PLANT</span>
+      <section className="hero">
+        {isMobile ? (
+          <div className="hero-grid--mobile">
+            <div className="hero-small photo left">
+              <div
+                className="shade"
+                style={{
+                  background: `${!heroesAllLoaded ? "black" : ""}`,
+                }}
+              />
+              <Img
+                fadeIn
+                fluid={data.heroLeft.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt="a vegan cyclist"
+                onLoad={() => handleLoaded(0)}
+              />
+              <div className="hero-text">
+                <span>PLANT</span>
+              </div>
+            </div>
+            <div className="hero-center photo">
+              <div
+                className="shade"
+                style={{
+                  background: `${!heroesAllLoaded ? "black" : ""}`,
+                }}
+              />
+              <Img
+                fadeIn
+                fluid={data.bannerCenter.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 100%"
+                alt="some vegan cyclists"
+                onLoad={() => handleLoaded(1)}
+              />
+              <div className="hero-text">
+                <span>
+                  <em>POWER</em>
+                </span>
+              </div>
+            </div>
+            <div className="hero-small photo right">
+              <div
+                className="shade"
+                style={{
+                  background: `${!heroesAllLoaded ? "black" : ""}`,
+                }}
+              />
+              <Img
+                fadeIn
+                fluid={data.heroRight.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt="some vegan cyclists"
+                onLoad={() => handleLoaded(2)}
+              />
+              <div className="hero-text right">
+                <span>RACING</span>
+              </div>
             </div>
           </div>
-          <div className="hero-center photo">
-            <div
-              className="shade"
-              style={{
-                background: `${!heroesAllLoaded ? "black" : ""}`,
-              }}
-            />
-            <Img
-              fadeIn
-              fluid={data.bannerCenter.childImageSharp.fluid}
-              objectFit="cover"
-              objectPosition="50% 100%"
-              alt="some vegan cyclists"
-              onLoad={() => handleLoaded(1)}
-            />
-            <div className="hero-text">
-              <span>
+        ) : (
+          <div className="hero-grid--desk">
+            <div className="photo-window">
+              <div className="hero-text--desk">PLANT</div>
+              <div className="window-bar" />
+              <div className="hero-text--desk">
                 <em>POWER</em>
-              </span>
+              </div>
+              <div className="window-bar" />
+              <div className="hero-text--desk">RACING</div>
+            </div>
+            <div className="hero-photo">
+              <Img
+                fadeIn
+                fluid={data.bannerCenter.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt="some vegan cyclists"
+              />
             </div>
           </div>
-          <div className="hero-small photo right">
-            <div
-              className="shade"
-              style={{
-                background: `${
-                  !heroesAllLoaded ? "black" : ""
-                }`,
-              }}
-            />
-            <Img
-              fadeIn
-              fluid={data.heroRight.childImageSharp.fluid}
-              objectFit="cover"
-              objectPosition="50% 50%"
-              alt="some vegan cyclists"
-              onLoad={() => handleLoaded(2)}
-            />
-            <div className="hero-text right">
-              <span>RACING</span>
-            </div>
-          </div>
-        </div>
-      </main>
+        )}
+      </section>
     </>
   )
 }

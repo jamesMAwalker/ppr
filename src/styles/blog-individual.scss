@@ -3,6 +3,11 @@
   grid-area: content;
   min-height: 100vh;
   width: 100%;
+  @include media("<=tablet") {
+    margin: 0;
+    width: 100vw;
+    background-color: $white;
+  }
 }
 
 .blog {
@@ -11,13 +16,20 @@
     width: 100%;
     height: 70vh;
     margin-top: var(--contentMargin);
-    background: linear-gradient(to left, $pink 30%, $whiteTr);
-    div,
+    @include media("<=tablet") {
+      margin: 0;
+      width: 100vw;
+    }
     img {
       height: 100%;
       width: 80%;
       object-fit: cover;
       object-position: center;
+      @include media("<=tablet") {
+        max-width: 100vw;
+        width: 100%;
+        margin-top: 0;
+      }
     }
   }
 
@@ -25,25 +37,43 @@
     @include flexCenter;
     width: calc(80% * .9);
     background-color: $white;
+    @include media("<=tablet") {
+      flex-direction: column;
+      width: 100vw;
+    }
   }
   &-header-title {
-    transform: translateY(-17vh);
     width: 45%;
     margin-right: 5%;
+    transform: translateY(-17vh);
+    word-wrap: break-word;
     font-weight: 700;
     font-size: var(--heroFontSize);
-    font-size: 9vh;
+    font-size: 9.5vh;
     font-family: $font-title;
     text-transform: uppercase;
     text-align: left;
-    line-height: 150%;
+    line-height: 145%;
     color: $turquoise;
     mix-blend-mode: difference;
+    @include media("<=tablet") {
+      // @include flexCenter;
+      transform: translateY(-25vh);
+      width: 85%;
+      margin: 0;
+      margin-bottom: -25vh;
+    }
   }
   &-details {
     @include flexCenterCol;
     width: 42.5%;
     align-items: flex-end;
+
+    @include media("<=tablet") {
+      width: 70%;
+      text-align: center;
+      align-items: center;
+    }
 
     .blog-excerpt-quote {
       font-style: italic;
@@ -51,27 +81,47 @@
       color: $black;
       text-align: right;
       line-height: 250%;
+      @include media("<=tablet") {
+        display: none;
+      }
     }
 
     &-author {
       @include flexCenter;
-
+      @include media("<=tablet") {
+        margin: 5vh 0;
+      }
+    }
+    .blog-author-name {
+      span {
+        @include media("<=tablet") {
+          font-size: var(--mFontSize);
+          font-weight: 500;
+        }
+      }
     }
     &-author-thumbnail {
+      @include flexCenter;
       height: 50px;
       width: 50px;
       margin-right: 1rem;
-      div,
+      border-radius: 200px;
+      border: 3.25px solid $black;
       img {
-        border-radius: 200px;
+        transform-origin: center;
+        clip-path: circle(50% at 50% 50%);
         height: 100%;
         width: 100%;
+        object-fit: cover;
       }
     }
   }
   &-content {
     width: calc(80% * .8);
     margin-bottom: var(--contentMargin);
+    @include media("<=tablet") {
+      width: 90%;
+    }
   }
   &-subtitle {
     font-size: var(--lgFontSize);
@@ -79,5 +129,28 @@
   }
   &-text {
     line-height: 200%;
+    @include media("<=tablet") {
+      font-size: var(--mFontSize);
+    }
+  }
+}
+
+.back-to-blogs {
+  margin: 7vh 0;
+  @include media("<=tablet") {
+    @include flexCenter;
+    button {
+      font-size: var(--mFontSize);
+    }
+  }
+  &-btn {
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent !important;
+    color: $blackTr;
+    transition: all .2s;
+    &:hover {
+      color: $black;
+    }
   }
 }

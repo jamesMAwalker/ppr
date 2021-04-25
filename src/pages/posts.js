@@ -5,8 +5,8 @@ import gsap from "gsap"
 import { Link } from 'gatsby'
 import { getGatsbyImageData } from "gatsby-source-sanity"
 import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
+import SanityImage from 'gatsby-plugin-sanity-image'
 
-const sanityConfig = { projectId: "ntn6dlx6", dataset: "production" }
 
 const Blogs = ({ data }) => {
   console.log('data from blog posts page: ', data);
@@ -15,43 +15,32 @@ const Blogs = ({ data }) => {
     <main className="blogs">
       <div className="blogs-grid-wrapper">
         {data.entryData.edges.map(({ node: entry }, idx) => {
-          console.log('entry from blogS page: ', entry);
-          const mainImageAssetId = entry.mainImage.asset.id
-          // const authorImageAssetId = entry.author.image.asset.id
-
-          const excerptText = entry.excerpt[0].children[0].text
           const authorName = entry?.author?.name ?? "PPR Team"
 
-          const sharedImageOptions = {
-            formats: ["auto", "webp", "avif"],
-            placeHolder: "dominantColor",
-          }
+          const mainImageData = entry.mainImage.asset.gatsbyImageData
+          const authorImageData = entry.author.image
 
-          const mainImageData = getGatsbyImageData(
-            mainImageAssetId,
-            { ...sharedImageOptions, width: 700 },
-            sanityConfig
-          )
-
-          // const authorImageData = getGatsbyImageData(
-          //   authorImageAssetId,
-          //   { ...sharedImageOptions },
-          //   sanityConfig
-          // )
-
-          const center = idx === 3 ? "center" : ""
-
+          // set latest post to center grid cell
+          const center = idx === 0 ? "center" : ""
+          
           return (
             <section className={`blog-card ${center}`}>
+              {center && <div className="latest">Latest</div>}
               <div className="blog-card-title">
                 <Link to={entry.gatsbyPath}>
-                  {entry.title}
-                </Link>  
+                  {entry.title.length > 30
+                    ? `${entry.title.slice(0, 36)}...`
+                    : `${entry.title}`}
+                </Link>
               </div>
-              <div className="blog-card-subtitle">{excerptText}</div>
+              <div className="blog-card-subtitle">{entry.subtitle}</div>
               <div className="blog-card-author">
                 <div className="blog-card-author-photo">
-                  {/* <GatsbyImage image={authorImageData} /> */}
+                  <SanityImage
+                    {...authorImageData}
+                    width={200}
+                    // objectFit="cover"
+                  />
                 </div>
                 <div className="blog-card-author-name">
                   by <span>{authorName}</span>
@@ -59,6 +48,9 @@ const Blogs = ({ data }) => {
               </div>
               <div className="blog-card-bgphoto">
                 <GatsbyImage image={mainImageData} />
+              </div>
+              <div className="post-category">
+                <em>{entry.categories[0].title}</em>
               </div>
             </section>
           )
@@ -72,11 +64,15 @@ export default Blogs
 
 export const data = graphql`
   query {
-    entryData: allSanityPost(sort: { fields: _updatedAt, order: ASC }) {
+    entryData: allSanityPost(sort: { fields: _updatedAt, order: DESC } limit: 5 ) {
       edges {
         node {
           gatsbyPath(filePath: "/posts/{SanityPost.slug__current}")
           title
+          subtitle
+          categories {
+            title
+          }
           slug {
             current
           }
@@ -101,10 +97,7 @@ export const data = graphql`
             name
             _createdAt
             image {
-              asset {
-                id
-                gatsbyImageData(fit: FILLMAX, formats: [WEBP,AVIF,AUTO])
-              }
+              ...ImageWithPreview
             }
           }
         }

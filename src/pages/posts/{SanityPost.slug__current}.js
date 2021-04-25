@@ -1,55 +1,47 @@
 import React from 'react'
 import { graphql } from "gatsby"
 
+import { Link } from "gatsby"
 import SanityImage from "gatsby-plugin-sanity-image"
-
-import { getGatsbyImageData } from "gatsby-source-sanity"
-import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
-
-
-const sanityConfig = { projectId: "ntn6dlx6", dataset: "production" }
+import PortableText from "react-portable-text"
 
 const BlogPage = ({ data: { sanityPost } }) => {
   console.log('sanityPost as sanityPost: ', sanityPost);
-  const mainImageAssetId = sanityPost.mainImage.asset.id
-  console.log('mainImageAssetId: ', mainImageAssetId);
-  // const authorImageAssetId = sanityPost.authors[0].author.image.asset.id
 
   const excerptText = sanityPost?.excerpt[0]?.children[0]?.text ?? ""
   const authorName = sanityPost.author.name
 
-  const mainImageData = sanityPost.mainImage.asset.gatsbyImageData
-  const authorImageData = sanityPost.author.image.asset.gatsbyImageData
-
+  const mainImageData = sanityPost.mainImage
+  const authorImageData = sanityPost.author.image
 
   return (
     <section className="blog-page">
       <div className="blog-main-image">
-        <GatsbyImage image={mainImageData} />
+        <SanityImage {...mainImageData} quality={100} width={1000} hotspot={mainImageData.hotspot}/>
       </div>
       <div className="blog-header-area">
         <div className="blog-header-title">{sanityPost.title}</div>
         <div className="blog-details">
           <p className="blog-excerpt-quote">
-            "<br/>{excerptText}<br/>"
-            {/* "Today and tomorrow would certainly deliver. Seeing Taylor and the
-            rest of our friends restored my spirits, along with a caffeinated
-            jolt of energy and some noodles. Finally, we rolled out of Tiên Kỳ
-            and proceeded to climb....
-            <br /> And climb....
-            <br /> And climb....
-            <br /> And climb...." */}
+            "<br />
+            {excerptText}
+            <br />"
           </p>
           <div className="blog-details-author">
             <div className="blog-details-author-thumbnail">
-              <GatsbyImage image={authorImageData} />
+              <SanityImage {...authorImageData} width={100}/>
             </div>
-            <div className="blog-author-name">By <span>{authorName}</span></div>
+            <div className="blog-author-name">
+              By <span>{authorName}</span>
+            </div>
           </div>
         </div>
       </div>
       <div className="blog-content">
-        <div className="blog-subtitle">
+        <div className="blog-text">
+          <PortableText content={sanityPost._rawBody} />
+        </div>
+        {/* <div className="blog-subtitle">
           VXX DAYS 2 & 3: Crossing the Annamite Range
         </div>
         <p className="blog-text">
@@ -94,7 +86,12 @@ const BlogPage = ({ data: { sanityPost } }) => {
           up inclines that shouldn't have posed any problem, but doing so in
           98-100 degrees for hours at a time was dehydrating us more quickly
           than we could consume whatever liquid we could get our hands on.
-        </p>
+        </p> */}
+        <div className="back-to-blogs">
+          <button className="back-to-blogs-btn">
+            <Link to="/posts">◀ BACK TO ALL POSTS</Link>
+          </button>
+        </div>
       </div>
     </section>
   )
@@ -116,25 +113,27 @@ export const pageQuery = graphql`
           text
         }
       }
+      _rawBody
       body {
         children {
+          _key
+          _type
+          marks
           text
         }
       }
       mainImage {
+        ...ImageWithPreview
         asset {
           id
-          gatsbyImageData(formats: [WEBP,AVIF,AUTO])
+          gatsbyImageData(formats: [WEBP, AVIF, AUTO])
         }
       }
       author {
         name
         _createdAt
         image {
-          asset {
-            id
-            gatsbyImageData(fit: FILLMAX, formats: [WEBP,AVIF,AUTO])
-          }
+          ...ImageWithPreview
         }
       }
     }

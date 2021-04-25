@@ -6,8 +6,9 @@ import { Link as ScrollLink } from "react-scroll"
 
 
 import PACard from '../components/pa-card'
-
 import { LogoColor } from './Logo'
+
+import { navMenuOpen, navMenuClose } from '../animations/navAnimations'
 
 const Header = ({ galleryScrolled, pageLocation }) => {
   const [innrNavVis, setInnrNavVis] = useState(0)
@@ -34,33 +35,16 @@ const Header = ({ galleryScrolled, pageLocation }) => {
       + then close
     */
     if (!aboutMenuOpen) {
-      gsap.to(".nav", .3, {
-        ease: "expo.in",
-        x: "-35vh",
-      })
-      gsap.to(".about-menu .shade", .3, {
-        ease: "expo.in",
-        delay: .6,
-        scaleX: 0,
-      }
-      )
+      navMenuOpen(".nav", ".about-menu .shade")
       setTimeout(() => {
         setAboutMenuOpen(true)
       }, 100);
     } 
     else {
-      gsap.to(".about-menu .shade", 0.5, {
-        ease: "expo.in",
-        scaleX: 1
-      })
-      gsap.to(".navigation nav", 0.3, {
-        ease: "expo.in",
-        delay: 0.3,
-        x: "0",
-      })
+      navMenuClose(".nav", ".about-menu .shade")
       setTimeout(() => {
         setAboutMenuOpen(false)
-      }, 100);
+      }, 600);
     }
   }
 
@@ -88,13 +72,13 @@ const Header = ({ galleryScrolled, pageLocation }) => {
                   <Link to="/sponsors">
                     <span className="hover-shadows">Sponsors</span>
                   </Link>
-                  <ScrollLink to="events" smooth offset={-125}>
+                  <ScrollLink to="events" smooth="true" offset={-125}>
                     <span className="hover-shadows">Events</span>
                   </ScrollLink>
-                  <Link to="posts" smooth offset={-125}>
+                  <Link to="posts" smooth="true" offset={-125}>
                     <span className="hover-shadows">Writing</span>
                   </Link>
-                  <ScrollLink to="about" smooth offset={-120}>
+                  <ScrollLink to="about" smooth="true" offset={-120}>
                     <span className="hover-shadows last">
                       About
                       <button onClick={toggleAboutMenu}>
@@ -104,13 +88,13 @@ const Header = ({ galleryScrolled, pageLocation }) => {
                   </ScrollLink>
                   <div className="about-menu">
                     <div className="shade" />
-                    <ScrollLink to="about" smooth offset={-120}>
+                    <ScrollLink to="about" smooth="true" offset={-120}>
                       <span>STORY</span>
                     </ScrollLink>
                     <Link to="/team">
                       <span>TEAM</span>
                     </Link>
-                    <ScrollLink to="contact" smooth offset={-125}>
+                    <ScrollLink to="contact" smooth="true" offset={-125}>
                       <span>CONTACT</span>
                     </ScrollLink>
                   </div>
@@ -123,8 +107,8 @@ const Header = ({ galleryScrolled, pageLocation }) => {
                   <Link to="/#events">
                     <span className="hover-shadows">Events</span>
                   </Link>
-                  <Link to="/#about">
-                    <span className="hover-shadows">about</span>
+                  <Link to="/posts">
+                    <span className="hover-shadows">Writing</span>
                     </Link>
                     <Link to={null} disabled>
                     <span className="hover-shadows last">

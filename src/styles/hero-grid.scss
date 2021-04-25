@@ -52,7 +52,7 @@
     background-color: $black;
   }
 
-  .hero-grid {
+  .hero-grid--mobile {
     position: relative;
     height: 75vh;
     width: 100%;
@@ -158,102 +158,59 @@
     }
   }
 
-  .scroll {
-    display: none;
-    @include media("<=tablet") {
-      display: none;
-    }
-
-    height: var(--contentMargin);
+  .hero-grid--desk {
+    @include flexCenter;
+    position: relative;
+    min-height: 87.5vh;
+    /*
+      + uncomment for framed hero
+      min-height: 75vh;
+      height: 75vh;
+    */
+    margin-bottom: var(--contentMargin);
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-weight: 700;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: $black;
 
-    &-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+    .photo-window {
+      @include flexCenter;
+      justify-content: space-evenly;
+      z-index: $honeyBee;
+      height: 100%;
+      height: 87.5vh;
+      width: 100%;
+    }
+    .window-bar {
+      height: 100%;
+      width: var(--photoGap);
+      background-color: $white;
+    }
+    .hero-text--desk {
+      @include flexCenter;
+      width: calc(33.333% - var(--photoGap));
+      font-family: $font-title;
+      font-size: var(--xLgFontSize);
+      font-weight: 500;
+      letter-spacing: 25px;
+      color: $white;
+    }
 
-      &:hover {
-        svg {
-          transition: all .4s;
-          path {
-            fill: $black;
-            text-shadow: 1.5px 1.5px 0 $turquoiseTr,
-            3px 3px 0 $pink;
-          }
-        }
+    .hero-photo {
+      position: absolute;
+      height: 87.5vh;
+      /*
+        + uncomment for framed hero
+        height: 100%;
+      */
+      width: 100%;
+      top: 0;
+      left: 0;
+      div,
+      img {
+        height: 100%;
+        width: 100%;
+      }
+      &::after {
+        @include pseudoShade($blackTr2);
       }
     }
-    
-    & > * {
-      cursor: pointer;
-    }
-
-    svg {
-      height: 30px;
-      width: 30px;
-      margin-right: 1rem;
-      stroke: $black;
-      
-      path {
-        transition: all .2s;
-        fill: transparent;
-      }
-    }
-  }
-
-  .fixed-link {
-    display: none;
-    position: fixed;
-    position: absolute;
-    z-index: 99 ;
-    top: 50%;
-    right: 2vw;
-    transform: translateY(-50%) rotate(-90deg);
-    font-size: .875rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: $black;
-    color: $white;
-    mix-blend-mode: difference;
-
-
-    &:hover {
-
-      // & ~ .chevron {
-      //   transform: translateY(-50%) translateX(3px);
-      //   stroke: 1px;
-      // }
-    }
-  }
-
-  .chevron {
-    display: none;
-    position: fixed;
-    position: absolute;
-    z-index: 9;
-    height: 20px;
-    width: 20px;
-    top: 50%;
-    right: 2vw;
-    transform: translateY(-50%);
-    mix-blend-mode: difference;
-    transition: all .4s;
-    
-    path {
-      fill: white;
-    }
-
-    // &:hover {
-    //   transform: translateY(-50%) translateX(3px);
-    // }
   }
 }

@@ -27,7 +27,7 @@ module.exports = {
         token:
           "skKbmMz6xD1c29LWXqDJeyKBCe2TkgVsy0USillhuJCZqDK56F0DPMduZ3dEPMWMauAZ1PBpXXbze0YPFoOEbazKzULK6TiChXEYOplUL54S29RUM5DrCWNUlH7ppYzf63TdyPpTzyZkwS2IsTESSXnWfJbDlGyEPec60EFh7X5YrO6I6B52", // or leave blank for unauthenticated usage
         useCdn: true,
-        withCredentials: true
+        withCredentials: true,
         // graphqlTag: "default",
       },
     },
@@ -36,6 +36,11 @@ module.exports = {
       options: {
         projectId: "v0rw1hdx",
         dataset: "production",
+        defaultImageConfig: {
+          quality: 100, // use reasonable lossy compression level
+          fit: "max", // like `object-fit: contain`, but never scaling up
+          auto: "format", // automatically select next-gen image formats on supporting browsers
+        },
       },
     },
     `gatsby-transformer-sharp`,

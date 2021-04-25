@@ -3,10 +3,11 @@
 .about {
   grid-area: content;
   height: 100vh;
-
+  margin-top: calc(var(--contentMargin) * 2);
+  
   @include media("<=tablet") {
-    margin-top: var(--contentMargin);
     height: unset;
+    margin-top: var(--contentMargin);
   }
 
   .inner-about {

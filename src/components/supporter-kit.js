@@ -24,7 +24,7 @@ TODO {
 */
 
 const SupporterKit = ({ isMobile }) => {
-  const [mainPhoto, setMainPhoto] = useState(["", "", "ph1", ""])
+  const [mainPhoto, setMainPhoto] = useState(["ph1", "", "", ""])
   const handlePhotoSwitch = (e) => {
     const clickedPhoto = parseInt(e.target.id, 10)
 
@@ -77,14 +77,17 @@ const SupporterKit = ({ isMobile }) => {
 
   // > Scroll Animations
   useEffect(() => {
+    console.log("isMobile from supporterkit: ", isMobile);
     gsap.registerPlugin(ScrollTrigger)
     gsap.config({
       nullTargetWarn: false,
     })
-    if (!isMobile) {
-      slowScrollUpFadeIn(".content", 3, 1.5)
-      fadeIn(".photos .photo-grid", 1)
-    }
+    setTimeout(() => {
+      if (!isMobile) {
+        slowScrollUpFadeIn(".content", 3, 1.5)
+        fadeIn(".photos .photo-grid", 1)
+      }
+    }, 500);
   }, [isMobile])
 
   const data = useStaticQuery(graphql`

@@ -8,6 +8,7 @@ import { InstaIcon, ScrollIcon, StravaIcon } from "./icons"
 
 const MobileMenu = ({ btnVisible, isMobile, menuVisible, pageLocation, toggleMenu }) => {
   const [btnDisabled, setBtnDisabled] = useState(false)
+  const pageDirectory = pageLocation.split("/")
 
   const handleMenuOpen = () => {
     setBtnDisabled(true)
@@ -48,9 +49,10 @@ const MobileMenu = ({ btnVisible, isMobile, menuVisible, pageLocation, toggleMen
     }
   }
 
+
   return (
     <>
-      {pageLocation !== "/" && !btnVisible && !menuVisible && isMobile && (
+      {!pageDirectory[1] && pageLocation !== "/" && !btnVisible && !menuVisible && isMobile && (
         <div className="current-page">▪{pageLocation}</div>
       )}
       <button
@@ -88,14 +90,14 @@ const MobileMenu = ({ btnVisible, isMobile, menuVisible, pageLocation, toggleMen
             </p>
           </AniLink>
           <span>▪</span>
-          <AniLink cover bg="var(--pink)" direction="left" to="/">
+          <AniLink cover bg="var(--pink)" direction="left" to="/posts">
             <p
               onClick={handleMenuOpen}
               onKeyDown={handleEnterKey}
               role="button"
               tabIndex={0}
             >
-              CONTACT
+              WRITING
             </p>
           </AniLink>
           <span>▪</span>

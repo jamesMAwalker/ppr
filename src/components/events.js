@@ -5,7 +5,7 @@ import gsap from "gsap"
 import Img from "gatsby-image"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-import { slowScrollUpFadeIn } from '../animations/scrollAnimations'
+import { slowScrollUpFadeIn, fadeIn } from '../animations/scrollAnimations'
 
 import { StravaIcon } from "./icons"
 
@@ -38,7 +38,7 @@ const EventsSection = ({ isMobile }) => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
     if (!isMobile) {
-      slowScrollUpFadeIn(".event-col")
+      fadeIn(".event-col")
     }
   }, [])
 
