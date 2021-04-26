@@ -36,9 +36,9 @@ const EventsSection = ({ isMobile }) => {
   `)
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
+    // gsap.registerPlugin(ScrollTrigger)
     if (!isMobile) {
-      fadeIn(".event-col")
+      slowScrollUpFadeIn(".event-col")
     }
   }, [])
 

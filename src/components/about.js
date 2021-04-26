@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 // import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Img from "gatsby-image"
 
-import { slowScrollUpFadeIn } from "../animations/scrollAnimations"
+import { slowScrollUpFadeIn, fadeIn, zoomSlideVert } from "../animations/scrollAnimations"
 
 const About = () => {
   // + Scroll animations
@@ -18,10 +18,10 @@ const About = () => {
     )
     const isMobile = window.innerWidth <= tabBP
 
-    // (el, op=2, y=3)
-    slowScrollUpFadeIn(".about-images div")
     if (!isMobile) {
       slowScrollUpFadeIn(".about-text", 1, 2)
+      fadeIn(".about-images div")
+      zoomSlideVert(".about-images div img")
     }
   }, [])
 

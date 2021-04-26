@@ -4,9 +4,12 @@ import gsap from "gsap"
 
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import { Logo } from './Logo'
 
+import { heroZoomOut } from '../animations/startAnimations'
+import { zoomSlideHero } from '../animations/scrollAnimations'
 
 const HeroGrid = ({ isMobile }) => {
   const [heroesLoaded, setHeroesLoaded] = useState([
@@ -72,15 +75,30 @@ const HeroGrid = ({ isMobile }) => {
     )
   }, [])
 
+
+  useEffect(() => {
+    // load animation
+    heroZoomOut(".hero-grid--desk .hero-photo .hero-gatsby-img", 5)
+    // scroll animation
+    zoomSlideHero(
+      ".hero-grid--desk .hero-photo .hero-gatsby-img",
+      ".hero-grid--desk .hero-photo",
+      5
+    )
+  }, [])
+
   const data = useStaticQuery(graphql`
     query {
       bannerCenter: file(
         relativePath: { eq: "full-sized-images/hero-center.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 2000, quality: 100) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(
+            width: 1600
+            quality: 100
+            outputPixelDensities: [2]
+            formats: [WEBP, AVIF, AUTO]
+          )
         }
       }
       heroLeft: file(relativePath: { eq: "full-sized-images/hero-left.png" }) {
@@ -103,6 +121,8 @@ const HeroGrid = ({ isMobile }) => {
   `)
 
   console.log("data from hero-grid: ", data);
+
+  const heroImage = getImage(data.bannerCenter)
 
   return (
     <>
@@ -184,12 +204,18 @@ const HeroGrid = ({ isMobile }) => {
               <div className="hero-text--desk">RACING</div>
             </div>
             <div className="hero-photo">
-              <Img
+              {/* <Img
                 fadeIn
                 fluid={data.bannerCenter.childImageSharp.fluid}
                 objectFit="cover"
                 objectPosition="50% 50%"
                 alt="some vegan cyclists"
+              /> */}
+              <GatsbyImage 
+                image={heroImage} 
+                loading="eager" 
+                className="hero-gatsby-img"
+                objectPosition="0% 50%"
               />
             </div>
           </div>

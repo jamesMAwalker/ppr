@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import gsap from "gsap"
 import { useInView } from "react-intersection-observer"
 
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import Header from "../components/header"
@@ -34,9 +35,11 @@ const Layout = ({ children, location: { pathname } }) => {
     )
     setIsMobile(window.innerWidth <= tabBP)
 
+    // gsap requisites
     gsap.config({
       nullTargetWarn: false
     })
+    gsap.registerPlugin(ScrollTrigger)
   }, [])
 
   // useInView set up

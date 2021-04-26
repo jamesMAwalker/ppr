@@ -191,11 +191,13 @@
       font-weight: 500;
       letter-spacing: 25px;
       color: $white;
+      overflow: hidden;
     }
 
     .hero-photo {
       position: absolute;
       height: 87.5vh;
+      overflow: hidden;
       /*
         + uncomment for framed hero
         height: 100%;
@@ -207,6 +209,8 @@
       img {
         height: 100%;
         width: 100%;
+        object-position: 0% 50%;
+        opacity: 1;
       }
       &::after {
         @include pseudoShade($blackTr2);
