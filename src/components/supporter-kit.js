@@ -226,7 +226,14 @@ const SupporterKit = ({ isMobile }) => {
                 world.
               </div>
               <div className="button-container">
-                <button className="button-color-shadows">GET THE KIT</button>
+                {/* <button className="button-color-shadows">GET THE KIT</button> */}
+                <a
+                  href="https://www.plantathletic.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <button className="button-color-shadows">GET THE KIT</button>
+                </a>
               </div>
             </div>
           </div>
@@ -279,11 +286,13 @@ const SupporterKit = ({ isMobile }) => {
               SITIP, based in Northern Italy.
             </p>
             <div className="get-btn">
-              <button
-                onClick={() => window.open("https://www.plantathletic.com/")}
+              <a
+                href="https://www.plantathletic.com/"
+                target="_blank"
+                rel="noreferrer"
               >
-                GET THE KIT
-              </button>
+                <button>GET THE KIT</button>
+              </a>
             </div>
           </div>
         </div>
