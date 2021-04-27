@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Img from "gatsby-image"
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import { slowScrollUpFadeIn, fadeIn, zoomSlideVert } from "../animations/scrollAnimations"

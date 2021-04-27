@@ -5,6 +5,7 @@ import { useSwipeable } from "react-swipeable"
 
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Img from "gatsby-image"
 
 import { slowScrollUpFadeIn, fadeIn } from '../animations/scrollAnimations'
@@ -12,16 +13,6 @@ import { slowScrollUpFadeIn, fadeIn } from '../animations/scrollAnimations'
 import { PAWordMark } from "./Logo"
 import { ScrollIcon } from './icons'
 
-/*
-
-TODO {
-  # Experiment with react-use-gesture for swiping through
-  the gallery. 
-  # Need to rewrite mobile photoSwitch logic so that animations
-  can be applied. Re-rendering the component somehow...
-}
-
-*/
 
 const SupporterKit = ({ isMobile }) => {
   const [mainPhoto, setMainPhoto] = useState(["ph1", "", "", ""])
@@ -96,32 +87,36 @@ const SupporterKit = ({ isMobile }) => {
         relativePath: { eq: "supporter-kit-images/jersey--wide-s.png" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 900, quality: 100) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(
+            quality: 80
+            formats: [WEBP, AVIF, AUTO]
+          )
         }
       }
       bigThree: file(relativePath: { eq: "supporter-kit-images/big-3.jpeg" }) {
         childImageSharp {
-          fluid(maxWidth: 900, quality: 100) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(
+            quality: 80
+            formats: [WEBP, AVIF, AUTO]
+          )
         }
       }
       gravelSlide: file(
         relativePath: { eq: "supporter-kit-images/gravel-slide.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 900, quality: 100) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(
+            quality: 80
+            formats: [WEBP, AVIF, AUTO]
+          )
         }
       }
       luchos: file(relativePath: { eq: "supporter-kit-images/luchos.jpeg" }) {
         childImageSharp {
-          fluid(maxWidth: 900, quality: 100) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(
+            quality: 80
+            formats: [WEBP, AVIF, AUTO]
+          )
         }
       }
     }
@@ -149,12 +144,9 @@ const SupporterKit = ({ isMobile }) => {
                   if (e.code === 13) handlePhotoSwitch()
                 }}
               >
-                <Img
-                  fluid={data.jerseyRender.childImageSharp.fluid}
-                  objectFit="contain"
-                  objectPosition="50% 50%"
-                  alt="render of cycling jersey"
-                  quality=""
+                <GatsbyImage
+                  image={getImage(data.jerseyRender)}
+                  className="about-gatsby-img"
                 />
               </div>
               <div
@@ -167,11 +159,9 @@ const SupporterKit = ({ isMobile }) => {
                   if (e.code === 13) handlePhotoSwitch()
                 }}
               >
-                <Img
-                  fluid={data.bigThree.childImageSharp.fluid}
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                  alt="cycling jersey in action"
+                <GatsbyImage
+                  image={getImage(data.bigThree)}
+                  className="about-gatsby-img"
                 />
               </div>
               <div
@@ -184,11 +174,9 @@ const SupporterKit = ({ isMobile }) => {
                   if (e.code === 13) handlePhotoSwitch()
                 }}
               >
-                <Img
-                  fluid={data.gravelSlide.childImageSharp.fluid}
-                  objectFit="contain"
-                  objectPosition="50% 50%"
-                  alt="cycling jersey in action"
+                <GatsbyImage
+                  image={getImage(data.gravelSlide)}
+                  className="about-gatsby-img"
                 />
               </div>
               <div
@@ -201,11 +189,9 @@ const SupporterKit = ({ isMobile }) => {
                   if (e.code === 13) handlePhotoSwitch()
                 }}
               >
-                <Img
-                  fluid={data.luchos.childImageSharp.fluid}
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                  alt="cycling jersey in action"
+                <GatsbyImage
+                  image={getImage(data.luchos)}
+                  className="about-gatsby-img"
                 />
               </div>
             </div>
@@ -242,11 +228,9 @@ const SupporterKit = ({ isMobile }) => {
         <div className="mobile">
           <div className="mobile__photos" {...handlers}>
             <div className="photo-slide">
-              <Img
-                fluid={data[photoNames[mPhotoIdx]].childImageSharp.fluid}
-                objectFit="cover"
-                objectPosition="50% 50%"
-                alt="cycling jersey in action"
+              <GatsbyImage
+                image={getImage(data[photoNames[mPhotoIdx]])}
+                className="jersey-gatsby-img"
               />
               <div className="slide-controls">
                 <div className="pseudo-wrapper">

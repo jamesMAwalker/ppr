@@ -94,8 +94,7 @@ const HeroGrid = ({ isMobile }) => {
       ) {
         childImageSharp {
           gatsbyImageData(
-            width: 1000
-            quality: 80
+            quality: 100
             outputPixelDensities: [2]
             formats: [WEBP, AVIF, AUTO]
           )
@@ -105,7 +104,7 @@ const HeroGrid = ({ isMobile }) => {
       ) {
         childImageSharp {
           gatsbyImageData(
-            width: 1000
+            width: 700
             quality: 80
             outputPixelDensities: [2]
             formats: [WEBP, AVIF, AUTO]
@@ -117,7 +116,7 @@ const HeroGrid = ({ isMobile }) => {
       ) {
         childImageSharp {
           gatsbyImageData(
-            width: 1000
+            width: 700
             quality: 80
             outputPixelDensities: [2]
             formats: [WEBP, AVIF, AUTO]
@@ -148,14 +147,6 @@ const HeroGrid = ({ isMobile }) => {
                   background: `${!heroesAllLoaded ? "black" : ""}`,
                 }}
               />
-              {/* <Img
-                fadeIn
-                fluid={data.heroLeft.childImageSharp.fluid}
-                objectFit="cover"
-                objectPosition="50% 50%"
-                alt="a vegan cyclist"
-                onLoad={() => handleLoaded(0)}
-              /> */}
               <GatsbyImage
                 image={leftImage}
                 loading="eager"
@@ -174,14 +165,6 @@ const HeroGrid = ({ isMobile }) => {
                   background: `${!heroesAllLoaded ? "black" : ""}`,
                 }}
               />
-              {/* <Img
-                fadeIn
-                fluid={data.bannerCenter.childImageSharp.fluid}
-                objectFit="cover"
-                objectPosition="50% 100%"
-                alt="some vegan cyclists"
-                onLoad={() => handleLoaded(1)}
-              /> */}
               <GatsbyImage
                 image={heroImage}
                 loading="eager"
