@@ -20,10 +20,12 @@ const About = () => {
     if (!isMobile) {
       slowScrollUpFadeIn(".about-text", 1, 2)
       fadeIn(".about-images .about-gatsby-img")
-      zoomSlideVert(".about-images img", ".about-images")
     }
   }, [])
 
+  const aboutImageAnimations = () => {
+    zoomSlideVert(".about-images .about-gatsby-img img", ".about-images")
+  }
 
   const data = useStaticQuery(graphql`
     query {
@@ -84,6 +86,7 @@ const About = () => {
               <GatsbyImage
                 image={aboutImageData}
                 className="about-gatsby-img"
+                onLoad={aboutImageAnimations}
               />
             )
           })}
