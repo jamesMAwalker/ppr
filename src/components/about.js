@@ -76,7 +76,7 @@ const About = () => {
             change.
           </p>
           <div className="btn-row">
-            <a href="/">Meet the team +</a>
+            <a className="hover-shadows" href="/">Meet the team ▶</a>
           </div>
         </div>
         <div className="about-images">

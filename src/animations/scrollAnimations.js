@@ -44,7 +44,6 @@ export const fadeIn = (el, opDelay = 3) => {
 export const zoomSlideHero = (el, trg, dur = 5) => {
   gsap.to(el, dur, {
     scrollTrigger: {
-      markers: true,
       trigger: trg,
       scrub: 5,
       start: "bottom bottom-=10%",
@@ -59,7 +58,6 @@ export const zoomSlideHero = (el, trg, dur = 5) => {
 export const zoomSlideVert = (el, trg = el, dur = 3) => {
   gsap.to(el, dur, {
     scrollTrigger: {
-      markers: true,
       trigger: trg,
       scrub: dur,
       start: "top bottom-=20%",

@@ -78,7 +78,6 @@
 
         .last {
           position: relative;
-          // margin-right: 20px;
           button {
             cursor: pointer;
             margin-left: 10px;
@@ -119,7 +118,6 @@
             @include pseudoShade($white);
             top: 0;
             left: -1%;
-            // opacity: 0;
             transform-origin: right;
             right: 0 !important;
             width: 102%;
@@ -132,7 +130,7 @@
           text-decoration: none;
           letter-spacing: 2px;
           font-size: var(--baseFontSize);
-          font-weight: 700;
+          // font-weight: 700;
           color: $black;
         }
       }

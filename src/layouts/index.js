@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import gsap from "gsap"
 import { useInView } from "react-intersection-observer"
 
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import Header from "../components/header"
@@ -13,7 +13,6 @@ import Meta from "../components/meta-tags"
 import MobileMenu from "../components/mobile-menu"
 
 const Layout = ({ children, location: { pathname } }) => {
-  
   // + Mobile version tracking
   const [isMobile, setIsMobile] = useState(false)
   const [btnVisible, setBtnVisible] = useState(true)
@@ -37,7 +36,7 @@ const Layout = ({ children, location: { pathname } }) => {
 
     // gsap requisites
     gsap.config({
-      nullTargetWarn: false
+      nullTargetWarn: false,
     })
     gsap.registerPlugin(ScrollTrigger)
   }, [])
@@ -46,53 +45,98 @@ const Layout = ({ children, location: { pathname } }) => {
   const [footerRef, footerInView] = useInView({
     threshold: 0,
   })
-
   const [teamRef, aboutInView] = useInView({
     threshold: 0,
   })
-
   const [sponsorsRef, sponsorsInView] = useInView({
     threshold: 0,
   })
-
+  const [eventsRef, eventsInView] = useInView({
+    threshold: 0,
+  })
+  const [contactRef, contactInView] = useInView({
+    threshold: 0,
+  })
   const [mobileMenuRef, menuInView] = useInView({
     threshold: 0,
   })
 
   // scroll position set/get
   const [linkContent, setLinkContent] = useState("gallery")
+  const [sectionLabel, setSectionLabel] = useState("")
 
   // function to change link
   const updateLinkContent = () => {
     if (pathname === "/") {
       if (aboutInView && !sponsorsInView) {
         setLinkContent("team")
-      } else if (sponsorsInView) {
+      } else if (sponsorsInView && !contactInView) {
         setLinkContent("sponsors")
+      } else if (contactInView) {
+        setLinkContent("")
       } else {
         setLinkContent("gallery")
       }
     }
   }
 
-  // change link content based on visibility of triggers
+  // function to change sectionLabel
+  const updateSectionLabel = () => {
+    if (pathname === "/") {
+      if (aboutInView && !sponsorsInView) {
+        setSectionLabel("about")
+      } else if (sponsorsInView && !eventsInView) {
+        setSectionLabel("Get the Kit")
+      } else if (eventsInView && !contactInView) {
+        setSectionLabel("Events")
+      } else if (contactInView) {
+        setSectionLabel("")
+      } else {
+        setSectionLabel("")
+      }
+    }
+  }
+
+  // animation and call of sectionLabel update
+  useEffect(() => {
+    gsap.to(".section-label", .5, {
+      opacity: 0,
+    })
+    setTimeout(() => {
+      updateSectionLabel()
+    }, 500)
+    gsap.to(".section-label", .5, {
+      delay: .5,
+      opacity: .5,
+    })
+  }, [footerInView, aboutInView, sponsorsInView, eventsInView, contactInView])
+
+  // animation and call of linkContent update
   useEffect(() => {
     gsap.to(".fixed-link", 0.5, {
       opacity: 0,
-      x: "500vh"
+      x: "500vh",
     })
     setTimeout(() => {
       updateLinkContent()
-    }, 200);
+    }, 200)
     gsap.to(".fixed-link", 0.5, {
       opacity: 1,
       x: 0,
       transition: {
-        delay: .2
-      }
+        delay: 0.2,
+      },
     })
-  }, [footerInView, aboutInView, sponsorsInView])
-
+    if (contactInView) {
+      gsap.to(".fixed-link", 1, {
+        opacity: 0
+      })
+    } else {
+      gsap.to(".fixed-link", 1, {
+        opacity: 1,
+      })
+    }
+  }, [footerInView, aboutInView, sponsorsInView, contactInView])
 
   // change mm btnVisible when menuInView changes
   useEffect(() => {
@@ -121,7 +165,7 @@ const Layout = ({ children, location: { pathname } }) => {
   useEffect(() => {
     const newLocationState = {}
     // if current page is x, set x of location state to true
-    Object.keys(pageLocation).forEach(page => {
+    Object.keys(pageLocation).forEach((page) => {
       if (page === pathname) {
         newLocationState[page] = true
       } else {
@@ -142,7 +186,7 @@ const Layout = ({ children, location: { pathname } }) => {
   }, [menuVisible])
 
   // pass props to child page elements
-  const childrenWithProps = React.Children.map(children, child =>
+  const childrenWithProps = React.Children.map(children, (child) =>
     React.cloneElement(child, {
       isMobile: isMobile,
       btnVisible: btnVisible,
@@ -168,16 +212,21 @@ const Layout = ({ children, location: { pathname } }) => {
         )}
         <main className="layout-main">
           {!footerInView && pageLocation["/"] && (
-            <div className="social-icons">
-              <div className="icon-wrapper">
-                <InstaIcon classN="social-icon" />
-                <InstaIcon classN="shadow pink" />
-                <InstaIcon classN="shadow turquoise" />
+            <div className="layout-left">
+              <div className="section-label-wrapper">
+                <span className="section-label">{sectionLabel}</span>
               </div>
-              <div className="icon-wrapper">
-                <StravaIcon classN="social-icon" />
-                <StravaIcon classN="shadow pink" />
-                <StravaIcon classN="shadow turquoise" />
+              <div className="social-icons">
+                <div className="icon-wrapper">
+                  <InstaIcon classN="social-icon" />
+                  <InstaIcon classN="shadow pink" />
+                  <InstaIcon classN="shadow turquoise" />
+                </div>
+                <div className="icon-wrapper">
+                  <StravaIcon classN="social-icon" />
+                  <StravaIcon classN="shadow pink" />
+                  <StravaIcon classN="shadow turquoise" />
+                </div>
               </div>
             </div>
           )}
@@ -200,11 +249,10 @@ const Layout = ({ children, location: { pathname } }) => {
         </main>
 
         <span className="vp-triggers">
-          <span ref={teamRef} className="extension extension--about"></span>
-          <span
-            ref={sponsorsRef}
-            className="extension extension--sponsors"
-          ></span>
+          <span ref={teamRef} className="extension extension--about" />
+          <span ref={sponsorsRef} className="extension extension--sponsors" />
+          <span ref={eventsRef} className="extension extension--events" />
+          <span ref={contactRef} className="extension extension--contact" />
         </span>
         {!(pathname === "/sponsors" && isMobile) && (
           <SponsorsBand isMobile={isMobile} pageLocation={pathname} />
