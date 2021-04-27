@@ -1,9 +1,8 @@
 import React, { useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-// import gsap from 'gsap'
 
-// import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Img from "gatsby-image"
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import { slowScrollUpFadeIn, fadeIn, zoomSlideVert } from "../animations/scrollAnimations"
 
@@ -20,10 +19,11 @@ const About = () => {
 
     if (!isMobile) {
       slowScrollUpFadeIn(".about-text", 1, 2)
-      fadeIn(".about-images div")
-      zoomSlideVert(".about-images div img")
+      fadeIn(".about-images .about-gatsby-img")
+      zoomSlideVert(".about-images img", ".about-images")
     }
   }, [])
+
 
   const data = useStaticQuery(graphql`
     query {
@@ -39,9 +39,12 @@ const About = () => {
             id
             base
             childImageSharp {
-              fluid(maxWidth: 1000, quality: 100) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+              gatsbyImageData(
+                width: 1000
+                quality: 80
+                outputPixelDensities: [2]
+                formats: [WEBP, AVIF, AUTO]
+              )
             }
           }
         }
@@ -75,16 +78,15 @@ const About = () => {
           </div>
         </div>
         <div className="about-images">
-          {data.aboutPhotos.edges.map((photo, idx) => (
-            <Img
-              key={photo.title}
-              fadeIn
-              fluid={photo.node.childImageSharp.fluid}
-              objectFit="contain"
-              objectPosition="50% 50%"
-              alt={photo.title}
-            />
-          ))}
+          {data.aboutPhotos.edges.map((photo, idx) => {
+            const aboutImageData = getImage(photo.node)
+            return (
+              <GatsbyImage
+                image={aboutImageData}
+                className="about-gatsby-img"
+              />
+            )
+          })}
         </div>
       </div>
     </section>

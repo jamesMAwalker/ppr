@@ -66,7 +66,7 @@ export const zoomSlideVert = (el, trg = el, dur = 3) => {
       toggleActions: "restart none none none",
     },
     ease: "power2.out",
-    objectPosition: "50% 65%",
+    objectPosition: "50% 75%",
     scale: 1.05,
   })
 }

@@ -83,6 +83,9 @@
       gap: var(--photoGap);
       grid-template-rows: repeat(3, 1fr);
       grid-template-columns: 100%;
+      .about-gatsby-img {
+        overflow: hidden;
+      }
       
       @include media("<=tablet") {
         display: none;

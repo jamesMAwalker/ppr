@@ -17,7 +17,7 @@ const HeroGrid = ({ isMobile }) => {
     false, 
     false
   ])
-  const [heroesAllLoaded, setHeroesAllLoaded] = useState(true)
+  const [heroesAllLoaded, setHeroesAllLoaded] = useState(false)
   
   const handleLoaded = (idx) => {
     const newLoadState = heroesLoaded
@@ -78,7 +78,7 @@ const HeroGrid = ({ isMobile }) => {
 
   useEffect(() => {
     // load animation
-    heroZoomOut(".hero-grid--desk .hero-photo .hero-gatsby-img", 5)
+    heroZoomOut(".hero-grid--desk .hero-photo .hero-gatsby-img", 8)
     // scroll animation
     zoomSlideHero(
       ".hero-grid--desk .hero-photo .hero-gatsby-img",
@@ -94,27 +94,34 @@ const HeroGrid = ({ isMobile }) => {
       ) {
         childImageSharp {
           gatsbyImageData(
-            width: 1600
-            quality: 100
+            width: 1000
+            quality: 80
             outputPixelDensities: [2]
             formats: [WEBP, AVIF, AUTO]
           )
         }
       }
-      heroLeft: file(relativePath: { eq: "full-sized-images/hero-left.png" }) {
+      heroLeft: file(relativePath: { eq: "full-sized-images/hero-left.png" }
+      ) {
         childImageSharp {
-          fluid(maxWidth: 1000, quality: 80) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(
+            width: 1000
+            quality: 80
+            outputPixelDensities: [2]
+            formats: [WEBP, AVIF, AUTO]
+          )
         }
       }
       heroRight: file(
         relativePath: { eq: "full-sized-images/hero-right.jpeg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1000, quality: 80) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(
+            width: 1000
+            quality: 80
+            outputPixelDensities: [2]
+            formats: [WEBP, AVIF, AUTO]
+          )
         }
       }
     }
@@ -123,6 +130,8 @@ const HeroGrid = ({ isMobile }) => {
   console.log("data from hero-grid: ", data);
 
   const heroImage = getImage(data.bannerCenter)
+  const leftImage = getImage(data.heroLeft)
+  const rightImage = getImage(data.heroRight)
 
   return (
     <>
@@ -139,12 +148,19 @@ const HeroGrid = ({ isMobile }) => {
                   background: `${!heroesAllLoaded ? "black" : ""}`,
                 }}
               />
-              <Img
+              {/* <Img
                 fadeIn
                 fluid={data.heroLeft.childImageSharp.fluid}
                 objectFit="cover"
                 objectPosition="50% 50%"
                 alt="a vegan cyclist"
+                onLoad={() => handleLoaded(0)}
+              /> */}
+              <GatsbyImage
+                image={leftImage}
+                loading="eager"
+                className="hero-gatsby-img"
+                objectPosition="50% 50%"
                 onLoad={() => handleLoaded(0)}
               />
               <div className="hero-text">
@@ -158,12 +174,19 @@ const HeroGrid = ({ isMobile }) => {
                   background: `${!heroesAllLoaded ? "black" : ""}`,
                 }}
               />
-              <Img
+              {/* <Img
                 fadeIn
                 fluid={data.bannerCenter.childImageSharp.fluid}
                 objectFit="cover"
                 objectPosition="50% 100%"
                 alt="some vegan cyclists"
+                onLoad={() => handleLoaded(1)}
+              /> */}
+              <GatsbyImage
+                image={heroImage}
+                loading="eager"
+                className="hero-gatsby-img"
+                objectPosition="50% 50%"
                 onLoad={() => handleLoaded(1)}
               />
               <div className="hero-text">
@@ -179,12 +202,19 @@ const HeroGrid = ({ isMobile }) => {
                   background: `${!heroesAllLoaded ? "black" : ""}`,
                 }}
               />
-              <Img
+              {/* <Img
                 fadeIn
                 fluid={data.heroRight.childImageSharp.fluid}
                 objectFit="cover"
                 objectPosition="50% 50%"
                 alt="some vegan cyclists"
+                onLoad={() => handleLoaded(2)}
+              /> */}
+              <GatsbyImage
+                image={rightImage}
+                loading="eager"
+                className="hero-gatsby-img"
+                objectPosition="50% 50%"
                 onLoad={() => handleLoaded(2)}
               />
               <div className="hero-text right">
@@ -204,18 +234,12 @@ const HeroGrid = ({ isMobile }) => {
               <div className="hero-text--desk">RACING</div>
             </div>
             <div className="hero-photo">
-              {/* <Img
-                fadeIn
-                fluid={data.bannerCenter.childImageSharp.fluid}
-                objectFit="cover"
-                objectPosition="50% 50%"
-                alt="some vegan cyclists"
-              /> */}
-              <GatsbyImage 
-                image={heroImage} 
-                loading="eager" 
+              <GatsbyImage
+                image={heroImage}
+                loading="eager"
                 className="hero-gatsby-img"
                 objectPosition="0% 50%"
+                onLoad={() => setHeroesAllLoaded(true)}
               />
             </div>
           </div>
