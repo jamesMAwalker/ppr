@@ -1,32 +1,42 @@
 import React, { useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import gsap from "gsap"
 
-import Img from "gatsby-image"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import PortableText from "react-portable-text"
+import SanityImage from "gatsby-plugin-sanity-image"
 
-import { slowScrollUpFadeIn, fadeIn } from '../animations/scrollAnimations'
+import { slowScrollUpFadeIn } from '../animations/scrollAnimations'
 
 import { StravaIcon } from "./icons"
 
-import { EVENTS_INFO } from '../assets/events-data'
 
 const EventsSection = ({ isMobile }) => {
   const data = useStaticQuery(graphql`
     query {
-      eventImages: allFile(
-        filter: {
-          extension: { regex: "/(jpg|png|jpeg)/" }
-          relativeDirectory: { eq: "event-images" }
-        }
-        sort: { fields: base, order: ASC }
+      eventData: allSanityEvent(
+        limit: 3
+        sort: { fields: _createdAt, order: ASC }
       ) {
         edges {
           node {
             id
-            childImageSharp {
-              fluid(quality: 75) {
-                ...GatsbyImageSharpFluid_withWebp
+            gpsLocation
+            elevation
+            rideLength
+            saddleTime
+            stravaLink
+            mainImage {
+              ...ImageWithPreview
+            }
+            title
+            meetTime
+            dayOfWeek
+            location
+            _rawRideDescription
+            leader {
+              name
+              instaHandle
+              image {
+                ...ImageWithPreview
               }
             }
           }
@@ -35,8 +45,9 @@ const EventsSection = ({ isMobile }) => {
     }
   `)
 
+  console.log("data from events section: ", data);
+
   useEffect(() => {
-    // gsap.registerPlugin(ScrollTrigger)
     if (!isMobile) {
       slowScrollUpFadeIn(".event-col")
     }
@@ -51,56 +62,51 @@ const EventsSection = ({ isMobile }) => {
         </div>
       )}
       <section className="events" id="events">
-        {EVENTS_INFO.map(ev => {
+        {data.eventData.edges.map(({ node: ev }) => {
+          const mainImageData = ev.mainImage
+          const leaderImageData = ev.leader.image
+          
           return (
-            <div className="event-col" key={ev.title} >
-              <div className="map-img">
-                <Img
-                  fadeIn
-                  fluid={
-                    data.eventImages.edges[ev.picIdx].node.childImageSharp.fluid
-                  }
-                  objectFit="contain"
-                  objectPosition="50% 50%"
-                  alt=""
-                />
-                <div className="ride-stats">
-                  <span>{ev.hours} hrs</span>
-                  ▪
-                  <span>{ev.dist} mi</span>
-                  ▪
-                  <span>{ev.elev} ft</span>
+            <div className="event-col" key={ev.id}>
+              <div className="map-flex-wrapper">
+                <div className="map-img">
+                  <SanityImage
+                    {...mainImageData}
+                    width={500}
+                    objectFit="contain"
+                  />
+                  <div className="ride-stats">
+                    <span>{ev.saddleTime}</span>▪<span>{ev.rideLength}</span>▪
+                    <span>{ev.elevation}</span>
+                  </div>
+                  <a
+                    href={ev.stravaLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="event-link"
+                  >
+                    <StravaIcon />
+                  </a>
                 </div>
-                <a
-                  href={`https://www.strava.com/${ev.link}`}
-                  target="_blank" rel="noreferrer"
-                  className="event-link"
-                >
-                  <StravaIcon />
-                </a>
               </div>
               <div className="details-flex-wrapper">
                 <div className="details">
                   <div className="ride-title">{ev.title}</div>
                   <div className="time-info">
-                    {ev.day} | {ev.time}
+                    {ev.dayOfWeek} | {ev.meetTime}
                   </div>
-                  <div className="start">@{ev.startLoc}</div>
+                  <div className="start">@{ev.location}</div>
                 </div>
                 <div className="description">
+                  <PortableText content={ev._rawRideDescription} />
                   <p>{ev.desc}</p>
                 </div>
                 <div className="leader-info">
                   <div className="leader-img">
-                    <Img
-                      fadeIn
-                      fluid={
-                        data.eventImages.edges[ev.leader.picIdx].node
-                          .childImageSharp.fluid
-                      }
+                    <SanityImage
+                      {...leaderImageData}
+                      width={250}
                       objectFit="contain"
-                      objectPosition="50% 50%"
-                      alt=""
                     />
                   </div>
                   <div className="leader-details">
@@ -109,11 +115,12 @@ const EventsSection = ({ isMobile }) => {
                     </div>
                     <div className="insta-handle">
                       <a
-                        target="_blank" rel="noreferrer"
-                        href={`https://www.instagram.com/${ev.leader.insta}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        href={`https://www.instagram.com/${ev.leader.instaHandle}`}
                       >
                         <span>@</span>
-                        {ev.leader.insta}
+                        {ev.leader.instaHandle}
                       </a>
                     </div>
                   </div>

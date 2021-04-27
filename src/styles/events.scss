@@ -42,16 +42,24 @@
     }
   }
 
+  .map-flex-wrapper {
+    @include flexCenter;
+    height: 30vh;
+    width: 100%;
+  }
+
   .map-img {
     position: relative;
     height: 30vh;
-    width: 100%;
+    width: 90%;
     overflow: hidden;
     div {
       height: 100%;
       width: 100%;
     }
     img {
+      height: 100%;
+      width: 100%;
       object-fit: cover !important;
     }
 
@@ -65,7 +73,7 @@
       width: 70%;
       justify-content: space-between;
       color: $white;
-      font-size: var(--mFontSize);
+      font-size: var(--baseFontSize);
       opacity: 0;
     }
 
@@ -149,6 +157,11 @@
     width: 8vh;
     height: 8vh;
     margin-right: 1rem;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
 
   .leader-name {

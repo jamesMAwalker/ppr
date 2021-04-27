@@ -6,7 +6,6 @@ import { useSwipeable } from "react-swipeable"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import Img from "gatsby-image"
 
 import { slowScrollUpFadeIn, fadeIn } from '../animations/scrollAnimations'
 

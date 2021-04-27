@@ -1,10 +1,8 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import gsap from "gsap"
+import { graphql } from "gatsby"
 
 import { Link } from 'gatsby'
-import { getGatsbyImageData } from "gatsby-source-sanity"
-import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import SanityImage from 'gatsby-plugin-sanity-image'
 
 
@@ -39,7 +37,6 @@ const Blogs = ({ data }) => {
                   <SanityImage
                     {...authorImageData}
                     width={200}
-                    // objectFit="cover"
                   />
                 </div>
                 <div className="blog-card-author-name">
