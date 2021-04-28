@@ -35,7 +35,7 @@ const EventsSection = ({ isMobile }) => {
             leader {
               name
               instaHandle
-              image {
+              profileImage {
                 ...ImageWithPreview
               }
             }
@@ -49,7 +49,7 @@ const EventsSection = ({ isMobile }) => {
     if (!isMobile) {
       slowScrollUpFadeIn(".event-col")
     }
-  }, [])
+  }, [])  
 
   return (
     <>
@@ -62,7 +62,7 @@ const EventsSection = ({ isMobile }) => {
       <section className="events" id="events">
         {data.eventData.edges.map(({ node: ev }) => {
           const mainImageData = ev.mainImage
-          const leaderImageData = ev.leader.image
+          const leaderImageData = ev.leader.profileImage
           
           return (
             <div className="event-col" key={ev.id}>

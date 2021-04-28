@@ -16,7 +16,7 @@ const Blogs = ({ data }) => {
           const authorName = entry?.author?.name ?? "PPR Team"
 
           const mainImageData = entry.mainImage.asset.gatsbyImageData
-          const authorImageData = entry.author.image
+          const authorImageData = entry.author.profileImage
 
           // set latest post to center grid cell
           const center = idx === 0 ? "center" : ""
@@ -93,7 +93,7 @@ export const data = graphql`
           author {
             name
             _createdAt
-            image {
+            profileImage {
               ...ImageWithPreview
             }
           }

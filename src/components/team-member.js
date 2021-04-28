@@ -1,9 +1,12 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import SanityImage from "gatsby-plugin-sanity-image"
+import PortableText from "react-portable-text"
 
 import { InstaIcon, ScrollIcon, StravaIcon } from "../components/icons"
+
 
 const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }) => {
   const data = useStaticQuery(graphql`
@@ -123,7 +126,9 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
     }
   `)
 
-  
+  console.log("data from member prop in TeamMember: ", member);
+  const memberProfileImage = getImage(member.profileImage.asset)
+  const memberBgImage = getImage(member.bgImage.asset)
 
   return (
     <div
@@ -146,13 +151,9 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
             </div>
             <div className="name-btn">+</div>
           </h4>
-          <Img
-            fadeIn
-            loading="eager"
-            fluid={data[member.id].childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 100%"
-            alt={member.name}
+          <GatsbyImage
+            image={memberProfileImage}
+            className="profile-gatsby-img"
           />
         </div>
       ) : (
@@ -166,22 +167,25 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
                   ))}
                 </div>
                 <div className="details__sub">
-                  <div className="details__role">{member.role}</div>
                   <div className="details__type">
-                    <em>{member.type}</em>
+                    Riding Style: <em>{member.riderType}</em>
                   </div>
-                  <div className="country"><span role="img" aria-label="flag of team member's location">{member.flag}</span></div>
+                  <div className="country">
+                    <span
+                      role="img"
+                      aria-label="flag of team member's location"
+                    >
+                      {member.flag}
+                    </span>
+                  </div>
                   <div className="social-links">
                     <a
-                      href={`https://www.instagram.com/${member.social.insta}`}
+                      href={`https://www.instagram.com/${member.instaHandle}`}
                       className="social-link"
                     >
                       <InstaIcon classN="member-social" />
                     </a>
-                    <a
-                      href={`https://www.instagram.com/${member.social.strava}`}
-                      className="social-link"
-                    >
+                    <a href={member.stravaLink} className="social-link">
                       <StravaIcon classN="member-social" />
                     </a>
                   </div>
@@ -190,21 +194,18 @@ const TeamMember = ({ memberRef, isMobile, idx, member, expanded, expandMember }
             </div>
             <div className="bio">
               <div className="bio__scroll-wrapper">
-                <article className="bio__text">{member.bioText}</article>
+                <article className="bio__text">
+                  <PortableText content={member._rawBio} />
+                </article>
               </div>
             </div>
             <span className="close-btn">
               <ScrollIcon />
             </span>
           </div>
-          <Img
-            fadeIn
-            loading="eager"
-            fluid={data[member.gqlId].childImageSharp.fluid}
-            objectFit="cover"
-            objectPosition="50% 100%"
-            alt={member.id}
-            quality="75"
+          <GatsbyImage
+            image={memberBgImage}
+            className="bg-gatsby-img"
           />
         </div>
       )}

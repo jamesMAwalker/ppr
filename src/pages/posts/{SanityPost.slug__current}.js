@@ -12,7 +12,7 @@ const BlogPage = ({ data: { sanityPost } }) => {
   const authorName = sanityPost.author.name
 
   const mainImageData = sanityPost.mainImage
-  const authorImageData = sanityPost.author.image
+  const authorImageData = sanityPost.author.profileImage
 
   return (
     <section className="blog-page">
@@ -86,7 +86,7 @@ export const pageQuery = graphql`
       author {
         name
         _createdAt
-        image {
+        profileImage {
           ...ImageWithPreview
         }
       }

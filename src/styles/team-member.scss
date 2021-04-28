@@ -26,6 +26,9 @@
     transition: all 1s;
 
     img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
       z-index: 1;
       transition: all 1.5s ease-in-out !important;
     }
@@ -197,11 +200,12 @@
         width: 60%;
 
         svg {
-          height: 2vh;
+          transform: scale(.5)
         }
       }
-
+      
       .member-social {
+        height: 2.5vh !important;
         opacity: 0.8;
         transition: all .2s;
 

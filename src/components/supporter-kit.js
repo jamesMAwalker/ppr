@@ -27,8 +27,8 @@ const SupporterKit = ({ isMobile }) => {
     })
 
     setMainPhoto(selection)
-    console.log("selection: ", selection)
-    console.log("mainPhoto: ", mainPhoto)
+    
+    
   }
 
   const photoNames = ["gravelSlide", "jerseyRender", "bigThree", "luchos"]
@@ -67,7 +67,7 @@ const SupporterKit = ({ isMobile }) => {
 
   // > Scroll Animations
   useEffect(() => {
-    console.log("isMobile from supporterkit: ", isMobile);
+    
     gsap.registerPlugin(ScrollTrigger)
     gsap.config({
       nullTargetWarn: false,

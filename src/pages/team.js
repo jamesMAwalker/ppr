@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
+import { useStaticQuery, graphql } from "gatsby"
 
 import ScrollContainer from "react-indiana-drag-scroll"
 
@@ -120,6 +121,42 @@ const TeamMembers = ({ btnVisible, setBtnVisible, isMobile }) => {
     }
   }
 
+  const data = useStaticQuery(graphql`
+    query {
+      teamMembers: allSanityAuthor(sort: { fields: name, order: ASC }) {
+        edges {
+          node {
+            id
+            name
+            riderType
+            flag
+            stravaLink
+            instaHandle
+            _rawBio
+            profileImage {
+              asset {
+                gatsbyImageData(
+                  placeholder: DOMINANT_COLOR
+                  formats: [AVIF, WEBP, AUTO]
+                  fit: FILLMAX
+                )
+              }
+            }
+            bgImage {
+              asset {
+                gatsbyImageData(
+                  placeholder: DOMINANT_COLOR
+                  formats: [AVIF, WEBP, AUTO]
+                  fit: FILLMAX
+                )
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <section className="team-container">
       <div className="absolute-wrapper">
@@ -129,13 +166,13 @@ const TeamMembers = ({ btnVisible, setBtnVisible, isMobile }) => {
           vertical={false}
         >
           <div className="flex-wrapper">
-            {members.map((member, idx) => {
+            {data.teamMembers.edges.map(({ node: member}, idx) => {
               const active = idx === activeMember ? "active" : ""
 
               return (
                 <TeamMember
                   memberRef={memberRef}
-                  key={member.name}
+                  key={member.id}
                   idx={idx}
                   isMobile={isMobile}
                   member={member}
