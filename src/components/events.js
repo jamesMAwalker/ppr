@@ -45,8 +45,6 @@ const EventsSection = ({ isMobile }) => {
     }
   `)
 
-  console.log("data from events section: ", data);
-
   useEffect(() => {
     if (!isMobile) {
       slowScrollUpFadeIn(".event-col")

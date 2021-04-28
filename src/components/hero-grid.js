@@ -126,7 +126,7 @@ const HeroGrid = ({ isMobile }) => {
     }
   `)
 
-  console.log("data from hero-grid: ", data);
+  
 
   const heroImage = getImage(data.bannerCenter)
   const leftImage = getImage(data.heroLeft)

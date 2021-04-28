@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import gsap from "gsap"
 
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Img from "gatsby-image"
 import { ScrollIcon } from "./icons"
 
 const Sponsor = ({
   id,
-  sName, 
+  sName,
   link,
   blurb,
   logo,
@@ -17,22 +18,31 @@ const Sponsor = ({
   scrollToSelected,
   idx,
   isMobile,
-  setBtnVisible
+  setBtnVisible,
 }) => {
   const data = useStaticQuery(graphql`
     query {
       sponsorPhotos: allFile(
-        filter: {extension: {regex: "/(jpg|png|jpeg|webp)/"}, relativeDirectory: {eq: "sponsor-images"}}
-        sort: {fields: base, order: ASC}
+        filter: {
+          extension: { regex: "/(jpg|png|jpeg|webp)/" }
+          relativeDirectory: { eq: "sponsor-images" }
+        }
+        sort: { fields: base, order: ASC }
       ) {
         edges {
           node {
             id
             base
             childImageSharp {
-              fluid(quality: 100) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+              # fluid(quality: 100) {
+              #   ...GatsbyImageSharpFluid_withWebp
+              # }
+              gatsbyImageData(
+                width: 1000
+                quality: 80
+                outputPixelDensities: [2]
+                formats: [WEBP, AVIF, AUTO]
+              )
             }
           }
         }
@@ -79,9 +89,8 @@ const Sponsor = ({
   }
 
   const handleTouch = (e) => {
-    
     gsap.to(`.mobile-sponsor.s${idx.toString()}`, 0.2, {
-      background: `${!active ? 'var(--white)' : 'var(--pink)' }`,
+      background: `${!active ? "var(--white)" : "var(--pink)"}`,
     })
     setDisabled(true)
 
@@ -94,20 +103,22 @@ const Sponsor = ({
 
     setTimeout(() => {
       expandSponsor(idx)
-      gsap.from(".expanded-sponsor", .4, {
+      gsap.from(".expanded-sponsor", 0.4, {
         opacity: 0,
         y: "-10vh",
-        ease: "power2.out"
+        ease: "power2.out",
       })
       // enable interaction
       setDisabled(false)
-    }, 750);
+    }, 750)
   }
 
   const handleVisitClick = (e) => {
     e.stopPropagation()
     window.open([link], "_blank")
   }
+
+  const sponsorImageData = getImage(data.sponsorPhotos.edges[idx].node)
 
   return (
     <>
@@ -131,15 +142,11 @@ const Sponsor = ({
                 <div className="shade-logo">{logo()}</div>
               </div>
               <div className="image-wrapper">
-                <Img
-                  fadeIn
+                <GatsbyImage
+                  image={sponsorImageData}
+                  className="sponsorPeek-gatsby-img"
                   loading="eager"
-                  fluid={
-                    data.sponsorPhotos.edges[idx].node.childImageSharp.fluid
-                  }
-                  objectFit="cover"
-                  objectPosition="50% 100%"
-                  alt={`Logo for the ${id} sponsor company`}
+                  alt={`Cover photo for the ${id} sponsor company`}
                 />
               </div>
             </>
@@ -157,15 +164,10 @@ const Sponsor = ({
                 </div>
               </div>
               <div className="image-wrapper exp">
-                <Img
-                  fadeIn
-                  loading="eager"
-                  fluid={
-                    data.sponsorPhotos.edges[idx].node.childImageSharp.fluid
-                  }
-                  objectFit="cover"
-                  objectPosition="50% 100%"
-                  alt={`Logo for the ${id} sponsor company`}
+                <GatsbyImage
+                  image={sponsorImageData}
+                  className="sponsorCover-gatsby-img"
+                  alt={`Cover photo for the ${id} sponsor company`}
                 />
               </div>
             </>
@@ -196,13 +198,10 @@ const Sponsor = ({
                   </div>
                 </div>
                 <div className="bg-img">
-                  <Img
-                    fadeIn
-                    loading="eager"
-                    fluid={data.sponsorPhotos.edges[idx].node.childImageSharp.fluid}
-                    objectFit="cover"
-                    objectPosition="50% 100%"
-                    alt={`Logo for the ${id} sponsor company`}
+                  <GatsbyImage
+                    image={sponsorImageData}
+                    className="sponsorCover-gatsby-img"
+                    alt={`Cover photo for the ${id} sponsor company`}
                   />
                 </div>
               </div>
