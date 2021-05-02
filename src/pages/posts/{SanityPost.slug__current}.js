@@ -1,23 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { graphql } from "gatsby"
 
 import { Link } from "gatsby"
 import SanityImage from "gatsby-plugin-sanity-image"
 import PortableText from "react-portable-text"
 
-const BlogPage = ({ data: { sanityPost } }) => {
-  console.log('sanityPost as sanityPost: ', sanityPost);
+import { fadeIn } from '../../animations/scrollAnimations'
+import { heroZoomOut, lowSlideUpFadeIn } from '../../animations/startAnimations'
 
+const BlogPage = ({ data: { sanityPost } }) => {
   const excerptText = sanityPost?.excerpt[0]?.children[0]?.text ?? ""
   const authorName = sanityPost.author.name
 
   const mainImageData = sanityPost.mainImage
   const authorImageData = sanityPost.author.profileImage
 
+  useEffect(() => {
+    heroZoomOut(".blog-animation-wrapper img")
+    lowSlideUpFadeIn(".blog-header-title")
+    fadeIn(".blog-excerpt-quote")
+  }, [])
+  
+
   return (
     <section className="blog-page">
       <div className="blog-main-image">
-        <SanityImage {...mainImageData} quality={100} width={1000} hotspot={mainImageData.hotspot}/>
+        <div className="blog-animation-wrapper">
+          <SanityImage
+            {...mainImageData}
+            quality={100}
+            width={1000}
+            hotspot={mainImageData.hotspot}
+          />
+        </div>
       </div>
       <div className="blog-header-area">
         <div className="blog-header-title">{sanityPost.title}</div>
@@ -29,7 +44,7 @@ const BlogPage = ({ data: { sanityPost } }) => {
           </p>
           <div className="blog-details-author">
             <div className="blog-details-author-thumbnail">
-              <SanityImage {...authorImageData} width={100}/>
+              <SanityImage {...authorImageData} width={100} />
             </div>
             <div className="blog-author-name">
               By <span>{authorName}</span>

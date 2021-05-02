@@ -18,6 +18,7 @@ const Layout = ({ children, location: { pathname } }) => {
   const [btnVisible, setBtnVisible] = useState(true)
   const [menuVisible, setMenuVisible] = useState(false)
   const [galleryScrolled, setGalleryScrolled] = useState(false)
+  const [isHomePage, setIsHomePage] = useState(false)
 
   // set mobile vp units & create js breakpoint for mobile
   useEffect(() => {
@@ -33,6 +34,7 @@ const Layout = ({ children, location: { pathname } }) => {
       )
     )
     setIsMobile(window.innerWidth <= tabBP)
+    setIsHomePage(pathname === "/")
 
     // gsap requisites
     gsap.config({
@@ -67,7 +69,7 @@ const Layout = ({ children, location: { pathname } }) => {
 
   // function to change link
   const updateLinkContent = () => {
-    if (pathname === "/") {
+    if (isHomePage) {
       if (aboutInView && !sponsorsInView) {
         setLinkContent("team")
       } else if (sponsorsInView && !contactInView) {
@@ -82,7 +84,7 @@ const Layout = ({ children, location: { pathname } }) => {
 
   // function to change sectionLabel
   const updateSectionLabel = () => {
-    if (pathname === "/") {
+    if (isHomePage) {
       if (aboutInView && !sponsorsInView) {
         setSectionLabel("about")
       } else if (sponsorsInView && !eventsInView) {
@@ -99,42 +101,46 @@ const Layout = ({ children, location: { pathname } }) => {
 
   // animation and call of sectionLabel update
   useEffect(() => {
-    gsap.to(".section-label", .5, {
-      opacity: 0,
-    })
-    setTimeout(() => {
-      updateSectionLabel()
-    }, 500)
-    gsap.to(".section-label", .5, {
-      delay: .5,
-      opacity: .5,
-    })
+    if (isHomePage) {
+      gsap.to(".section-label", 0.5, {
+        opacity: 0,
+      })
+      setTimeout(() => {
+        updateSectionLabel()
+      }, 500)
+      gsap.to(".section-label", 0.5, {
+        delay: 0.5,
+        opacity: 0.5,
+      })
+    }
   }, [footerInView, aboutInView, sponsorsInView, eventsInView, contactInView])
 
   // animation and call of linkContent update
   useEffect(() => {
-    gsap.to(".fixed-link", 0.5, {
-      opacity: 0,
-      x: "500vh",
-    })
-    setTimeout(() => {
-      updateLinkContent()
-    }, 200)
-    gsap.to(".fixed-link", 0.5, {
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: 0.2,
-      },
-    })
-    if (contactInView) {
-      gsap.to(".fixed-link", 1, {
-        opacity: 0
+    if (isHomePage) {
+      gsap.to(".fixed-link", 0.5, {
+        opacity: 0,
+        x: "500vh",
       })
-    } else {
-      gsap.to(".fixed-link", 1, {
+      setTimeout(() => {
+        updateLinkContent()
+      }, 200)
+      gsap.to(".fixed-link", 0.5, {
         opacity: 1,
+        x: 0,
+        transition: {
+          delay: 0.2,
+        },
       })
+      if (contactInView) {
+        gsap.to(".fixed-link", 1, {
+          opacity: 0,
+        })
+      } else {
+        gsap.to(".fixed-link", 1, {
+          opacity: 1,
+        })
+      }
     }
   }, [footerInView, aboutInView, sponsorsInView, contactInView])
 
