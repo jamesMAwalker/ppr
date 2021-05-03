@@ -68,6 +68,9 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
+# Environment Variables
+.env.development
+.env.production
 
 # Notes
 project-planning.js
