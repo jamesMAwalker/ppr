@@ -20,6 +20,7 @@ const Layout = ({ children, location: { pathname } }) => {
   const [galleryScrolled, setGalleryScrolled] = useState(false)
   const [isHomePage, setIsHomePage] = useState(false)
 
+
   // set mobile vp units & create js breakpoint for mobile
   useEffect(() => {
     // Set mobile version viewport units

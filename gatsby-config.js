@@ -19,7 +19,9 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        token: process.env.SANITY_TOKEN,
+        // projectId: process.env.SANITY_PROJECT_ID,
+        // dataset: process.env.SANITY_DATASET,
+        // token: process.env.SANITY_TOKEN,
         apiVersion: "2021-03-25", // use a UTC date string
         watchMode: true,
         overlayDrafts: true,
@@ -28,6 +30,10 @@ module.exports = {
         graphqlTag: "default",
         projectId: `v0rw1hdx`,
         dataset: `production`,
+        token:
+          "skOpvPKwd6wMNzIdlo2aNxinEWvjoTh1CxDCC3yGgsbeH3r4paU8MGP9Ljkq7A7xCcfXLngqdUWlcVECUFKPl9k3XOwIua9UMUpLj4gyoToOT6hqHFRp0X3CSGKbooKUFYQA9pvR308PJI34o8wsJ5JbkyupEdYpPO98dPiVIrnX2lt5cQCI",
+        // token:
+        // "skKbmMz6xD1c29LWXqDJeyKBCe2TkgVsy0USillhuJCZqDK56F0DPMduZ3dEPMWMauAZ1PBpXXbze0YPFoOEbazKzULK6TiChXEYOplUL54S29RUM5DrCWNUlH7ppYzf63TdyPpTzyZkwS2IsTESSXnWfJbDlGyEPec60EFh7X5YrO6I6B52", // or leave blank for unauthenticated usage
       },
     },
     {
