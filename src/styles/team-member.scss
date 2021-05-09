@@ -72,6 +72,10 @@
       z-index: $falcon;
     }
 
+    .animation-wrapper::before {
+      background-color: $blackTr !important;
+    }
+
     & > * {
       opacity: 1 !important;
     }
@@ -85,7 +89,7 @@
     justify-content: center;
 
     &::before {
-      @include pseudoShade($blackTr);
+      @include pseudoShade($blackTr2);
       z-index: 9;
     }
   }

@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { Link } from 'gatsby'
 
 import { slowScrollUpFadeIn, fadeIn, zoomSlideVert } from "../animations/scrollAnimations"
 
@@ -75,7 +76,11 @@ const About = () => {
             change.
           </p>
           <div className="btn-row">
-            <a className="hover-shadows" href="/">Meet the team ▶</a>
+            <Link to="/team">
+              <span className="hover-shadows">
+                Meet the team ▶
+              </span>
+            </Link>
           </div>
         </div>
         <div className="about-images">
