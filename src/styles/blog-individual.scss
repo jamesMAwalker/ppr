@@ -108,16 +108,18 @@
     }
     &-author-thumbnail {
       @include flexCenter;
-      height: 50px;
-      width: 50px;
+      height: var(--smallThumbnail);
+      width: var(--smallThumbnail);
       margin-right: 1rem;
       border-radius: 200px;
       border: 3.25px solid $black;
       img {
         transform-origin: center;
         clip-path: circle(50% at 50% 50%);
-        height: 49px;
-        width: 49px;
+        height: calc(var(--smallThumbnail) - 1px);
+        width: calc(var(--smallThumbnail) - 1px);
+        // height: 100%;
+        // width: 100%;
         object-fit: cover;
       }
     }
@@ -135,6 +137,7 @@
   }
   &-text {
     line-height: 200%;
+    font-size: var(--mFontSize);
     @include media("<=tablet") {
       font-size: var(--mFontSize);
     }

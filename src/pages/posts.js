@@ -7,12 +7,13 @@ import SanityImage from 'gatsby-plugin-sanity-image'
 
 
 const Blogs = ({ data }) => {
-  console.log('data from blog posts page: ', data);
+  
   
   return (
     <main className="blogs">
       <div className="blogs-grid-wrapper">
         {data.entryData.edges.map(({ node: entry }, idx) => {
+          
           const authorName = entry?.author?.name ?? "PPR Team"
 
           const mainImageData = entry.mainImage.asset.gatsbyImageData
@@ -21,6 +22,7 @@ const Blogs = ({ data }) => {
           // set latest post to center grid cell
           const center = idx === 0 ? "center" : ""
           
+
           return (
             <section className={`blog-card ${center}`}>
               {center && <div className="latest">Latest</div>}
@@ -47,7 +49,7 @@ const Blogs = ({ data }) => {
                 <GatsbyImage image={mainImageData} />
               </div>
               <div className="post-category">
-                <em>{entry.categories[0].title}</em>
+                <em>{entry?.categories[0]?.title || "blog"}</em>
               </div>
             </section>
           )
