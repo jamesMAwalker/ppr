@@ -1,9 +1,9 @@
 // + SASS & CSS Variables + //
 
 // Sass Utility Imports
-@import './sass-utilities/vairables.scss';
-@import './sass-utilities/mixins.scss';
-@import './vendor/include-media.scss';
+@import "./sass-utilities/vairables.scss";
+@import "./sass-utilities/mixins.scss";
+@import "./vendor/include-media.scss";
 
 /*
 + Breakpoints +
@@ -76,18 +76,14 @@
   --desktop: 1440px;
   --LGdesktop: 1920px;
 
-
   @include media("<=tablet") {
     --contentMargin: calc(10 * var(--mVh));
   }
-
 }
-
-
 
 // + Resets & Defaults + //
 
-html, 
+html,
 body {
   font-family: $font-primary;
   font-size: 15px;
@@ -101,7 +97,7 @@ body {
 
   scrollbar-color: transparent transparent;
   scrollbar-width: none;
-  
+
   ::-webkit-scrollbar {
     width: 0px;
     background-color: $black;
@@ -109,6 +105,13 @@ body {
   ::-webkit-scrollbar-thumb {
     width: 0px;
     background-color: $white;
+  }
+  &,
+  * {
+    cursor: none !important;
+    &:hover {
+      cursor: none !important;
+    }
   }
 }
 
@@ -127,8 +130,6 @@ button {
   letter-spacing: var(--spaced);
 }
 
-
-
 // + Utility Classes + //
 
 // Wrappers
@@ -143,43 +144,38 @@ button {
 
 // Typography
 .hover-shadows {
-  transition: all .2s;
-  
+  transition: all 0.2s;
+
   &:hover {
     color: $black !important;
     mix-blend-mode: unset !important;
-    text-shadow: 1.5px 1.5px 0 $turquoiseTr,
-                 3px 3px 0 $pink
-    !important;
+    text-shadow: 1.5px 1.5px 0 $turquoiseTr, 3px 3px 0 $pink !important;
   }
 }
-
-
 
 // + Style Component Imports + //
 
 // Layout & Base
-@import './header.scss';
-@import './layout.scss';
-@import './sponsors-band.scss';
-@import './footer.scss';
-@import './mobile-menu.scss';
+@import "./header.scss";
+@import "./layout.scss";
+@import "./sponsors-band.scss";
+@import "./footer.scss";
+@import "./mobile-menu.scss";
 
 // Sections & Pages
-@import './hero-grid.scss';
-@import './about.scss';
-@import './team.scss';
-@import './team-member.scss';
-@import './sponsors.scss';
-@import './sponsor-individual.scss';
-@import './supporter-kit.scss';
-@import './events.scss';
-@import './contact.scss';
-@import './gallery.scss';
-@import './blogs.scss';
-@import './blog-individual.scss';
+@import "./hero-grid.scss";
+@import "./about.scss";
+@import "./team.scss";
+@import "./team-member.scss";
+@import "./sponsors.scss";
+@import "./sponsor-individual.scss";
+@import "./supporter-kit.scss";
+@import "./events.scss";
+@import "./contact.scss";
+@import "./gallery.scss";
+@import "./blogs.scss";
+@import "./blog-individual.scss";
 
 // Small Components
-@import './pa-modal.scss';
-@import './small-components/buttons.scss';
-
+@import "./pa-modal.scss";
+@import "./small-components/buttons.scss";

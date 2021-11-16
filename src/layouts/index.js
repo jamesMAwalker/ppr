@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
+import { CustomCursor } from '../components/cursor'
 import Header from "../components/header"
 import { InstaIcon, ScrollIcon, StravaIcon } from "../components/icons"
 import Footer from "../components/footer"
@@ -202,8 +203,12 @@ const Layout = ({ children, location: { pathname } }) => {
     })
   )
 
+  // Custom Cursor State 
+  const [cursorState, setCursorState] = useState('open')
+
   return (
     <>
+      <CustomCursor cursorState={cursorState}/>
       <Meta />
       <MobileMenu
         isMobile={isMobile}
@@ -213,7 +218,7 @@ const Layout = ({ children, location: { pathname } }) => {
         toggleMenu={() => setMenuVisible(!menuVisible)}
       />
       <div className="layout" data-scroll-container>
-        <Header pageLocation={pathname} galleryScrolled={galleryScrolled} />
+        <Header setCursor={setCursorState} pageLocation={pathname} galleryScrolled={galleryScrolled} />
         {pageLocation["/"] && (
           <span className="mm-trigger" ref={mobileMenuRef}></span>
         )}

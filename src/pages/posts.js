@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
+
 import { Link } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 import SanityImage from 'gatsby-plugin-sanity-image'

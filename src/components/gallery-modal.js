@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
 
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Img from "gatsby-image"
 
 const GalleryModal = ({idx, toggleModal, meta }) => {
@@ -18,9 +19,10 @@ const GalleryModal = ({idx, toggleModal, meta }) => {
             id
             base
             childImageSharp {
-              fluid(maxWidth: 1200, quality: 100) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+              gatsbyImageData(
+                quality: 100
+                formats: [WEBP, AVIF, AUTO]
+              )
             }
           }
         }
@@ -28,9 +30,13 @@ const GalleryModal = ({idx, toggleModal, meta }) => {
     }
   `)
 
+  const modalImageData = getImage(
+    modalData.galleryPhotos.edges[idx].node
+  )
+
   return (
-    <div 
-      className="modal" 
+    <div
+      className="modal"
       role="button"
       tabIndex={0}
       onClick={toggleModal}
@@ -38,7 +44,7 @@ const GalleryModal = ({idx, toggleModal, meta }) => {
     >
       <span className="close-button">&#10006;</span>
       <div className="modal-image">
-        <Img
+        {/* <Img
           fadeIn
           fluid={
             modalData.galleryPhotos.edges[idx].node.childImageSharp.fluid
@@ -47,6 +53,10 @@ const GalleryModal = ({idx, toggleModal, meta }) => {
           objectPosition="50% 50%"
           alt=""
           quality="100"
+        /> */}
+        <GatsbyImage
+          image={modalImageData}
+          className="gallery-gatsby-img"
         />
         <div className="meta-data">
           <div className="meta-flex-wrapper">

@@ -4,13 +4,12 @@ import gsap from "gsap"
 import { Link } from "gatsby"
 import { Link as ScrollLink } from "react-scroll"
 
+import PACard from "../components/pa-card"
+import { LogoColor } from "./Logo"
 
-import PACard from '../components/pa-card'
-import { LogoColor } from './Logo'
+import { navMenuOpen, navMenuClose } from "../animations/navAnimations"
 
-import { navMenuOpen, navMenuClose } from '../animations/navAnimations'
-
-const Header = ({ galleryScrolled, pageLocation }) => {
+const Header = ({ galleryScrolled, pageLocation, setCursor }) => {
   const [innrNavVis, setInnrNavVis] = useState(0)
   const [aboutMenuOpen, setAboutMenuOpen] = useState(false)
 
@@ -38,14 +37,20 @@ const Header = ({ galleryScrolled, pageLocation }) => {
       navMenuOpen(".nav", ".about-menu .shade")
       setTimeout(() => {
         setAboutMenuOpen(true)
-      }, 100);
-    } 
-    else {
+      }, 100)
+    } else {
       navMenuClose(".nav", ".about-menu .shade")
       setTimeout(() => {
         setAboutMenuOpen(false)
-      }, 600);
+      }, 600)
     }
+  }
+
+  const cursorOpen = () => {
+    setCursor("open")
+  }
+  const cursorFocus = () => {
+    setCursor("focus")
   }
 
   return (
@@ -53,13 +58,17 @@ const Header = ({ galleryScrolled, pageLocation }) => {
       <div className="container">
         <div className="inner-header">
           <div className="nav-left">
-            <div className="logo">
+            <div
+              className="logo"
+              onMouseEnter={cursorFocus}
+              onMouseLeave={cursorOpen}
+            >
               <Link to="/">
                 <LogoColor />
               </Link>
             </div>
             <h2 className="nav-header" style={{ opacity: `${innrNavVis}` }}>
-              <Link to="/">
+              <Link to="/" onMouseEnter={cursorFocus} onMouseLeave={cursorOpen}>
                 <span>PLANT POWER</span>
                 <span className="racing"> RACING</span>
               </Link>
@@ -69,16 +78,38 @@ const Header = ({ galleryScrolled, pageLocation }) => {
             <nav className="nav" style={{ opacity: `${innrNavVis}` }}>
               {pageLocation === "/" ? (
                 <>
-                  <Link to="/sponsors">
+                  <Link
+                    to="/sponsors"
+                    onMouseEnter={cursorFocus}
+                    onMouseLeave={cursorOpen}
+                  >
                     <span className="hover-shadows">Sponsors</span>
                   </Link>
-                  <ScrollLink to="events" smooth="true" offset={-125}>
+                  <ScrollLink
+                    to="events"
+                    smooth="true"
+                    offset={-125}
+                    onMouseEnter={cursorFocus}
+                    onMouseLeave={cursorOpen}
+                  >
                     <span className="hover-shadows">Events</span>
                   </ScrollLink>
-                  <Link to="posts" smooth="true" offset={-125}>
+                  <Link
+                    to="posts"
+                    smooth="true"
+                    offset={-125}
+                    onMouseEnter={cursorFocus}
+                    onMouseLeave={cursorOpen}
+                  >
                     <span className="hover-shadows">Writing</span>
                   </Link>
-                  <ScrollLink to="about" smooth="true" offset={-120}>
+                  <ScrollLink
+                    to="about"
+                    smooth="true"
+                    offset={-120}
+                    onMouseEnter={cursorFocus}
+                    onMouseLeave={cursorOpen}
+                  >
                     <span className="hover-shadows last">
                       About
                       <button onClick={toggleAboutMenu}>
@@ -86,31 +117,68 @@ const Header = ({ galleryScrolled, pageLocation }) => {
                       </button>
                     </span>
                   </ScrollLink>
-                  <div className="about-menu">
+                  <div
+                    className="about-menu"
+                    onMouseEnter={cursorFocus}
+                    onMouseLeave={cursorOpen}
+                  >
                     <div className="shade" />
-                    <ScrollLink to="about" smooth="true" offset={-120}>
+                    <ScrollLink
+                      to="about"
+                      smooth="true"
+                      offset={-120}
+                      onMouseEnter={cursorFocus}
+                      onMouseLeave={cursorOpen}
+                    >
                       <span>STORY</span>
                     </ScrollLink>
-                    <Link to="/team">
+                    <Link
+                      to="/team"
+                      onMouseEnter={cursorFocus}
+                      onMouseLeave={cursorOpen}
+                    >
                       <span>TEAM</span>
                     </Link>
-                    <ScrollLink to="contact" smooth="true" offset={-125}>
+                    <ScrollLink
+                      to="contact"
+                      smooth="true"
+                      offset={-125}
+                      onMouseEnter={cursorFocus}
+                      onMouseLeave={cursorOpen}
+                    >
                       <span>CONTACT</span>
                     </ScrollLink>
                   </div>
                 </>
               ) : (
                 <>
-                  <Link to="/sponsors">
+                  <Link
+                    to="/sponsors"
+                    onMouseEnter={cursorFocus}
+                    onMouseLeave={cursorOpen}
+                  >
                     <span className="hover-shadows">Sponsors</span>
                   </Link>
-                  <Link to="/#events">
+                  <Link
+                    to="/#events"
+                    onMouseEnter={cursorFocus}
+                    onMouseLeave={cursorOpen}
+                  >
                     <span className="hover-shadows">Events</span>
                   </Link>
-                  <Link to="/posts">
+                  <Link
+                    to="/posts"
+                    onMouseEnter={cursorFocus}
+                    onMouseLeave={cursorOpen}
+                  >
                     <span className="hover-shadows">Writing</span>
-                    </Link>
-                    <Link to={null} disabled>
+                  </Link>
+                  <Link
+                    to={null}
+                    disabled
+                    onMouseEnter={cursorFocus}
+                    onMouseLeave={cursorOpen}
+                  >
                     <span className="hover-shadows last">
                       About
                       <button onClick={toggleAboutMenu}>
@@ -120,13 +188,25 @@ const Header = ({ galleryScrolled, pageLocation }) => {
                   </Link>
                   <div className="about-menu">
                     <div className="shade" />
-                    <Link to="/#about" >
+                    <Link
+                      to="/#about"
+                      onMouseEnter={cursorFocus}
+                      onMouseLeave={cursorOpen}
+                    >
                       <span>STORY</span>
                     </Link>
-                    <Link to="/team">
+                    <Link
+                      to="/team"
+                      onMouseEnter={cursorFocus}
+                      onMouseLeave={cursorOpen}
+                    >
                       <span>TEAM</span>
                     </Link>
-                    <Link to="/#contact" >
+                    <Link
+                      to="/#contact"
+                      onMouseEnter={cursorFocus}
+                      onMouseLeave={cursorOpen}
+                    >
                       <span>CONTACT</span>
                     </Link>
                   </div>

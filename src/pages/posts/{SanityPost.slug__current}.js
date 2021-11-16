@@ -9,6 +9,7 @@ import { fadeIn } from '../../animations/scrollAnimations'
 import { heroZoomOut, lowSlideUpFadeIn } from '../../animations/startAnimations'
 
 const BlogPage = ({ data: { sanityPost } }) => {
+  console.log('sanityPost._rawBody: ', sanityPost._rawBody);
   const excerptText = sanityPost?.excerpt[0]?.children[0]?.text ?? ""
   const authorName = sanityPost.author.name
 
