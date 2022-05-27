@@ -249,6 +249,9 @@
       background-blend-mode: difference;
     }
   }
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 
 .ring {
@@ -269,5 +272,8 @@
     left: 20px;
     height: 40px;
     width: 40px;
+  }
+   @media (max-width: 1024px) {
+    display: none;
   }
 }
