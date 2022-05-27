@@ -7,9 +7,9 @@
     height: 100%;
     width: 100vw;
     display: grid;
-    grid-template-columns: var(--contentMargin) calc(
-        100vw - (var(--contentMargin) * 2)
-      ) var(--contentMargin);
+    grid-template-columns:
+      var(--contentMargin) calc(100vw - (var(--contentMargin) * 2))
+      var(--contentMargin);
     grid-template-rows: 1fr;
     grid-template-areas: "marginL content marginR";
 
@@ -228,32 +228,46 @@
   position: fixed;
   height: 80px;
   width: 80px;
-  background-color: $pink;
-  background-color: transparent;
-  border: 1px solid black;
-  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-  transition: height 0.2s, width 0.2s, border 0.2s, background-color 0.2s;
-  &.focused {
-    border: none;
-    height: 25px;
-    width: 25px;
-    background-color: $pink;
-    mix-blend-mode: difference;
-    &::after {
-      display: none;
-    }
-  }
-  &::after {
-    position: absolute;
-    content: "";
+  isolation: isolate;
+  .dot {
     height: 4px;
     width: 4px;
-    top: calc(50% - 2px);
-    left: calc(50% - 2px);
     background-color: $black;
     border-radius: 999px;
+    transform: translate3d(0, 0, 0);
+    transition: height 0.2s, width 0.2s, border 0.2s, background-color 0.2s;
+    &.focused {
+      border: none;
+      height: 15px;
+      width: 15px;
+      background-color: $pink;
+      mix-blend-mode: difference;
+      background-blend-mode: difference;
+    }
+  }
+}
+
+.ring {
+  pointer-events: none;
+  z-index: 999999999999999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 80px;
+  border: 1px solid $black;
+  border-radius: 999px;
+  transition: $transition-1-smooth;
+  &.focused {
+    border-color: $pink;
+    opacity: 0.5;
+    top: 20px;
+    left: 20px;
+    height: 40px;
+    width: 40px;
   }
 }

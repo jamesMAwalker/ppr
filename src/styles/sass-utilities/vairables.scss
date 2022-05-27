@@ -3,9 +3,9 @@
 // @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;500;600&display=swap');
 
 // Font Declarations
-$font-primary: 'Palanquin', "Helvetica Neue", Helvetica, sans-serif;;
-$font-title: 'Spartan', sans-serif;
-$font-code: 'JetBrains Mono', monospace;
+$font-primary: "Palanquin", "Helvetica Neue", Helvetica, sans-serif;
+$font-title: "Spartan", sans-serif;
+$font-code: "JetBrains Mono", monospace;
 
 // Colors
 $white: rgb(255, 255, 255);
@@ -35,7 +35,7 @@ $turquoiseTr3: rgba(77, 219, 254, 0.9);
 $pink: rgb(248, 201, 233);
 $pinkTr: rgba(248, 201, 233, 0.6);
 
-$strava: #FF8A00;
+$strava: #ff8a00;
 
 $menuClr: $turquoise;
 $menuAcc: rgb(20, 20, 20);
@@ -58,3 +58,17 @@ $concorde: 700;
 $sr71: 800;
 $soyuz: 900;
 $ISS: 999;
+
+/* bezier curves */
+$smooth: cubic-bezier(0.115, 0.905, 0.32, 1);
+$punchitchewy: cubic-bezier(1, 0, 0.115, 0.995);
+
+/* transitions */
+$transition-1: all 1s $punchitchewy;
+$transition-2: all 0.6s $punchitchewy;
+$transition-3: all 0.3s $punchitchewy;
+$transition-4: all 0.1s $punchitchewy;
+$transition-1-smooth: all 1.25s $smooth;
+$transition-2-smooth: all 0.6s $smooth;
+$transition-3-smooth: all 0.3s $smooth;
+$transition-4-smooth: all 0.1s $smooth;

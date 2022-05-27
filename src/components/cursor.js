@@ -1,19 +1,21 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from "react"
 
 export const CustomCursor = ({ cursorState }) => {
-  console.log('cursorState: ', cursorState);
+  console.log("cursorState: ", cursorState)
   const cursorRef = useRef(null)
+  const ringRef = useRef(null)
 
-  const cursorStyle = cursorState === 'open' ? '' : 'focused'
-  
+  const cursorStyle = cursorState === "open" ? "" : "focused"
+
   useEffect(() => {
     const onMouse = (e) => {
       const { clientX, clientY } = e
       const mouseX = clientX - cursorRef.current.clientWidth / 2
       const mouseY = clientY - cursorRef.current.clientHeight / 2
       cursorRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`
+      ringRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`
     }
-    
+
     document.addEventListener("mousemove", onMouse)
     return () => {
       document.removeEventListener("mousemove", onMouse)
@@ -21,6 +23,11 @@ export const CustomCursor = ({ cursorState }) => {
   }, [cursorRef])
 
   return (
-    <div className={`custom-cursor ${cursorStyle}`} ref={cursorRef}/>
+    <>
+      <div className={"custom-cursor"} ref={cursorRef}>
+        <div className={`dot ${cursorStyle}`} />
+      </div>
+      <div className={`ring ${cursorStyle}`} ref={ringRef} />
+    </>
   )
 }
